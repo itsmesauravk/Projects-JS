@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  transition: transform 2s ease-in-out;
+}
+
+/*-------------------------------------------- header -------------------------------------------*/
+header {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5rem;
+  background-color: #f4eeee;
+  font-size: 22px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bolder;
+}
+.nav-logo span {
+  color: #004225;
+  font-size: 26px;
+}
+.nav-datas {
+  display: flex;
+}
+
+.nav-options {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-right: 3rem;
+  /* background-color: purple; */
+}
+header a {
+  text-decoration: none;
+  font-weight: 400;
+  color: black;
+
+  &:hover {
+    font-weight: 600;
+    color: #004225;
+  }
+}
+#menu-close-icon {
+  display: none;
+  position: absolute;
+  margin-left: -4.5rem;
+}
+
+#menu-icon {
+  display: none;
+  margin-right: 3rem;
+}
+
+.nav-extra {
+  display: flex;
+  gap: 1rem;
+}
+.search-box {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3.5rem;
+  background-color: #f4eeee;
+  gap: 0.4rem;
+  margin-right: 2rem;
+}
+
+.search-box input {
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 1rem;
+  font-size: 16px;
+  outline: none;
+
+  &:hover {
+    outline: 2px solid #004225;
+  }
+}
+.search-box button {
+  height: 40px;
+  width: 80px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+
+  &:hover {
+    border: 2px solid #004225;
+    font-size: 17px;
+  }
+}
+#cross-icon {
+  display: none;
+  position: absolute;
+  margin-left: -2.2rem;
+  font-size: 30px;
+}
+#search-icon {
+  position: relative;
+}
+.nav-extra i:hover {
+  font-size: 26px;
+  color: #004225;
+}
+
+.check {
+  position: relative;
+  padding-top: 6.3rem;
+  height: 200vh;
+  color: black;
+  background-color: peru;
+}
+
+.nav-options-after {
+  display: none;
+  position: relative;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.8rem;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  background-color: #f4eeee;
+  font-size: 22px;
+}
+header i:hover {
+  color: #004225;
+  font-size: 25px;
+}
+/*=================================================== Responsive design ==============================================*/
+
+@media (max-width: 985px) {
+  /* ------header ---------*/
+  nav {
+    padding: 2rem 0.5rem;
+  }
+}
+
+@media (max-width: 899px) {
+  /* ------header ---------*/
+  #menu-icon {
+    display: flex;
+  }
+  .nav-options {
+    display: none;
+  }
+}
+
+@media (max-width: 439px) {
+  /* ------header ---------*/
+  .search-box input {
+    width: 270px;
+  }
+}
