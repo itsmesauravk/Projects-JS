@@ -138,10 +138,13 @@ header a {
   gap: 0.8rem;
   align-items: center;
   width: 100%;
-  height: 300px;
+  height: auto; /* Expand to fit content */
   background-color: #f4eeee;
   font-size: 22px;
+  overflow: hidden;
+  transition: height 3s ease-in-out; /* Transition only the height property */
 }
+
 header i:hover {
   color: #004225;
   font-size: 25px;
