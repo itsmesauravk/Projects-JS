@@ -16,6 +16,11 @@ header {
   left: 0;
   right: 0;
   z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: background-color 0.5s ease-in-out;
+}
+header.scrolled {
+  background-color: #f4eeee;
 }
 nav {
   display: flex;
@@ -23,7 +28,6 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 2rem 5rem;
-  background-color: #f4eeee;
   font-size: 22px;
 }
 
@@ -149,6 +153,86 @@ header i:hover {
   color: #004225;
   font-size: 25px;
 }
+
+/*------------------------------------------------------------- main body-------------------------------------------------------- */
+
+.swiper {
+  width: 100%;
+  height: 94vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.swiper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-slide {
+  display: flex;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.swiper-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  pointer-events: none;
+}
+
+#data-container {
+  position: relative;
+  margin: 20rem 8rem;
+  width: 100%;
+  height: 100%;
+  max-height: 450px;
+  max-width: 600px;
+  text-align: justify;
+  z-index: 2;
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+#heading {
+  font-size: 70px;
+  font-weight: bold;
+  color: green;
+  margin-bottom: 10px;
+}
+
+#subheading {
+  margin-top: 1rem;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#banner-btn {
+  background-color: #fff;
+  border: none;
+  color: #000;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: border 0.3s, color 0.3s;
+  margin-top: 1rem;
+
+  /* hover effect */
+  &:hover {
+    border: 2px solid white;
+    font-weight: bold;
+  }
+}
+
 /*=================================================== Responsive design ==============================================*/
 
 @media (max-width: 985px) {
