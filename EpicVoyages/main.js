@@ -117,7 +117,7 @@ function adventureCard(adventureOptions) {
           </p>
         </div>
       </div>
-    <button id='a-read-more' class='a-read-more'>Read More</button>
+    <button id='a-read-more' class='read-more'>Read More</button>
   </div>`
   }
 }
