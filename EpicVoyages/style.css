@@ -157,9 +157,14 @@ header i:hover {
 
 /*------------------------------------------------------- main body-------------------------------------------------------- */
 /* for extra color */
+.all-title {
+  font-size: 50px;
+  font-weight: bold;
+}
 .changeColor {
   color: #0f4c75;
 }
+
 /* ==== */
 .swiper {
   width: 100%;
@@ -269,10 +274,7 @@ header i:hover {
   gap: 5rem;
   /* background-color: blue; */
 }
-.a-title {
-  font-size: 50px;
-  font-weight: bold;
-}
+
 .a-card {
   display: flex;
   flex-direction: column;
@@ -393,10 +395,6 @@ img {
   /* background-color: aqua; */
   gap: 1rem;
 }
-.f-title {
-  font-size: 45px;
-  font-weight: bold;
-}
 
 .f-card {
   display: flex;
@@ -512,14 +510,12 @@ img {
 .p-extra {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  gap: 1rem;
+  justify-content: center;
   align-items: center;
-  /* background-color: red; */
   height: 35%;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
-  padding: 1rem;
+  padding: 0.5rem;
   font-size: 16px;
 }
 .p-name {

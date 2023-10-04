@@ -171,3 +171,37 @@ function showDataInCard(featuredProducts) {
         </div>`
   }
 }
+
+//  popular packages
+const mainContainer = document.querySelector(".packages-container")
+
+const fetchData = async () => {
+  try {
+    const packages = await fetch("./json/popularPackages.json")
+    if (!packages) {
+      throw new Error("Somthing error occured")
+    }
+    const allPackages = await packages.json()
+    const popularPackages = allPackages.trekkingPackages
+    mainContainer.innerHTML = ""
+    for (let i = 0; i < popularPackages.length; i++) {
+      let packageData = popularPackages[i]
+      mainContainer.innerHTML += `
+        <div class="package-card">
+          <div class="p-image-div">
+            <img src="${packageData.image}" alt="" />
+          </div>
+          <div class="p-extra">
+            <div class="p-name">${packageData.name}</div>
+            <div class="p-short-details">${packageData.description}</div>
+            <div class="p-price">${packageData.price}</div>
+            </div>
+            <button id="explore" class='read-more'>Explore Now</button>
+        </div>
+        `
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+fetchData()
