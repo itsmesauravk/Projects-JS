@@ -17,7 +17,12 @@ header {
   right: 0;
   z-index: 1000;
   background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 2px 4px#555;
   transition: background-color 0.5s ease-in-out;
+}
+#page-logo {
+  width: 45px;
+  height: 45px;
 }
 header.scrolled {
   background-color: #f7cdd1;
@@ -468,10 +473,11 @@ img {
   flex-direction: column;
   gap: 2rem;
   padding-top: 2rem;
-  padding-bottom: 1rem;
+  padding-bottom: 3rem;
   align-items: center;
   width: 100%;
   height: auto;
+  background-color: #d8d9da;
 }
 
 .packages-title {
@@ -495,9 +501,12 @@ img {
   height: 35rem;
   border: 2px solid black;
   border-radius: 6px;
-  /* box-shadow: 2px 2px 4px blue; */
+  transition: box-shadow 0.3s ease-in-out;
 }
-
+.package-card:hover {
+  box-shadow: 2px 2px 4px #333;
+  background-color: rgba(0, 0, 0, 0.1);
+}
 .p-image-div {
   display: flex;
   justify-content: center;
@@ -519,12 +528,13 @@ img {
   font-size: 16px;
 }
 .p-name {
+  color: #0f4c75;
   font-size: 28px;
   font-weight: bold;
 }
 .p-price {
   font-size: 22px;
-  color: #245953;
+  color: green;
   font-weight: 600;
 }
 
@@ -532,6 +542,153 @@ img {
   width: 400px;
   height: 270px;
   border-radius: 6px;
+}
+
+/* clientReview -----------------------------------------------------------------------------------*/
+.clientReview {
+  padding: 4rem 0rem;
+  background: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* .swiper-container {
+  width: 1800px;
+  height: 500px;
+  margin-top: 2rem;
+  background-color: red;
+  overflow: hidden;
+} */
+
+/* .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  /* border: 2px solid black; 
+} */
+/* css for card */
+.cr-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 300px;
+  border: 2px solid black;
+  border-radius: 8px;
+  /* background-color: yellow; */
+}
+
+.cr-review {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  text-align: justify;
+  font-style: italic;
+  height: 60%;
+  font-size: 20px;
+}
+.cr-details {
+  display: flex;
+  padding-left: 1rem;
+  align-items: center;
+  gap: 1.5rem;
+}
+.cr-userImage img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+}
+
+.cr-userDetails h3 {
+  color: green;
+}
+.cr-arrow-div {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 9rem;
+  right: 3.6rem;
+  z-index: 10;
+  transform: rotate(45deg); /* Rotate the div by 45 degrees */
+  transform-origin: center center; /* Specify the rotation origin as the center */
+}
+/* ourOffers -----------------------------------------------------------------------------------------*/
+.offers {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background-color: #d8d9da;
+}
+
+.offers-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 75%;
+  gap: 3rem;
+}
+
+.of-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 27.5rem;
+  height: 25rem;
+  border: 2px solid black;
+  border-radius: 6px;
+  transition: background-color 0.3s ease-in-out;
+}
+.of-card:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 3px #555;
+  .of-name {
+    font-size: 30px;
+  }
+}
+
+.of-image-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aqua; */
+  height: 45%;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.of-image-div img {
+  width: 150px;
+  height: 150px;
+  border-radius: 6px;
+}
+.of-extra {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  gap: 1rem;
+  align-items: center;
+  /* background-color: red; */
+  height: 35%;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  padding: 1rem;
+  font-size: 16px;
+}
+.of-name {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0f4c75;
+}
+.of-short-details {
+  text-align: center;
 }
 
 /*=================================================== Responsive design ==============================================*/

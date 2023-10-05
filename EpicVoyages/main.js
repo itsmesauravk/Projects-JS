@@ -205,3 +205,90 @@ const fetchData = async () => {
   }
 }
 fetchData()
+
+// clientReview-----------------------------------------------------------------------------------
+const displayReviews = async () => {
+  const reviews = await fetch("./json/reviews.json")
+  const allReviews = await reviews.json()
+  const clientReviews = allReviews.clientReviews
+  const swiperWrapper = document.querySelector(".swiper-wrapper")
+  swiperWrapper.innerHTML = ""
+
+  for (let i = 0; i < clientReviews.length; i++) {
+    const review = clientReviews[i]
+    const backgroundColor = i % 2 === 0 ? "#ADC4CE" : "#C4DFDF"
+
+    swiperWrapper.innerHTML += `
+        <div class="swiper-slide"> 
+          <div class="cr-card">
+            <div class="cr-review" style="background-color: ${backgroundColor};">
+              <p>${review.comment}</p>
+            </div>
+            <div class="cr-details">
+              <div class="cr-userImage">
+                <img src="${review.image}" alt="cat" />
+              </div>
+              <div class="cr-userDetails">
+                <h2>${review.name}</h2>
+                <h3>${review.job}</h3>
+              </div>
+            </div>
+            <div class="arrow-div" style="background-color: ${backgroundColor}"></div>
+          </div>
+        </div>
+      `
+  }
+
+  // Initialize Swiper after adding all review cards
+  const swiper = new Swiper(".swiper-container", {
+    slidesPerView: 3,
+    loop: true,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+  })
+}
+// Call displayReviews to load reviews and initialize Swiper
+// displayReviews()
+
+// ouroffers--------------------------------------------------------------------------------------
+const offerContainer = document.querySelector(".offers-container")
+
+const fetchOffers = async () => {
+  try {
+    const offers = await fetch("./json/offers.json")
+    if (!offers) {
+      throw new Error("Somthing error occured")
+    }
+    const allOffers = await offers.json()
+    const getAllOffers = allOffers.offers
+    console.log(getAllOffers)
+    offerContainer.innerHTML = ""
+    for (let i = 0; i < getAllOffers.length; i++) {
+      let offerData = getAllOffers[i]
+      offerContainer.innerHTML += `
+        <div class="of-card">
+          <div class="of-image-div">
+            <img src="${offerData.icon}" alt="" />
+          </div>
+          <div class="of-extra">
+            <div class="of-name">${offerData.name}</div>
+            <div class="of-short-details">${offerData.details}</div>
+            </div>
+            <button id="offersBtn" class='read-more'>Read More</button>
+        </div>
+        `
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+fetchOffers()

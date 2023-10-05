@@ -21,7 +21,7 @@
     <!-- for top icon -->
     <link
       rel="icon"
-      href="https://www.pngmart.com/files/17/Travel-Icon-PNG-Image.png"
+      href="https://cdn-icons-png.flaticon.com/512/776/776574.png"
       type="image/png"
     />
     <!-- costum css -->
@@ -32,15 +32,19 @@
     <header id="header">
       <nav>
         <div class="nav-logo">
-          <i class="fa-solid fa-person-walking-luggage"></i>
+          <img
+            id="page-logo"
+            src="https://cdn-icons-png.flaticon.com/512/776/776574.png"
+            alt=""
+          />
           <p>Epic<span id="nav-logo-span">Voyages</span></p>
         </div>
         <div class="nav-datas">
           <div class="nav-options">
             <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Shop</a>
-            <a href="#">Packages</a>
+            <a href="#about-box">About</a>
+            <a href="#featured-products">Shop</a>
+            <a href="#packages">Packages</a>
             <a href="#">Reviews</a>
             <a href="#">Blogs</a>
           </div>
@@ -60,9 +64,9 @@
       <!-- responsive home/nav Section-->
       <div class="nav-options-after">
         <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Shop</a>
-        <a href="#">Packages</a>
+        <a href="#about-box">About</a>
+        <a href="#featured-products">Shop</a>
+        <a href="#packages">Packages</a>
         <a href="#">Reviews</a>
         <a href="#">Blogs</a>
       </div>
@@ -80,7 +84,7 @@
     </div>
     <!-- --------- -->
     <!-- Adventure idea -->
-    <div class="adventure-idea">
+    <div id="adventure-idea" class="adventure-idea">
       <div class="a-title all-title">
         Adventure <span class="changeColor">Available!</span>
       </div>
@@ -89,27 +93,29 @@
     </div>
 
     <!-- About Page -->
-    <div class="about-box">
+    <div id="about-box" class="about-box">
       <div class="about-box-card">
         <div class="about-box-image">
           <img
             id="ab-image"
-            src="https://xilam.com/wp-content/uploads/2017/11/Oggy_Catalogue_VA.jpg"
-            alt="oggy and the cockroaches"
+            src="https://wwwnc.cdc.gov/travel/images/mountain-biker.jpg"
+            alt="Image"
           />
         </div>
         <div class="about-box-extras">
           <div class="ab-extras-title all-title">
-            Oggy <span class="changeColor">& the Cockroaches</span>
+            EPIC <span class="changeColor">VOYAGES</span>
           </div>
           <div class="ab-extras-details">
             <p>
-              Oggy and the Cockroaches is a toned down version of Tom & Jerry.
-              No, this is not Tom & Jerry, and it isn't quite as inappropriate,
-              but this French knock-off, that premiered in 1998, is meant for
-              older children.Oggy and the Cockroaches is a toned down version of
-              Tom & Jerry. Oggy and the Cockroaches is a toned down version of
-              Tom & Jerry.
+              "Discover the world's wonders with
+              <span class="changeColor">EpicVoyages</span>, your go-to source
+              for exhilarating journeys and immersive cultural experiences. From
+              thrilling adventures to cultural immersion, we offer it all. Plan
+              your dream getaway, connect with fellow adventurers, and
+              prioritize safety on every expedition. Your next unforgettable
+              adventure starts here."<br />
+              <b>-Saurav <span class="changeColor">Karki</span></b>
             </p>
           </div>
           <button id="extras-button" class="read-more">Read More</button>
@@ -118,7 +124,7 @@
     </div>
 
     <!-- Featured products -->
-    <div class="featured-products">
+    <div id="featured-products" class="featured-products">
       <div class="f-title all-title">
         Featured <span class="changeColor">Products</span>
       </div>
@@ -129,11 +135,31 @@
     </div>
 
     <!-- popular pacakges -->
-    <div class="packages">
+    <div id="packages" class="packages">
       <div class="packages-title all-title">
         Popular <span class="changeColor">packages</span>
       </div>
       <div class="packages-container"></div>
+    </div>
+
+    <!-- clientReview -->
+    <div class="clientReview">
+      <div class="clientsReview-title all-title">
+        Client's <span class="changeColor">Reviews</span>
+      </div>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <!-- review goes here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ourOffers -->
+    <div id="offers" class="offers">
+      <div class="offers-title all-title">
+        Our <span class="changeColor">Offers</span>
+      </div>
+      <div class="offers-container"></div>
     </div>
 
     <!-- footer -->
