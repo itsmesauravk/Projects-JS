@@ -767,6 +767,62 @@ img {
 .see-more-blogs {
   margin-top: 2rem;
 }
+
+/*--------------------------------- join us----------------------------------------- */
+.joinus {
+  display: flex;
+  justify-content: center;
+  background-color: #d8d9da;
+  height: 24rem;
+  padding: 2rem 0rem;
+
+  .joinus-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+    /* background-color: greenyellow; */
+    text-align: center;
+  }
+  .join-input {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    width: 40rem;
+    height: 4rem;
+    border-radius: 20px;
+    font-size: 20px;
+
+    #email-input {
+      width: 29rem;
+      height: 3.8rem;
+      border-radius: 20px;
+      border: none;
+      font-size: 18px;
+      padding-left: 1rem;
+      outline: none;
+    }
+    #join-btn {
+      width: 10rem;
+      height: 3.4rem;
+      border-radius: 20px;
+      border: none;
+      font-size: 18px;
+      background-color: black;
+      color: #f7cdd1;
+      font-weight: bold;
+
+      &:hover {
+        font-size: 20px;
+        outline: 2px solid #f7cdd1;
+        outline-offset: -7px;
+      }
+    }
+  }
+}
 /*=================================================== Responsive design ==============================================*/
 
 @media (max-width: 985px) {
