@@ -203,7 +203,7 @@ header i:hover {
   background-size: cover;
 }
 
-.swiper-slide::before {
+.swiper .swiper-slide::before {
   content: "";
   position: absolute;
   top: 0;
@@ -821,6 +821,33 @@ img {
         outline-offset: -7px;
       }
     }
+  }
+}
+
+/* ----------------------------------------------patner companies-------------------------------- */
+.patner-companies {
+  display: flex;
+  justify-content: center;
+  height: 15rem;
+  align-items: center;
+}
+
+.companies-container {
+  width: 80%;
+  /* background-color: greenyellow; */
+  overflow: hidden;
+
+  .swiper-wrapper {
+    display: flex;
+    width: 80%;
+  }
+  .swiper-slide {
+    width: 150px;
+    height: 150px;
+  }
+  .swiper-slide img {
+    width: 150px;
+    height: 150px;
   }
 }
 /*=================================================== Responsive design ==============================================*/

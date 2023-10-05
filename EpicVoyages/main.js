@@ -337,3 +337,18 @@ function showBlogs(displayBlogs) {
         `
   }
 }
+
+//------------------------------------ patnercompanies -----------------------------------------------
+const swiperr = new Swiper(".companies-container", {
+  slidesPerView: 4,
+  loop: true,
+  spaceBetween: 10,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+})
