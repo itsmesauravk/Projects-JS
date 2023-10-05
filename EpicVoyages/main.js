@@ -211,7 +211,7 @@ const displayReviews = async () => {
   const reviews = await fetch("./json/reviews.json")
   const allReviews = await reviews.json()
   const clientReviews = allReviews.clientReviews
-  const swiperWrapper = document.querySelector(".swiper-wrapper")
+  const swiperWrapper = document.querySelector(".reviews-wrapper")
   swiperWrapper.innerHTML = ""
 
   for (let i = 0; i < clientReviews.length; i++) {
@@ -219,7 +219,7 @@ const displayReviews = async () => {
     const backgroundColor = i % 2 === 0 ? "#ADC4CE" : "#C4DFDF"
 
     swiperWrapper.innerHTML += `
-        <div class="swiper-slide"> 
+        <div class="review-slide"> 
           <div class="cr-card">
             <div class="cr-review" style="background-color: ${backgroundColor};">
               <p>${review.comment}</p>
@@ -240,7 +240,7 @@ const displayReviews = async () => {
   }
 
   // Initialize Swiper after adding all review cards
-  const swiper = new Swiper(".swiper-container", {
+  const swiper = new Swiper(".reviews-swiper", {
     slidesPerView: 3,
     loop: true,
     spaceBetween: 10,
@@ -256,7 +256,7 @@ const displayReviews = async () => {
   })
 }
 // Call displayReviews to load reviews and initialize Swiper
-// displayReviews()
+displayReviews()
 
 // ouroffers--------------------------------------------------------------------------------------
 const offerContainer = document.querySelector(".offers-container")
@@ -292,3 +292,48 @@ const fetchOffers = async () => {
 }
 
 fetchOffers()
+
+// blogs ------------------------------------------------------------------------------------
+const blogContainer = document.querySelector(".blogs-cards-container")
+
+const getAllBlogs = async () => {
+  const allBlogs = await fetch("./json/blogs.json")
+  const getBlogs = await allBlogs.json()
+  const displayBlogs = getBlogs.blogs
+  showBlogs(displayBlogs)
+}
+getAllBlogs()
+
+function showBlogs(displayBlogs) {
+  blogContainer.innerHTML = ""
+  for (let i = 0; i < 3; i++) {
+    const blog = displayBlogs[i]
+    blogContainer.innerHTML += `
+        <div class="blog-card">
+          <div class="image-box">
+            <img
+              src="${blog.image}"
+              alt="image"
+            />
+          </div>
+          <div class="date-posted">
+            <div class="date">
+              <i class="fa-solid fa-calendar-days"></i>
+              ${blog.date}
+            </div>
+            <div class="postedby">
+              <i class="fa-solid fa-user"></i>
+              ${blog.writer}
+            </div>
+          </div>
+          <div class="extra-details">
+            <div class="blog-name">${blog.title}</div>
+            <div class="blog-blogs">
+            ${blog.highlight}
+            </div>
+            <button class="read-more">Read More</button>
+          </div>
+        </div>
+        `
+  }
+}

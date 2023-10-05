@@ -547,28 +547,32 @@ img {
 /* clientReview -----------------------------------------------------------------------------------*/
 .clientReview {
   padding: 4rem 0rem;
-  background: pink;
+  /* background: pink; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-/* .swiper-container {
+.reviews-swiper {
+  /* display: flex; */
   width: 1800px;
   height: 500px;
   margin-top: 2rem;
-  background-color: red;
+  /* background-color: red; */
   overflow: hidden;
-} */
+}
+.reviews-wrapper {
+  display: flex;
+}
 
-/* .swiper-slide {
+.review-slide {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: green;
-  /* border: 2px solid black; 
-} */
+  /* background-color: green; */
+  /* border: 2px solid black;  */
+}
 /* css for card */
 .cr-card {
   position: relative;
@@ -691,6 +695,78 @@ img {
   text-align: center;
 }
 
+/* -----------------------------------------------blogs ----------------------------------------------------*/
+.blogs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem 0rem;
+}
+.blogs-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin-top: 2rem;
+  justify-content: space-around;
+}
+
+.blog-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 32rem;
+  height: 35rem;
+  /* border: 2px solid black; */
+}
+
+.image-box img {
+  width: 32rem;
+  height: 20rem;
+  border-radius: 8px;
+}
+
+.date-posted {
+  position: absolute;
+  display: flex;
+  gap: 3rem;
+  background-color: #333;
+  width: 20rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  top: 18.7rem;
+  color: #fff;
+}
+.date-posted i {
+  color: #f7cdd1;
+}
+
+.extra-details {
+  padding: 2.8rem 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .blog-name {
+    font-size: 22px;
+    color: #0f4c75;
+    font-weight: bold;
+  }
+  .blog-blogs {
+    margin-top: 1rem;
+  }
+}
+.see-more-blogs {
+  margin-top: 2rem;
+}
 /*=================================================== Responsive design ==============================================*/
 
 @media (max-width: 985px) {
