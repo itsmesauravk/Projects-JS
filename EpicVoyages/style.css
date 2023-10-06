@@ -929,7 +929,6 @@ footer::before {
 
 .main-footer {
   display: flex;
-  /* position: absolute; */
   flex-direction: column;
   justify-content: space-around;
   padding-top: 1rem;
@@ -957,19 +956,31 @@ footer::before {
 }
 
 .links-footer a {
+  position: relative;
   text-decoration: none;
   font-weight: 600;
   padding-bottom: 0.5rem;
   color: white;
 }
-a:hover {
+.links-footer a::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background-color: #f7cdd1;
+  bottom: 0;
+  left: 0;
+  transition: width 0.5s ease-in-out;
+}
+.links-footer a:hover::before {
+  width: 100%;
+}
+.links-footer a:hover {
   font-size: 19px;
   font-weight: 900;
   color: green;
-  border-bottom: 2px solid #f7cdd1;
 }
 .end-footer {
-  /* position: absolute; */
   font-size: 20px;
   display: flex;
   justify-content: center;
