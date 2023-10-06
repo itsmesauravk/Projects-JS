@@ -561,11 +561,11 @@ img {
   /* background-color: red; */
   overflow: hidden;
 }
-.reviews-wrapper {
+.reviews-swiper .swiper-wrapper {
   display: flex;
 }
 
-.review-slide {
+.reviews-swiper .swiper-slide {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -620,7 +620,7 @@ img {
   transform: rotate(45deg); /* Rotate the div by 45 degrees */
   transform-origin: center center; /* Specify the rotation origin as the center */
 }
-/* ourOffers -----------------------------------------------------------------------------------------*/
+/* ---------------------------------------------------ourOffers -----------------------------------------------------------------------------------------*/
 .offers {
   display: flex;
   flex-direction: column;
@@ -850,60 +850,6 @@ img {
     height: 150px;
   }
 }
-/*=================================================== Responsive design ==============================================*/
-
-@media (max-width: 985px) {
-  /* ------header ---------*/
-  nav {
-    padding: 2rem 0.5rem;
-  }
-}
-
-@media (max-width: 899px) {
-  /* ------header ---------*/
-  #menu-icon {
-    display: flex;
-  }
-  .nav-options {
-    display: none;
-  }
-
-  /*----- main body---- */
-  .swiper-button-next,
-  .swiper-button-prev {
-    display: none;
-  }
-  #data-container {
-    margin: 26rem 1rem;
-  }
-
-  #heading {
-    font-size: 50px;
-  }
-  #subheading,
-  #banner-btn {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 439px) {
-  /* ------header ---------*/
-  .search-box input {
-    width: 270px;
-  }
-  /* ------main body ---------*/
-  #data-container {
-    margin: 15rem 0.2rem;
-  }
-
-  #heading {
-    font-size: 40px;
-  }
-  #subheading,
-  #banner-btn {
-    font-size: 14px;
-  }
-}
 
 /* -------------------------------------------------------footer ----------------------------------------------------------------*/
 footer {
@@ -989,4 +935,59 @@ footer::before {
   border-top: 2px solid white;
   font-weight: 600;
   z-index: 10;
+}
+/* footer completed */
+/*=================================================== Responsive design ==============================================*/
+
+@media (max-width: 985px) {
+  /* ------header ---------*/
+  nav {
+    padding: 2rem 0.5rem;
+  }
+}
+
+@media (max-width: 899px) {
+  /* ------header ---------*/
+  #menu-icon {
+    display: flex;
+  }
+  .nav-options {
+    display: none;
+  }
+
+  /*----- main body---- */
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+  #data-container {
+    margin: 26rem 1rem;
+  }
+
+  #heading {
+    font-size: 50px;
+  }
+  #subheading,
+  #banner-btn {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 439px) {
+  /* ------header ---------*/
+  .search-box input {
+    width: 270px;
+  }
+  /* ------main body ---------*/
+  #data-container {
+    margin: 15rem 0.2rem;
+  }
+
+  #heading {
+    font-size: 40px;
+  }
+  #subheading,
+  #banner-btn {
+    font-size: 14px;
+  }
 }

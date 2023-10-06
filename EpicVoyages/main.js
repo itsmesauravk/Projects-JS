@@ -77,7 +77,7 @@ const gettingData = () => {
 }
 gettingData()
 
-//adventure idea -----------------------------------------------------------------------------
+//--------------------adventure idea --------------------------------
 const adventureContainer = document.querySelector(".a-container")
 
 const adventureIdea = async () => {
@@ -172,7 +172,7 @@ function showDataInCard(featuredProducts) {
   }
 }
 
-//  popular packages
+//  popular packages -----------------------------------------------------------
 const mainContainer = document.querySelector(".packages-container")
 
 const fetchData = async () => {
@@ -207,11 +207,12 @@ const fetchData = async () => {
 fetchData()
 
 // clientReview-----------------------------------------------------------------------------------
+
 const displayReviews = async () => {
   const reviews = await fetch("./json/reviews.json")
   const allReviews = await reviews.json()
   const clientReviews = allReviews.clientReviews
-  const swiperWrapper = document.querySelector(".reviews-wrapper")
+  const swiperWrapper = document.querySelector(".review-wrapper")
   swiperWrapper.innerHTML = ""
 
   for (let i = 0; i < clientReviews.length; i++) {
@@ -219,7 +220,7 @@ const displayReviews = async () => {
     const backgroundColor = i % 2 === 0 ? "#ADC4CE" : "#C4DFDF"
 
     swiperWrapper.innerHTML += `
-        <div class="review-slide"> 
+        <div class="swiper-slide"> 
           <div class="cr-card">
             <div class="cr-review" style="background-color: ${backgroundColor};">
               <p>${review.comment}</p>
@@ -240,7 +241,7 @@ const displayReviews = async () => {
   }
 
   // Initialize Swiper after adding all review cards
-  const swiper = new Swiper(".reviews-swiper", {
+  const swiperReview = new Swiper(".reviews-swiper", {
     slidesPerView: 3,
     loop: true,
     spaceBetween: 10,
