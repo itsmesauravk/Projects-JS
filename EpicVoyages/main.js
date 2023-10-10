@@ -234,7 +234,7 @@ const displayReviews = async () => {
                 <h3>${review.job}</h3>
               </div>
             </div>
-            <div class="arrow-div" style="background-color: ${backgroundColor}"></div>
+            <div class="cr-arrow-div" style="background-color: ${backgroundColor}"></div>
           </div>
         </div>
       `
