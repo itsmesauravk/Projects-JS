@@ -24,6 +24,11 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <!-- swiperjs -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
   </head>
   <body>
     <!------------------------------------------- header-section ----------------------------------->
@@ -78,20 +83,41 @@
     <!--------- body ---------->
     <div class="catagory-slider">
       <div class="category">
-        <div class="women-fashion"></div>
-        <div class="health-beauty"></div>
-        <div class="mens-fashion"></div>
-        <div class="watches-accessories"></div>
-        <div class="electronic-device"></div>
-        <div class="tv-home-appliances"></div>
-        <div class="electronic-accessories"></div>
-        <div class="groceries-pet"></div>
-        <div class="babies-toy"></div>
-        <div class="home-lifestyle"></div>
-        <div class="sport-outdoor"></div>
-        <div class="motor-tools-diy"></div>
+        <div class="women-fashion catagory-items"></div>
+        <div class="health-beauty catagory-items"></div>
+        <div class="mens-fashion catagory-items"></div>
+        <div class="watches-accessories catagory-items"></div>
+        <div class="electronic-device catagory-items"></div>
+        <div class="tv-home-appliances catagory-items"></div>
+        <div class="electronic-accessories catagory-items"></div>
+        <div class="groceries-pet catagory-items"></div>
+        <div class="babies-toy catagory-items"></div>
+        <div class="home-lifestyle catagory-items"></div>
+        <div class="sport-outdoor catagory-items"></div>
+        <div class="motor-tools-diy catagory-items"></div>
       </div>
-      <div class="slider-div"></div>
+      <div class="slider-div">
+        <!-- Slider main container -->
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            ...
+          </div>
+          <!-- If we need pagination -->
+          <div class="swiper-pagination"></div>
+
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+          <!-- If we need scrollbar -->
+          <div class="swiper-scrollbar"></div>
+        </div>
+      </div>
     </div>
 
     <!-- bootstrap -->
@@ -109,6 +135,8 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- swiperjs -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
