@@ -1,0 +1,21 @@
+{
+  "name": "httpstatuscode",
+  "version": "0.0.2",
+  "description": "httpStatusCode for node.js. Restfull api must be responsed a goog status. It can use with express.",
+  "contributors": [
+    "Green Gerong <grzx2210@163.com>"
+  ],
+  "homepage": [
+    "https://github.com/greengerong/node-httpstatuscode"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greengerong/node-httpstatuscode.git"
+  },
+  "keywords": ["Http Status Code"],
+  "author": "Green Gerong <grzx2210@163.com>",
+  "maintainers": "MGreen Gerong <grzx2210@163.com>",
+  "licenses": ["MIT"],
+  "dependencies": {},
+  "devDependencies": {}
+}
