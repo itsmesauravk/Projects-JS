@@ -21,7 +21,7 @@ app.get("/news", (req, res) => {
 })
 
 app.post("/login", (req, res) => {
-  //Authenticat user
+  // User Authentication
 })
 
 const port = 3000
