@@ -130,3 +130,9 @@ a {
     background-color: rgba(0, 0, 0, 0.2);
   }
 }
+
+/* swiper js */
+.swiper {
+  width: 600px;
+  height: 300px;
+}
