@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express")
 const app = express()
 
@@ -22,6 +23,12 @@ app.get("/news", (req, res) => {
 
 app.post("/login", (req, res) => {
   // User Authentication
+
+  const username = req.body.username
+  const user = { name: username }
+
+  const accessToken = jwt.sign(user, process.env.ASCESS_TOKEN_SECRET)
+  res.json({ accessToken: accessToken })
 })
 
 const port = 3000
