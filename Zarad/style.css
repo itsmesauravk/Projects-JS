@@ -183,3 +183,32 @@ a {
 .swiper-buttons {
   color: #fff !important;
 }
+
+/* items div  */
+.container3 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 8rem;
+  margin: 2rem auto;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.container3 .item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+
+  &:hover {
+    color: #f85606;
+    cursor: pointer;
+  }
+}
+.container3 .item .itemImg {
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+}
