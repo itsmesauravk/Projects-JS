@@ -212,3 +212,93 @@ a {
   background-size: cover;
   border-radius: 10px;
 }
+.flash-sale {
+  height: 470px;
+  background-color: #fff;
+}
+
+.timer-div {
+  display: flex;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+
+  .timer-counter {
+    display: flex;
+    gap: 2rem;
+
+    .on-sale {
+      color: #f85606;
+      font-weight: 600;
+    }
+
+    .ending-in-timer {
+      display: flex;
+      gap: 0.5rem;
+
+      .hms-counter {
+        display: flex;
+        justify-content: center;
+
+        align-items: center;
+        width: 40px;
+        height: 30px;
+        background-color: #f85c0e;
+        color: white;
+      }
+    }
+  }
+  .shop-more-flash-sale {
+    border: 1px solid #f85606;
+    padding: 5px;
+    color: #f85c0e;
+    background-color: transparent;
+  }
+}
+
+.flash-sale-cards {
+  display: flex;
+  gap: 0.5rem;
+}
+.item-cards {
+  display: flex;
+  margin-top: 1rem;
+  position: relative;
+  flex-direction: column;
+  height: 350px;
+
+  .item-price {
+    color: #f85606;
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .old-price {
+    text-decoration: line-through;
+    color: gray;
+  }
+
+  &:hover {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  }
+}
+.cards-data {
+  padding: 0 10px;
+}
+.item-cards img {
+  width: 200px;
+  height: 200px;
+}
+.item-card4::before {
+  content: "SOLD OUT";
+  width: 100%;
+  height: 200px;
+  display: flex;
+  font-weight: 600;
+  font-size: 22px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.2);
+}
