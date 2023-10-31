@@ -18,7 +18,7 @@ nav {
   padding: 0 4rem;
   height: 5rem;
   align-items: center;
-  background-color: #cbf1f5;
+  /* background-color: #cbf1f5; */
 
   #my-name {
     font-size: 32px;
@@ -29,7 +29,7 @@ nav {
     }
   }
 
-  .navs ul {
+  .navs {
     display: flex;
     font-size: 22px;
     text-decoration: none;
@@ -39,7 +39,7 @@ nav {
 
     gap: 3rem;
   }
-  .navs ul a {
+  .navs a {
     text-decoration: none;
     color: #222831;
   }
