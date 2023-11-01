@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 
-function Popnav() {
+function Popnav(props) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -30,11 +30,30 @@ function Popnav() {
     <nav
       className={`show-on-scroll ${visible ? "visible" : "hidden"}`}
       style={{ position: "fixed" }}
+      id="popnav"
     >
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
+      <div
+        className={`form-check form-switch text-${
+          props.mode === "light" ? "dark" : "light"
+        }`}
+      >
+        <input
+          className="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+          onClick={() => {
+            props.changeThemeMode(null)
+          }}
+        />
+        <label className="form-check-label" for="flexSwitchCheckDefault">
+          {props.mode === "light" ? "Dark" : "Light"}
+        </label>
+      </div>
       <button onClick={scrollToTop}>Scroll to Top</button>
     </nav>
   )
