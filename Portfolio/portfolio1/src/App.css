@@ -247,6 +247,61 @@ nav {
   }
   .see-visit-project {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
+  }
+}
+.link-tag {
+  position: relative;
+  text-decoration: none;
+  color: #222831;
+  padding-bottom: 0.3rem;
+}
+.link-tag::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background-color: #00adb5;
+  border-radius: 6px;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.link-tag:hover::before {
+  width: 100%;
+}
+
+/* contact ------------------- */
+
+#contact {
+  width: 65%;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .contact-title {
+    font-size: 34px;
+    margin: 2rem 0;
+    font-weight: 600;
+  }
+  .contact-details form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .contact-details form label {
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .contact-details form input,
+  textarea {
+    border-radius: 6px;
+    border: 1px solid #00adb5;
+    font-size: 16px;
+    outline: none;
+    color: #00adb5;
+    padding-left: 0.5rem;
   }
 }

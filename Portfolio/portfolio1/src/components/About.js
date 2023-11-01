@@ -73,6 +73,9 @@ export default function About(props) {
               {changingText}
             </span>
           </p>
+          <a href="../CV.pdf" download className="pdf-download-btn">
+            Download CV
+          </a>
         </div>
       </div>
     </div>

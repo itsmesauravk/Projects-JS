@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar"
 import { useState } from "react"
 import Popnav from "./components/Popnav"
 import Projects from "./components/Projects"
+import Contact from "./components/Contact"
 
 function App() {
   const [mode, setMode] = useState("light")
@@ -36,7 +37,8 @@ function App() {
         <Popnav mode={mode} changeThemeMode={changeThemeMode} />
         <Home />
         <About mode={mode} />
-        <Projects />
+        <Projects mode={mode} />
+        <Contact mode={mode} />
       </div>
     </>
   )

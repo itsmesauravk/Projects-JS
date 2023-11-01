@@ -1,7 +1,13 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-export default function Projects() {
+export default function Projects(props) {
+  let borderCol = {
+    borderColor: props.mode === "light" ? "#222831" : "#eeeeee",
+  }
+  let hoverCol = {
+    color: props.mode === "light" ? "#222831" : "#00adb5",
+  }
   return (
     <div id="projects">
       <h2>
@@ -9,7 +15,7 @@ export default function Projects() {
       </h2>
       <div className="projects-container">
         {/* project 1  */}
-        <div className="project1 popular-project">
+        <div style={borderCol} className="project1 popular-project">
           <div className="project-image">
             <img
               src="https://www.coastalkippford.com/wp-content/uploads/2018/04/wanderer-455338_1280.jpg"
@@ -42,17 +48,25 @@ export default function Projects() {
             </p>
 
             <p className="see-visit-project">
-              <Link to="https://github.com/itsmesauravk/Projects-JS.git">
+              <Link
+                style={hoverCol}
+                className="link-tag"
+                to="https://github.com/itsmesauravk/Projects-JS.git"
+              >
                 <i className="fa-brands fa-github"></i> code{" "}
               </Link>
-              <Link to="http://epicvoyages.kesug.com/?i=1">
+              <Link
+                style={hoverCol}
+                className="link-tag"
+                to="http://epicvoyages.kesug.com/?i=1"
+              >
                 <i className="fa-solid fa-eye"></i> watch
               </Link>
             </p>
           </div>
         </div>
         {/* projcet 2 */}
-        <div className="project2 popular-project">
+        <div style={borderCol} className="project2 popular-project">
           <div className="project-image">
             <img
               src="https://s.w-x.co/util/image/w/in-weather_may9.jpg?v=ap&w=980&h=551"
@@ -88,17 +102,25 @@ export default function Projects() {
               ></i>
             </p>
             <p className="see-visit-project">
-              <Link to="https://github.com/itsmesauravk/Projects-JS.git">
+              <Link
+                style={hoverCol}
+                className="link-tag"
+                to="https://github.com/itsmesauravk/Projects-JS.git"
+              >
                 <i className="fa-brands fa-github"></i> code{" "}
               </Link>
-              <Link to="http://sauravweatherapp.infinityfreeapp.com/?i=1">
+              <Link
+                style={hoverCol}
+                className="link-tag"
+                to="http://sauravweatherapp.infinityfreeapp.com/?i=1"
+              >
                 <i className="fa-solid fa-eye"></i> watch
               </Link>
             </p>
           </div>
         </div>
         {/* project3  */}
-        <div className="project3 popular-project">
+        <div style={borderCol} className="project3 popular-project">
           <div className="project-image">
             <img
               src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg"
@@ -128,10 +150,18 @@ export default function Projects() {
               <i className="fa-brands fa-js" style={{ color: "#f5c211" }}></i>
             </p>
             <p className="see-visit-project">
-              <Link to="https://github.com/itsmesauravk/Projects-JS.git">
+              <Link
+                style={hoverCol}
+                className="link-tag"
+                to="https://github.com/itsmesauravk/Projects-JS.git"
+              >
                 <i className="fa-brands fa-github"></i> code{" "}
               </Link>
-              <Link to="http://countyourbday.kesug.com/?i=1">
+              <Link
+                style={hoverCol}
+                className="link-tag"
+                to="http://countyourbday.kesug.com/?i=1"
+              >
                 <i className="fa-solid fa-eye"></i> watch
               </Link>
             </p>
