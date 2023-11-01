@@ -11,6 +11,11 @@ body {
   background-color: #eeeeee;
 }
 
+/* .theme-color  */
+.theme-color {
+  color: #00adb5;
+}
+
 /* header ----------------------------------- */
 nav {
   display: flex;
@@ -23,10 +28,6 @@ nav {
   #my-name {
     font-size: 32px;
     font-weight: 900;
-
-    .theme-color {
-      color: #00adb5;
-    }
   }
 
   .navs {
@@ -35,19 +36,36 @@ nav {
     text-decoration: none;
     list-style: none;
     font-weight: 500;
+
     /* background-color: purple; */
 
     gap: 3rem;
   }
   .navs a {
+    position: relative;
     text-decoration: none;
     color: #222831;
+  }
+  .navs a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #00adb5;
+    border-radius: 6px;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .navs a:hover::before {
+    width: 100%;
   }
 }
 
 /* home---------------------------- */
 
-.home {
+#home {
   display: flex;
   width: 65%;
   margin: 0 auto;
@@ -74,9 +92,86 @@ nav {
     width: 50%;
   }
   .image-part img {
-    width: 700px;
+    width: 100%;
     height: 700px;
-    background-position: center;
-    background-size: cover;
+    /* filter: drop-shadow(0 0 10px #00adb5); */
+    animation: glow 0.8s alternate infinite;
   }
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 8px #00adb5);
+  }
+  100% {
+    filter: drop-shadow(0 0 12px #00adb5);
+  }
+}
+/* about ----------------------------*/
+#about {
+  width: 65%;
+  height: 100vh;
+  margin: 5rem auto;
+  /* background-color: pink; */
+  padding: 3rem 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+#about .about-me-title {
+  font-size: 36px;
+  font-weight: bold;
+}
+.about-contents {
+  display: flex;
+  gap: 3rem;
+  padding: 0 1rem;
+  .about-image {
+    width: 60%;
+  }
+  .about-image img {
+    width: 100%;
+    box-shadow: 10px 10px 10px #393e46;
+  }
+}
+.about-headings,
+.about-i-love {
+  font-size: 22px;
+}
+
+.changing-names {
+  position: relative;
+  overflow: hidden;
+}
+.changing-names::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #eeeeee;
+  border-left: 2px solid #222831;
+  animation: showtext 3s steps(12) infinite;
+}
+
+@keyframes showtext {
+  40%,
+  60% {
+    left: 100%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+.light-mode::before {
+  background-color: #eeeeee;
+  color: #222831;
+}
+
+.dark-mode::before {
+  background-color: #393e46;
+  color: #00adb5;
+  border-left: 2px solid #00adb5;
 }

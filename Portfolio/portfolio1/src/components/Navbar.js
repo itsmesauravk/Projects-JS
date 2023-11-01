@@ -2,6 +2,7 @@ import React from "react"
 // import { Link } from "react-router-dom"
 
 export default function Navbar(props) {
+  let fontCol = { color: props.mode === "light" ? "#222831" : "#fff" }
   return (
     <nav>
       <div className="logo">
@@ -9,11 +10,19 @@ export default function Navbar(props) {
           Saurav<span className="theme-color">Karki</span>
         </p>
       </div>
-      <div className="navs">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+      <div className="navs" style={fontCol}>
+        <a style={fontCol} href="#home">
+          Home
+        </a>
+        <a style={fontCol} href="#about">
+          About
+        </a>
+        <a style={fontCol} href="#projects">
+          Projects
+        </a>
+        <a style={fontCol} href="#contact">
+          Contact
+        </a>
         <div
           className={`form-check form-switch text-${
             props.mode === "light" ? "dark" : "light"

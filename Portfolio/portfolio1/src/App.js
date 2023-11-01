@@ -1,7 +1,9 @@
 import "./App.css"
+import About from "./components/About"
 import Home from "./components/Home"
 import Navbar from "./components/Navbar"
 import { useState } from "react"
+import Popnav from "./components/Popnav"
 
 function App() {
   const [mode, setMode] = useState("light")
@@ -30,7 +32,9 @@ function App() {
     <>
       <header>
         <Navbar mode={mode} changeThemeMode={changeThemeMode} />
+        <Popnav />
         <Home />
+        <About mode={mode} />
       </header>
     </>
   )

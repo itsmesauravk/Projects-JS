@@ -2,12 +2,16 @@ import React from "react"
 
 export default function Home() {
   return (
-    <div className="home">
+    <div id="home">
       <div className="intro-part">
         <div className="main-title-intro">Back-end Node/Express Developer</div>
         <div className="title-intro-desc">
-          Hi, I am Saurav Karki. A passionate back-end node/express Developer
-          based on Ramechhap,Nepal.📍
+          Hi, I am{" "}
+          <b>
+            <span className="theme-color">Saurav Karki</span>
+          </b>
+          . A passionate back-end node/express Developer based on
+          Ramechhap,Nepal.📍
         </div>
       </div>
       <div className="image-part">
