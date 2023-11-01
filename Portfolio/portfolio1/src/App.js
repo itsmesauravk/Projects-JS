@@ -6,6 +6,7 @@ import { useState } from "react"
 import Popnav from "./components/Popnav"
 import Projects from "./components/Projects"
 import Contact from "./components/Contact"
+import Copyright from "./components/Copyright"
 
 function App() {
   const [mode, setMode] = useState("light")
@@ -39,6 +40,7 @@ function App() {
         <About mode={mode} />
         <Projects mode={mode} />
         <Contact mode={mode} />
+        <Copyright />
       </div>
     </>
   )

@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 function Contact(props) {
   const handleSubmit = e => {
@@ -6,6 +7,9 @@ function Contact(props) {
   }
   let backCol = {
     backgroundColor: props.mode === "light" ? "#eeeeee" : "#393e46",
+  }
+  let textCol = {
+    color: props.mode === "light" ? "#393e46" : "#eeeeee",
   }
   return (
     <div id="contact">
@@ -66,9 +70,41 @@ function Contact(props) {
 
           {/* Submit Button */}
           <div className="contact-field">
-            <button type="submit" className="submit-button">
+            <button type="submit" className="submit-button" style={textCol}>
               Submit
             </button>
+          </div>
+          <div className="contact-social-media">
+            <span>Find me at: </span>
+            <Link to="https://www.linkedin.com">
+              <i
+                className="fa-brands fa-linkedin-in"
+                style={{ color: "#1c71d8" }}
+              ></i>
+            </Link>
+            <Link to="https://www.twitter.com">
+              <i
+                className="fa-brands fa-x-twitter"
+                style={{ color: "#000000" }}
+              ></i>
+            </Link>
+            <Link to="https://www.facebook.com">
+              <i
+                className="fa-brands fa-facebook-f"
+                style={{ color: "#1a5fb4" }}
+              ></i>
+            </Link>
+            <Link to="https://www.instagram.com">
+              <i
+                className="fa-brands fa-instagram"
+                style={{ color: "#c64600" }}
+              ></i>
+            </Link>
+          </div>
+          <div className="contact-phone">
+            <span>
+              Call me at: <strong>+977-1234543210, 01-123456</strong>{" "}
+            </span>
           </div>
         </form>
       </div>
