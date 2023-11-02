@@ -67,9 +67,9 @@ nav {
 #popnav {
   display: flex;
   flex-direction: column;
-  /* height: 20rem; */
+  height: 20rem;
   /* background-color: #eeeeee; */
-  background-color: orangered;
+  /* background-color: orangered; */
   margin-left: 1rem;
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
@@ -115,7 +115,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: plum;
+  /* background-color: plum; */
 }
 .popnav-icon {
   display: flex;
@@ -166,7 +166,7 @@ nav {
   }
   .image-part {
     /* background-color: red; */
-    width: 50%;
+    width: 600px;
   }
   .image-part img {
     width: 100%;
@@ -202,14 +202,23 @@ nav {
 }
 .about-contents {
   display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
   gap: 3rem;
   padding: 0 1rem;
   .about-image {
-    width: 60%;
+    width: 300px;
+    height: 300px;
+    /* background-color: green; */
   }
   .about-image img {
     width: 100%;
     box-shadow: 10px 10px 10px #393e46;
+  }
+  .about-me {
+    /* background-color: purple; */
+    width: 500px;
   }
 }
 .about-headings,
@@ -261,6 +270,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 #projects h2 {
   font-size: 34px;
@@ -270,6 +280,8 @@ nav {
 
 .projects-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
 }
@@ -417,4 +429,50 @@ nav {
   height: 5rem;
   background-color: #000000;
   color: #eeeeee;
+}
+
+/* media query >>responsive  */
+
+@media (max-width: 1100px) {
+  #home {
+    width: 85%;
+  }
+  #about {
+    width: 85%;
+  }
+  #projects {
+    width: 85%;
+  }
+  #contact {
+    width: 85%;
+  }
+}
+
+/* change nav here  */
+@media (max-width: 950px) {
+  #home {
+    width: 95%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .image-part {
+    width: 200px;
+  }
+  .image-part img {
+    width: 100%;
+    height: 100px;
+  }
+  #about {
+    width: 95%;
+    .about-contents {
+      flex-direction: column;
+    }
+  }
+  #projects {
+    width: 95%;
+  }
+  #contact {
+    width: 95%;
+  }
 }
