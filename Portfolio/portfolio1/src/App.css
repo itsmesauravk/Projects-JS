@@ -67,13 +67,6 @@ nav {
 #popnav {
   display: flex;
   flex-direction: column;
-  height: 20rem;
-
-  /* background-color: orangered; */
-  margin-left: 1rem;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  border-radius: 8px;
 }
 #popnav a {
   position: relative;
@@ -111,8 +104,13 @@ nav {
   }
 }
 .main-popnav-container {
-  position: relative;
-  background-color: indianred;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  /* background-color: indianred; */
 }
 .popnav-container {
   display: none;
@@ -125,9 +123,9 @@ nav {
   border-radius: 8px;
 }
 .popnav-icon {
-  position: fixed;
-  top: 10;
-  left: 10;
+  /* position: fixed; */
+  /* top: 10;
+  left: 10; */
   /* margin-left: 3rem; */
   display: flex;
   align-items: center;

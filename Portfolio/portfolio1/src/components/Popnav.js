@@ -54,10 +54,17 @@ function Popnav(props) {
       </div>
       <nav
         className={`show-on-scroll ${visible ? "visible" : "hidden"}`}
-        style={{ position: "fixed" }}
         id="popnav"
       >
-        <div className="popnav-container" style={{ display: "none" }}>
+        <div
+          className="popnav-container"
+          style={{
+            display: "none",
+            backgroundColor: `${
+              props.mode === "light" ? "#eeeeee" : "#222831"
+            }`,
+          }}
+        >
           <div className="nav-icons">
             <a style={fontCol} href="#home">
               Home
