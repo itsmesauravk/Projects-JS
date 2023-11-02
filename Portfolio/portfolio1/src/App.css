@@ -200,7 +200,7 @@ nav {
   width: 65%;
   min-height: 100vh;
   margin: 5rem auto;
-  background-color: pink;
+  /* background-color: pink; */
   padding: 3rem 0;
   display: flex;
   justify-content: center;
@@ -367,7 +367,7 @@ nav {
   width: 100%;
 }
 
-/* contact ------------------- */
+/* contact -------------------=============================================== */
 
 #contact {
   width: 65%;
@@ -440,6 +440,7 @@ nav {
   height: 5rem;
   background-color: #000000;
   color: #eeeeee;
+  padding: 0 0.5rem;
 }
 
 /* media query >>responsive  */
@@ -492,14 +493,10 @@ nav {
 }
 
 @media (max-width: 600px) {
-  nav {
-    background-color: palegreen;
-  }
   #home {
     width: 100%;
-    background-color: green;
+
     .image-part {
-      background-color: red;
       width: 300px;
       height: 400px;
     }
@@ -510,22 +507,30 @@ nav {
   }
   #about {
     width: 100%;
-    background-color: red;
 
     .about-me {
-      background-color: blueviolet;
       width: 300px;
     }
   }
   #projects {
     width: 100%;
-    background-color: orange;
   }
   .popular-project {
     width: 350px;
   }
   #contact {
     width: 100%;
-    background-color: olivedrab;
+  }
+}
+
+@media (max-width: 365px) {
+  #home {
+    .intro-part {
+      padding-left: 0rem;
+      width: 80%;
+    }
+  }
+  .popular-project {
+    width: 320px;
   }
 }
