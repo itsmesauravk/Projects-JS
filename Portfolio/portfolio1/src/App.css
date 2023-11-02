@@ -68,7 +68,7 @@ nav {
   display: flex;
   flex-direction: column;
   height: 20rem;
-  /* background-color: #eeeeee; */
+
   /* background-color: orangered; */
   margin-left: 1rem;
   padding-top: 0.3rem;
@@ -110,14 +110,25 @@ nav {
     font-size: 18px;
   }
 }
+.main-popnav-container {
+  position: relative;
+  background-color: indianred;
+}
 .popnav-container {
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: plum; */
+  background-color: #222831;
+  width: 100px;
+  padding: 0.5rem 0;
+  border-radius: 8px;
 }
 .popnav-icon {
+  position: fixed;
+  top: 10;
+  left: 10;
+  /* margin-left: 3rem; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,6 +159,7 @@ nav {
   margin: 0 auto;
   /* background-color: orange; */
   padding-top: 8rem;
+  gap: 2rem;
 
   .intro-part {
     display: flex;
@@ -476,3 +488,4 @@ nav {
     width: 95%;
   }
 }
+/* 560  */

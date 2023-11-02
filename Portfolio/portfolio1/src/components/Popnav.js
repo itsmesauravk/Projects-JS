@@ -45,57 +45,62 @@ function Popnav(props) {
   }
 
   return (
-    <nav
-      className={`show-on-scroll ${visible ? "visible" : "hidden"}`}
-      style={{ position: "fixed" }}
-      id="popnav"
-    >
+    <div className="main-popnav-container">
       <div className="popnav-icon" style={boxSadCol} onClick={showPopNav}>
         <i
           className="fa-solid fa-wand-magic-sparkles"
           style={{ color: "#222831" }}
         ></i>
       </div>
-      <div className="popnav-container" style={{ display: "none" }}>
-        <div className="nav-icons">
-          <a style={fontCol} href="#home">
-            Home
-          </a>
-          <a style={fontCol} href="#about">
-            About
-          </a>
-          <a style={fontCol} href="#projects">
-            Projects
-          </a>
-          <a style={fontCol} href="#contact">
-            Contact
-          </a>
+      <nav
+        className={`show-on-scroll ${visible ? "visible" : "hidden"}`}
+        style={{ position: "fixed" }}
+        id="popnav"
+      >
+        <div className="popnav-container" style={{ display: "none" }}>
+          <div className="nav-icons">
+            <a style={fontCol} href="#home">
+              Home
+            </a>
+            <a style={fontCol} href="#about">
+              About
+            </a>
+            <a style={fontCol} href="#projects">
+              Projects
+            </a>
+            <a style={fontCol} href="#contact">
+              Contact
+            </a>
+          </div>
+          {/* toggle btn  */}
+          <div
+            className={`form-check form-switch text-${
+              props.mode === "light" ? "dark" : "light"
+            }`}
+            id="mode-change-btn"
+          >
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              onClick={() => {
+                props.changeThemeMode(null)
+              }}
+            />
+            <label className="form-check-label" for="flexSwitchCheckDefault">
+              {props.mode === "light" ? "Dark" : "Light"}
+            </label>
+          </div>
+          <button style={backCol} id="scroll-to-top" onClick={scrollToTop}>
+            <i
+              className="fa-solid fa-arrow-up"
+              style={{ color: "#00adb5" }}
+            ></i>
+          </button>
         </div>
-        {/* toggle btn  */}
-        <div
-          className={`form-check form-switch text-${
-            props.mode === "light" ? "dark" : "light"
-          }`}
-          id="mode-change-btn"
-        >
-          <input
-            className="form-check-input"
-            type="checkbox"
-            role="switch"
-            id="flexSwitchCheckDefault"
-            onClick={() => {
-              props.changeThemeMode(null)
-            }}
-          />
-          <label className="form-check-label" for="flexSwitchCheckDefault">
-            {props.mode === "light" ? "Dark" : "Light"}
-          </label>
-        </div>
-        <button style={backCol} id="scroll-to-top" onClick={scrollToTop}>
-          <i className="fa-solid fa-arrow-up" style={{ color: "#00adb5" }}></i>
-        </button>
-      </div>
-    </nav>
+      </nav>
+    </div>
   )
 }
 
