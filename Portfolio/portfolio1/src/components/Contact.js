@@ -61,7 +61,7 @@ function Contact(props) {
             <textarea
               id="message"
               name="message"
-              cols="30"
+              cols="20"
               rows="4"
               placeholder="Your message..."
               style={backCol}
