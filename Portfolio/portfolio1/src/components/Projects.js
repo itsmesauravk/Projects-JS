@@ -105,7 +105,7 @@ export default function Projects(props) {
               <Link
                 style={hoverCol}
                 className="link-tag"
-                to="https://github.com/itsmesauravk/Projects-JS.git"
+                to="https://github.com/itsmesauravk/weather_app.git"
               >
                 <i className="fa-brands fa-github"></i> code{" "}
               </Link>

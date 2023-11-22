@@ -10,8 +10,8 @@ export default function Home() {
           <b>
             <span className="theme-color">Saurav Karki</span>
           </b>
-          . A passionate back-end node/express Developer based on
-          Ramechhap,Nepal.📍
+          . A passionate back-end node/express Developer and AI(ML) enthusiastic
+          based on Ramechhap,Nepal.📍
         </div>
       </div>
       <div className="image-part">

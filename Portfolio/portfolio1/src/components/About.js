@@ -25,17 +25,15 @@ export default function About(props) {
         </p>
       </div>
       <div className="about-contents">
-        <div className="about-image">
-          <img
-            style={{
-              boxShadow: `10px 10px 10px ${
-                props.mode === "light" ? "#393e46" : "#eeeeee"
-              }`,
-            }}
-            src="https://hips.hearstapps.com/hmg-prod/images/mh-9-22-wick-650dcf0aeb656.jpg?crop=0.447xw:0.895xh;0,0&resize=1200:*"
-            alt="my image"
-          />
-        </div>
+        <img
+          style={{
+            boxShadow: `10px 10px 10px ${
+              props.mode === "light" ? "#393e46" : "#eeeeee"
+            }`,
+          }}
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTEOKqclASswXL3e_HWv9CLqt_547Q37qqkA&usqp=CAU"
+          alt="my image"
+        />
 
         <div className="about-me">
           <p className="about-headings">
@@ -73,7 +71,11 @@ export default function About(props) {
               {changingText}
             </span>
           </p>
-          <a href="../CV.pdf" download className="pdf-download-btn">
+          <a
+            href="portfolio1/src/components/CV.pdf"
+            download
+            className="pdf-download-btn"
+          >
             Download CV
           </a>
         </div>

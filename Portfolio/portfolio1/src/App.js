@@ -7,6 +7,7 @@ import Popnav from "./components/Popnav"
 import Projects from "./components/Projects"
 import Contact from "./components/Contact"
 import Copyright from "./components/Copyright"
+import Skills from "./components/Skills"
 
 function App() {
   const [mode, setMode] = useState("light")
@@ -38,6 +39,7 @@ function App() {
         <Popnav mode={mode} changeThemeMode={changeThemeMode} />
         <Home />
         <About mode={mode} />
+        <Skills />
         <Projects mode={mode} />
         <Contact mode={mode} />
         <Copyright />
