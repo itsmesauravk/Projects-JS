@@ -6,6 +6,9 @@ const { default: mongoose } = require("mongoose")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const cookieParcer = require("cookie-parser")
+const multer = require("multer")
+
+const uploadMiddleware = multer({ dest: "uploads/" })
 
 const secret = "qwertyuiopasdfghjkl123"
 
@@ -58,6 +61,8 @@ app.get("/profile", (req, res) => {
     res.json(info)
   })
 })
+
+app.post("/post", (req, res) => {})
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok")
