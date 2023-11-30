@@ -50,7 +50,7 @@ export default function CreatePost() {
         method: "POST",
         body: data,
       })
-
+      await response.json()
       if (!response.ok) {
         throw new Error("Failed to create post")
       }

@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const cookieParcer = require("cookie-parser")
 const multer = require("multer")
-
+//for reciving files that are uploaded
 const uploadMiddleware = multer({ dest: "uploads/" })
 
 const secret = "qwertyuiopasdfghjkl123"
@@ -62,11 +62,14 @@ app.get("/profile", (req, res) => {
   })
 })
 
-app.post("/post", (req, res) => {})
-
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok")
 })
+
+app.post("/post", uploadMiddleware.single("files"), (req, res) => {
+  res.json({ files: req.files })
+})
+
 app.listen(4000, console.log("Server is listning to port 4000...."))
 
 //mernBlog
