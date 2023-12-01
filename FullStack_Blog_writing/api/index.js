@@ -66,8 +66,8 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok")
 })
 
-app.post("/post", uploadMiddleware.single("files"), (req, res) => {
-  res.json({ files: req.files })
+app.post("/post", uploadMiddleware.single("file"), (req, res) => {
+  res.json({ files: req.file })
 })
 
 app.listen(4000, console.log("Server is listning to port 4000...."))
