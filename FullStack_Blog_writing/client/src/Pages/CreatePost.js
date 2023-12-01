@@ -1,6 +1,7 @@
 import { useState } from "react"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
+import { Navigate } from "react-router-dom"
 
 const modules = {
   toolbar: [
@@ -35,6 +36,11 @@ export default function CreatePost() {
   const [summary, setSummary] = useState("")
   const [files, setFiles] = useState("")
   const [content, setContent] = useState("")
+  const [redirect, setRedirect] = useState(false)
+
+  if (redirect) {
+    return <Navigate to={"/"} />
+  }
 
   async function createPost(ev) {
     ev.preventDefault()
@@ -51,8 +57,9 @@ export default function CreatePost() {
         body: data,
       })
       await response.json()
-      if (!response.ok) {
-        throw new Error("Failed to create post")
+
+      if (response.ok) {
+        setRedirect(true)
       }
 
       // Reset form fields after successful post creation
