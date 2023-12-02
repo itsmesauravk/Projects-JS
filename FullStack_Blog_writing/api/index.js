@@ -83,7 +83,7 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
       summary,
       content,
       cover: newPath,
-      author: info.id,
+      author: info.id, //(2:25:00 - 2:29:58)
     })
 
     res.json(postDoc)
@@ -91,7 +91,7 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
 })
 
 app.get("/post", async (req, res) => {
-  res.json(await Post.find())
+  res.json(await Post.find().populate("author", ["username"]))
 })
 
 app.listen(4000, console.log("Server is listning to port 4000...."))
