@@ -1,6 +1,6 @@
 // import React from "react"
 
-export default function Post() {
+export default function Post({ title, summary, cover, content }) {
   return (
     <div className="post">
       <div className="image">
@@ -10,19 +10,12 @@ export default function Post() {
         />
       </div>
       <div className="texts">
-        <h2>
-          ChatGPT officially gets web search as DALL-E 3 integration arrives in
-          beta
-        </h2>
+        <h2>{title}</h2>
         <p className="info">
           <span className="author">Saurav Karki</span>
           <span className="time">2023-10-18 21:51</span>
         </p>
-        <p className="summary">
-          OpenAI has formally launched its internet-browsing feature to ChatGPT,
-          some three weeks after re-introducing the feature in beta after
-          several months in hiatus.
-        </p>
+        <p className="summary">{summary}</p>
       </div>
     </div>
   )
