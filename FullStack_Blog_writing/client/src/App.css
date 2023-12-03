@@ -94,3 +94,16 @@ form.register h1 {
   text-align: center;
   margin-bottom: 2rem;
 }
+
+/* for loader icon */
+.loaderImgDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 20rem;
+}
+.loaderImg {
+  width: 50px;
+  height: 50px;
+}

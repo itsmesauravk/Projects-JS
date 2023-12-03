@@ -10,5 +10,24 @@ export default function IndexPage() {
       })
     })
   }, [])
-  return <>{posts.length > 0 && posts.map(post => <Post {...post} />)}</>
+  return (
+    <>
+      {/* {posts.length > 0 && posts.map(post => <Post {...post} />)} */}
+      {posts.length > 0 ? (
+        posts.map(post => <Post {...post} />)
+      ) : (
+        <div>
+          <h4 className="loaderImgDiv">
+            <img
+              className="loaderImg"
+              src="/Ellipsis-1s-200px.svg"
+              alt="loading"
+            />
+            Fetching data, Please wait...
+          </h4>
+          <h4></h4>
+        </div>
+      )}
+    </>
+  )
 }
