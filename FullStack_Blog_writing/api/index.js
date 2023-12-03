@@ -18,6 +18,7 @@ const salt = bcrypt.genSaltSync(10)
 app.use(cors({ credentials: true, origin: "http://localhost:3000" })) //for handling the error while connection with react
 app.use(express.json())
 app.use(cookieParcer())
+app.use("/uploads", express.static(__dirname + "/uploads")) //to give the pathway of the image form api to client through api/link
 
 mongoose.connect(
   "mongodb+srv://mern-blog:mernBlog@cluster0.utkrlay.mongodb.net/"
@@ -83,7 +84,7 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
       summary,
       content,
       cover: newPath,
-      author: info.id, //(2:25:00 - 2:29:58)
+      author: info.username, //(2:25:00 - 2:29:58)
     })
 
     res.json(postDoc)
@@ -91,7 +92,12 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
 })
 
 app.get("/post", async (req, res) => {
-  res.json(await Post.find().populate("author", ["username"]))
+  res.json(
+    await Post.find()
+      .populate("author", ["username"])
+      .sort({ createdAt: -1 })
+      .limit(20)
+  )
 })
 
 app.listen(4000, console.log("Server is listning to port 4000...."))

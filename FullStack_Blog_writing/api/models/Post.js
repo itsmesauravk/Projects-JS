@@ -7,7 +7,8 @@ const PostSchema = new Schema(
     summary: String,
     content: String,
     cover: String,
-    author: { type: Schema.Types.ObjectId, ref: "User" },
+    author: String,
+    authorId: { type: Schema.Types.ObjectId, ref: "User" }, // Reference to User collection
   },
   {
     timestamps: true,
