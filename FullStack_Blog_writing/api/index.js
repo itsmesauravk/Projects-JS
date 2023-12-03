@@ -100,6 +100,10 @@ app.get("/post", async (req, res) => {
   )
 })
 
+app.get("/post/:id", async (req, res) => {
+  res.json(req.params)
+})
+
 app.listen(4000, console.log("Server is listning to port 4000...."))
 
 //mernBlog
