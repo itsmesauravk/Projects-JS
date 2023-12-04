@@ -121,10 +121,12 @@ form.register h1 {
   max-height: 300px;
   overflow: hidden;
   display: flex;
+  margin: 1rem auto;
 }
 .post-page .image img {
   object-fit: contain;
   object-position: center;
+  width: 100%;
 }
 .post-page a {
   color: #333;
@@ -145,4 +147,11 @@ form.register h1 {
   margin-bottom: 1.2rem;
   font-size: 0.7rem;
   font-weight: bold;
+}
+.post-page .content p {
+  line-height: 1.5rem;
+  text-align: justify;
+}
+.summary {
+  text-align: justify;
 }

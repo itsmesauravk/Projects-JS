@@ -24,7 +24,10 @@ export default function PostPage() {
       </div>
 
       {/* displaying content in html format */}
-      <div dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+      <div
+        className="content"
+        dangerouslySetInnerHTML={{ __html: postInfo.content }}
+      />
     </div>
   )
 }
