@@ -46,9 +46,14 @@ nav {
 }
 .post {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 1fr;
   gap: 1.3rem;
   margin-bottom: 1.3rem;
+}
+@media screen and (min-width: 680px) {
+  .post {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
 }
 .post h2 {
   color: #2e4374;
@@ -110,4 +115,34 @@ form.register h1 {
 .loaderImg {
   width: 50px;
   height: 50px;
+}
+
+.post-page .image {
+  max-height: 300px;
+  overflow: hidden;
+  display: flex;
+}
+.post-page .image img {
+  object-fit: contain;
+  object-position: center;
+}
+.post-page a {
+  color: #333;
+  text-decoration: underline;
+}
+.post-page h1 {
+  text-align: center;
+  margin: 10px 0 5px;
+}
+.post-page time {
+  text-align: center;
+  display: block;
+  font-size: 0.7rem;
+  color: #aaa;
+}
+.post-page .author {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  font-size: 0.7rem;
+  font-weight: bold;
 }

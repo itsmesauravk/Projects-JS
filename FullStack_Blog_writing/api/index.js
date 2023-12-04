@@ -101,7 +101,9 @@ app.get("/post", async (req, res) => {
 })
 
 app.get("/post/:id", async (req, res) => {
-  res.json(req.params)
+  const { id } = req.params
+  const postDoc = await Post.findById(id).populate("author", ["username"])
+  res.json(postDoc)
 })
 
 app.listen(4000, console.log("Server is listning to port 4000...."))
