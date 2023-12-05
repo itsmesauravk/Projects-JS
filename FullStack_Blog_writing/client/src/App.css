@@ -155,3 +155,22 @@ form.register h1 {
 .summary {
   text-align: justify;
 }
+
+.edit-row {
+  text-align: center;
+}
+
+a.edit-btn {
+  background-color: #2e4374;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  padding: 6px;
+  border-radius: 8px;
+  margin-bottom: 1.1rem;
+  text-decoration: none;
+}
+a svg {
+  height: 20px;
+}
