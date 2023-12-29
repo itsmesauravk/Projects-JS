@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require('mongoose')
 
+const cors = require("cors")
+
 require("dotenv").config();
 // database
 const connectDB = require("./connectDB");
@@ -13,6 +15,7 @@ const User = require("./schema");
 
 // Middleware to parse JSON in the request body
 app.use(express.json());
+app.use(cors())
 
 app.get("/", (req, res) => {
     res.status(200).json({ msg: "The server is working." });
@@ -32,7 +35,7 @@ app.get("/users",async(req,res)=>{
     }
     
 })
-app.post("/newuser", async (req, res) => {
+app.post("/register", async (req, res) => {
     const { username, password } = req.body;
 
     try {
