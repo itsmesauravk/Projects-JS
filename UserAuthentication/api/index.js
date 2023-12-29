@@ -3,6 +3,10 @@ const app = express();
 const mongoose = require('mongoose')
 
 const cors = require("cors")
+const bcrypt = require("bcrypt")
+
+
+
 
 require("dotenv").config();
 // database
@@ -37,9 +41,14 @@ app.get("/users",async(req,res)=>{
 })
 app.post("/register", async (req, res) => {
     const { username, password } = req.body;
+    
+
 
     try {
-        const newUser = await User.create({ username, password });
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPass = bcrypt.hashSync(password,salt)
+
+        const newUser = await User.create({ username,password:hashedPass });
 
         if (newUser) {
             res.status(200).json({ msg: "User added successfully." });
