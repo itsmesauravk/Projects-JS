@@ -23,7 +23,7 @@ export default function RegisterPage(){
         return response.json();
       })
       .catch((error) => {
-        // Handle errors
+        // Handling error
         alert("Error during registration:", error.message);
       });
   }
