@@ -1,12 +1,14 @@
+import { set } from "mongoose";
 import React, { useState } from "react"
 
 export default function RegisterPage(){
   const [username,setUsername] = useState("")
   const [password,setPassword] = useState("")
+  const [loading,setLoading] = useState(false)
 
   function register(e) {
     e.preventDefault();
-  
+    setLoading(true);
     fetch("http://localhost:3001/register", {
       method: "POST",
       body: JSON.stringify({ username, password }),
@@ -25,8 +27,14 @@ export default function RegisterPage(){
       .catch((error) => {
         // Handling error
         alert("Error during registration:", error.message);
+      })
+      .finally(()=>{
+        setLoading(false);
+        setUsername("");
+        setPassword("");
       });
   }
+ 
     return(
       <div>
           <h2>Register Here !!</h2>
@@ -37,8 +45,11 @@ export default function RegisterPage(){
                 <label >Password</label>
                 <input type="password" value={password} onChange={(ev)=>setPassword(ev.target.value)} />
 
-                <button>Register</button>
+                <button>
+                  {loading ? "Loading..." : "Register"}
+                  </button>
             </form>
+            
       </div> 
     )
 }
