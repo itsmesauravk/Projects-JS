@@ -18,6 +18,7 @@ const connectDB = require("./connectDB");
 // schema
 
 const User = require("./schema");
+const { error } = require("console");
 
 
 // Middleware to parse JSON in the request body
@@ -92,7 +93,19 @@ app.post("/login", async (req, res) => {
         res.status(500).json({ msg: "Internal Server Error." });
     }
 });
+//userProfile
+app.get("/userProfile",(req,res)=>{
+    const {token} = req.body
+    jwt.verify(token,process.env.JWT_SECRET,{},(err,info)=>{
+        if (err) throw err
+        res.json({info})
+    })
+})
 
+//logout
+app.post("/logout",(req,res)=>{
+    res.cookies("token","").json("logout sucessfully")
+})
 
 const port = 3001;
 
