@@ -29,7 +29,8 @@ export default function LoginPage(){
                 throw new Error("Network response was not ok");
             }
             // Handle successful registration
-            alert("Login successfully!");
+            // alert("Login successfully!");
+            
             response.json().then(userInfo =>{
                  setRedirect(true);
                  setUserInfo(userInfo);

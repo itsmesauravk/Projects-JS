@@ -94,7 +94,7 @@ app.post("/login", async (req, res) => {
     }
 });
 //userProfile
-app.get("/userProfile",(req,res)=>{
+app.get("/profile",(req,res)=>{
     const {token} = req.body
     jwt.verify(token,process.env.JWT_SECRET,{},(err,info)=>{
         if (err) throw err
@@ -103,9 +103,12 @@ app.get("/userProfile",(req,res)=>{
 })
 
 //logout
-app.post("/logout",(req,res)=>{
-    res.cookies("token","").json("logout sucessfully")
-})
+
+app.post("/logout", (req, res) => {
+    res.cookie("token", "");
+    res.status(200).send("Logout successful"); // You can send a success message if needed
+});
+
 
 const port = 3001;
 
