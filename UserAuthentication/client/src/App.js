@@ -4,10 +4,12 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
 import Layout from './pages/Layout';
+import { UserContextProvider } from './userContex';
 
 function App() {
   return (
-    <BrowserRouter>
+    <UserContextProvider>
+      <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<HomePage/>} />
@@ -16,6 +18,8 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </UserContextProvider>
+    
   );
 }
 

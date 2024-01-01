@@ -5,7 +5,10 @@ const mongoose = require('mongoose')
 const cors = require("cors")
 const bcrypt = require("bcrypt")
 
-
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+const crypto = require("crypto");
+// console.log(crypto.randomBytes(16).toString('hex'))
 
 
 require("dotenv").config();
@@ -19,7 +22,12 @@ const User = require("./schema");
 
 // Middleware to parse JSON in the request body
 app.use(express.json());
-app.use(cors())
+// app.use(cors())
+app.use(cors({
+    origin: "http://localhost:3000", // Allow requests from this origin
+    credentials: true, // Allow credentials (cookies, etc.)
+  }));
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
     res.status(200).json({ msg: "The server is working." });
@@ -39,11 +47,11 @@ app.get("/users",async(req,res)=>{
     }
     
 })
+
+//Register
 app.post("/register", async (req, res) => {
     const { username, password } = req.body;
     
-
-
     try {
         const salt = bcrypt.genSaltSync(10)
         const hashedPass = bcrypt.hashSync(password,salt)
@@ -60,6 +68,31 @@ app.post("/register", async (req, res) => {
         res.status(500).json({ msg: "Internal Server Error." });
     }
 });
+
+//Login
+app.post("/login", async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const findUser =await User.findOne({ username });
+        if (findUser){
+            const checkPass = bcrypt.compareSync(password, findUser.password);
+            if(checkPass){
+                const token = jwt.sign({username,id:findUser._id},process.env.JWT_SECRET,{expiresIn:"1d"})   //crypto.randomBytes(length).toString('hex')
+                res.cookie("token",token).json({id:findUser._id,username:findUser.username})
+                res.status(200).json({msg:"Login Successfull."})
+            }else{
+                res.status(401).json({msg:"Invalid Password."})
+            }
+        }else{
+            res.status(401).json({msg:"Invalid Username."})
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Internal Server Error." });
+    }
+});
+
 
 const port = 3001;
 

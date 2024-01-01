@@ -1,10 +1,12 @@
-import { set } from "mongoose";
+
 import React, { useState } from "react"
+import {Navigate} from "react-router-dom"
 
 export default function RegisterPage(){
   const [username,setUsername] = useState("")
   const [password,setPassword] = useState("")
   const [loading,setLoading] = useState(false)
+  const [redirect,setRedirect] = useState(false)
 
   function register(e) {
     e.preventDefault();
@@ -29,10 +31,14 @@ export default function RegisterPage(){
         alert("Error during registration:", error.message);
       })
       .finally(()=>{
+        setRedirect(true)
         setLoading(false);
         setUsername("");
         setPassword("");
       });
+  }
+  if(redirect){
+    return <Navigate to="/login" />
   }
  
     return(
