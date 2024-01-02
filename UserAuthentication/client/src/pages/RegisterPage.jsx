@@ -54,9 +54,19 @@ export default function RegisterPage(){
 
                 <label className="block text-red-900 mt-3" >Picture</label>
                 <input className="border-2 rounded-md pl-2" type="text" value={picture} onChange={(ev)=>setPicture(ev.target.value)} placeholder="Image Url.."/>
-                <button className="block mt-4 border-2 rounded-md p-1 text-blue-700 text-xl hover:font-bold">
-                  {loading ? "Loading..." : "Register"}
+
+
+                <div>
+                {loading && 
+                  <div className="lds-hourglass"></div>
+                }
+                {!loading &&
+                  <button className="block mt-4 border-2 rounded-md p-1 text-blue-700 text-xl hover:font-bold">
+                  Register
                   </button>
+
+                }
+                </div>
             </form>
             
       </div> 

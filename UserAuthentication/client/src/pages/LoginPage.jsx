@@ -60,9 +60,16 @@ export default function LoginPage(){
                 <label className="block text-red-900 mt-3" >Password</label>
                 <input className="border-2 rounded-md pl-2" type="password" value={password} onChange={(ev)=>setPassword(ev.target.value)} placeholder="Password"/>
 
-                <button className="block mt-4 border-2 rounded-md p-1 text-blue-700 text-xl hover:font-bold" type="submit">
-                    {loading ? "Loading..." : "Login"}
-                </button>
+                <div>
+                {loading && 
+                  <div className="lds-hourglass"></div>
+                }
+                {!loading &&
+                  <button className="block mt-4 border-2 rounded-md p-1 text-blue-700 text-xl hover:font-bold">
+                  Register
+                  </button>
+                }
+                </div>
             </form>
         </div>
     )
