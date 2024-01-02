@@ -43,18 +43,18 @@ export default function RegisterPage(){
   }
  
     return(
-      <div>
-          <h2>Register Here !!</h2>
-          <form onSubmit={register}>
-                <label >Username</label>
-                <input type="text" value={username} onChange={(ev)=>setUsername(ev.target.value)} placeholder="Username"/>
+      <div className="border-2 m-4 rounded-md p-4">
+          <h2 className="font-bold text-green-900 text-2xl">Register Here !!</h2>
+          <form className="mt-3" onSubmit={register}>
+                <label className="block text-red-900" >Username</label>
+                <input className="border-2 rounded-md pl-2" type="text" value={username} onChange={(ev)=>setUsername(ev.target.value)} placeholder="Username"/>
 
-                <label >Password</label>
-                <input type="password" value={password} onChange={(ev)=>setPassword(ev.target.value)} placeholder="password" />
+                <label className="block text-red-900 mt-3" >Password</label>
+                <input className="border-2 rounded-md pl-2" type="password" value={password} onChange={(ev)=>setPassword(ev.target.value)} placeholder="Password" />
 
-                <label >Picture</label>
-                <input type="text" value={picture} onChange={(ev)=>setPicture(ev.target.value)} placeholder="img url.."/>
-                <button>
+                <label className="block text-red-900 mt-3" >Picture</label>
+                <input className="border-2 rounded-md pl-2" type="text" value={picture} onChange={(ev)=>setPicture(ev.target.value)} placeholder="Image Url.."/>
+                <button className="block mt-4 border-2 rounded-md p-1 text-blue-700 text-xl hover:font-bold">
                   {loading ? "Loading..." : "Register"}
                   </button>
             </form>
