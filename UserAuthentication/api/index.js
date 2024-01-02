@@ -80,8 +80,9 @@ app.post("/login", async (req, res) => {
             const checkPass = bcrypt.compareSync(password, findUser.password);
             if(checkPass){
                 const token = jwt.sign({picture,username,id:findUser._id},process.env.JWT_SECRET,{expiresIn:"1d"})   //crypto.randomBytes(length).toString('hex')
+                debugger
                 res.cookie("token",token).json({id:findUser._id,username:findUser.username, picture:findUser.picture})
-                res.status(200).json({msg:"Login Successfull."})
+                // res.status(200).json({msg:"Login Successfull."})
             }else{
                 res.status(401).json({msg:"Invalid Password."})
             }
@@ -106,6 +107,7 @@ app.get("/profile",(req,res)=>{
 //logout
 
 app.post("/logout", (req, res) => {
+    console.log("---------------------------------------")
     res.cookie("token", "");
     res.status(200).send("Logout successful"); // You can send a success message if needed
 });
