@@ -51,13 +51,13 @@ app.get("/users",async(req,res)=>{
 
 //Register
 app.post("/register", async (req, res) => {
-    const { username, password } = req.body;
+    const { picture, username, password } = req.body;
     
     try {
         const salt = bcrypt.genSaltSync(10)
         const hashedPass = bcrypt.hashSync(password,salt)
 
-        const newUser = await User.create({ username,password:hashedPass });
+        const newUser = await User.create({picture, username,password:hashedPass });
 
         if (newUser) {
             res.status(200).json({ msg: "User added successfully." });
@@ -72,15 +72,15 @@ app.post("/register", async (req, res) => {
 
 //Login
 app.post("/login", async (req, res) => {
-    const { username, password } = req.body;
+    const {picture,username, password } = req.body;
 
     try {
         const findUser =await User.findOne({ username });
         if (findUser){
             const checkPass = bcrypt.compareSync(password, findUser.password);
             if(checkPass){
-                const token = jwt.sign({username,id:findUser._id},process.env.JWT_SECRET,{expiresIn:"1d"})   //crypto.randomBytes(length).toString('hex')
-                res.cookie("token",token).json({id:findUser._id,username:findUser.username})
+                const token = jwt.sign({picture,username,id:findUser._id},process.env.JWT_SECRET,{expiresIn:"1d"})   //crypto.randomBytes(length).toString('hex')
+                res.cookie("token",token).json({id:findUser._id,username:findUser.username, picture:findUser.picture})
                 res.status(200).json({msg:"Login Successfull."})
             }else{
                 res.status(401).json({msg:"Invalid Password."})
@@ -95,12 +95,13 @@ app.post("/login", async (req, res) => {
 });
 //userProfile
 app.get("/profile",(req,res)=>{
-    const {token} = req.body
+    const {token} = req.cookies
     jwt.verify(token,process.env.JWT_SECRET,{},(err,info)=>{
         if (err) throw err
-        res.json({info})
+        res.json(info)
     })
 })
+
 
 //logout
 

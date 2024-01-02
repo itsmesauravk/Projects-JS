@@ -5,6 +5,7 @@ import {Navigate} from "react-router-dom"
 export default function RegisterPage(){
   const [username,setUsername] = useState("")
   const [password,setPassword] = useState("")
+  const [picture,setPicture] = useState("")
   const [loading,setLoading] = useState(false)
   const [redirect,setRedirect] = useState(false)
 
@@ -13,7 +14,7 @@ export default function RegisterPage(){
     setLoading(true);
     fetch("http://localhost:3001/register", {
       method: "POST",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({picture, username, password }),
       headers: {
         "Content-type": "application/json",
       },
@@ -51,6 +52,8 @@ export default function RegisterPage(){
                 <label >Password</label>
                 <input type="password" value={password} onChange={(ev)=>setPassword(ev.target.value)} />
 
+                <label >Picture</label>
+                <input type="text" value={picture} onChange={(ev)=>setPicture(ev.target.value)} />
                 <button>
                   {loading ? "Loading..." : "Register"}
                   </button>
