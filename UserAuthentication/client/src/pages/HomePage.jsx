@@ -42,7 +42,7 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="flex gap-80 align-center justify-center m-8 border-2 rounded-md">
+      <header className="flex align-center justify-between m-8 border-2 rounded-md p-2">
         <Link to="/" className="font-bold text-red-700 text-2xl">
           My<span className="text-blue-500">Page</span>
         </Link>
