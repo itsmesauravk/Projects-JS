@@ -78,7 +78,7 @@ export default function HomePage() {
         {username ? (
           <div>
             <h1 className="font-bold text-pink-900 text-2xl">Welcome {username} ,</h1>
-            <h3>Your db id: {id}</h3>
+            <h3 className="text-green-900">Your id: {id}</h3>
             <div className="w-20px h-20px mt-20">
               {picture ? (
                 <img

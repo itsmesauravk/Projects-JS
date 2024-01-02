@@ -49,18 +49,18 @@ export default function LoginPage(){
     }
 
     return(
-        <div>
+        <div className="border-2 m-4 rounded-md p-4">
 
-            <h2> Login here !!</h2>
+            <h2 className="font-bold text-green-900 text-2xl">Login</h2>
             {/* Form to login */}   
-            <form onSubmit={userLogin} >
-                <label >Username</label>
-                <input type="text" value={username} onChange={(ev)=>setUsername(ev.target.value)}/>
+            <form className="mt-3" onSubmit={userLogin} >
+                <label className="block ">Username</label>
+                <input className="border-2 rounded-md pl-2" type="text" value={username} onChange={(ev)=>setUsername(ev.target.value)} placeholder="Username"/>
 
-                <label >Password</label>
-                <input type="password" value={password} onChange={(ev)=>setPassword(ev.target.value)}/>
+                <label className="block" >Password</label>
+                <input className="border-2 rounded-md pl-2" type="password" value={password} onChange={(ev)=>setPassword(ev.target.value)} placeholder="Password"/>
 
-                <button type="submit">
+                <button className="block mt-4 border-2 rounded-md p-1 font-bold text-blue-700 text-xl" type="submit">
                     {loading ? "Loading..." : "Login"}
                 </button>
             </form>
