@@ -47,13 +47,13 @@ export default function RegisterPage(){
           <h2>Register Here !!</h2>
           <form onSubmit={register}>
                 <label >Username</label>
-                <input type="text" value={username} onChange={(ev)=>setUsername(ev.target.value)}/>
+                <input type="text" value={username} onChange={(ev)=>setUsername(ev.target.value)} placeholder="Username"/>
 
                 <label >Password</label>
-                <input type="password" value={password} onChange={(ev)=>setPassword(ev.target.value)} />
+                <input type="password" value={password} onChange={(ev)=>setPassword(ev.target.value)} placeholder="password" />
 
                 <label >Picture</label>
-                <input type="text" value={picture} onChange={(ev)=>setPicture(ev.target.value)} />
+                <input type="text" value={picture} onChange={(ev)=>setPicture(ev.target.value)} placeholder="img url.."/>
                 <button>
                   {loading ? "Loading..." : "Register"}
                   </button>
