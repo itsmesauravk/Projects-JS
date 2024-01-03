@@ -17,7 +17,7 @@ export default function LoginPage() {
             </form>
 
             <div className="mt-4">
-                <p>Don't have account?  <Link className="text-red-600 underline" to="/registration">Register</Link> </p>
+                <p>Don't have account?  <Link className="text-red-600 underline" to="/registration">Create</Link> </p>
             </div>
 
         </div>
