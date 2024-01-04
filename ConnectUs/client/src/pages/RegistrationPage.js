@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export default function RegistrationPage() {
   const [firstName, setFirstName] = useState("");
@@ -10,12 +10,16 @@ export default function RegistrationPage() {
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const [redirect,setRedirect] = useState(false)
+  const [loading,setLoading] = useState(false)
+
   const handleGenderChange = (event) => {
     setSelectedGender(event.target.value);
   };
 
  function registerUser(ev) {
     ev.preventDefault();
+    setLoading(true)
     fetch("http://localhost:3001/register", {
       method: "POST",
       body: JSON.stringify({
@@ -32,11 +36,16 @@ export default function RegistrationPage() {
       },
     }).then((res) => {
       if (res.status === 200) {
-        alert("User Created");
+        console.log("User Created");
+        setLoading(false)
+        setRedirect(true)
       } else {
         alert("User not Created");
       }
     });
+  }
+  if(redirect){
+    return <Navigate to="/login" />
   }
 
   return (
@@ -141,17 +150,22 @@ export default function RegistrationPage() {
         setSelectedImage(file.name);
       }}
     />
-
         </div>
-
-        <button
+        {loading &&
+          <div class="lds-circle"><div></div></div>
+        }
+        {!loading &&
+          <button
           className=" block border-2 rounded-md p-2 mt-3 hover:border-blue-400"
           type="submit"
           value="Submit"
-          onClick={registerUser}
-        >
+          onClick={registerUser}>
           Register
         </button>
+        }
+
+
+       
       </form>
 
       <div className="mt-4">
