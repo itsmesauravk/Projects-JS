@@ -91,6 +91,10 @@ app.post("/login", async(req, res) => {
     }
 
 })
+//logout
+app.post("/logout",(req,res)=>{
+    res.clearCookie("token").json("Logout")
+})
 
 if(connectToDB){
     app.listen(4000, () => {

@@ -10,8 +10,7 @@ export default function HomePage() {
     async function fetchPosts() {
       try {
         setLoading(true);
-
-        const response = await fetch("http://localhost:3001/home", {
+        const response = await fetch("http://localhost:4000/home", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -33,6 +32,8 @@ export default function HomePage() {
         }
       } catch (err) {
         console.error(err);
+        setLoading(false);
+      }finally{
         setLoading(false);
       }
     }

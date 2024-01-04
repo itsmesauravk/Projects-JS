@@ -39,8 +39,7 @@ export default function LoginPage() {
                 setLoading(false)
                 setRedirect(true)
                 setUserInfo(data)
-                setUserId(data._id)
-                console.log(userId)
+                setUserId(data.id)
             })
         });
     }

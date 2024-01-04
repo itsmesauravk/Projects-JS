@@ -2,13 +2,16 @@
 const mongoose = require('mongoose')
 
 const PostSchema = new mongoose.Schema({
-    caption: String,
-    image: String,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Registration'
     },
+    caption: String,
+    image: [String],
     
 
 
 })
+
+const Post = mongoose.model('Post', PostSchema)
+module.exports = Post

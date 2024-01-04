@@ -20,7 +20,7 @@ export default function RegistrationPage() {
  function registerUser(ev) {
     ev.preventDefault();
     setLoading(true)
-    fetch("http://localhost:3001/register", {
+    fetch("http://localhost:4000/register", {
       method: "POST",
       body: JSON.stringify({
         firstName: firstName,

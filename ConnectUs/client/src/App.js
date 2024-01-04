@@ -19,7 +19,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
 
-          <Route path='/home' element={<HomeLayout/>}>
+          <Route path='/home/:id' element={<HomeLayout/>}>
             <Route path="/home/:id" element={<HomePage />} />
           </Route>
           
