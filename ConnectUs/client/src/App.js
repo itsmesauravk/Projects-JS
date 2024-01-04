@@ -1,9 +1,9 @@
 import React from 'react';
-import {Route, Routes}  from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import RegistrationPage from './pages/RegistrationPage';
 import LoginPage from './pages/LoginPage';
-import Layout from './Layout';
+import Layout from './Layout'; 
 
 function App() {
   return (
@@ -19,7 +19,6 @@ function App() {
       </Routes>
     </>
   );
-  
 }
 
 export default App;
