@@ -16,6 +16,8 @@ const connectToDB = require("./connectDB");
 connectToDB();
 //registration schema
 const Registration = require("./schema/Registration");
+//post schema
+const Post = require("./schema/Post");
 
 
 
@@ -121,6 +123,22 @@ app.get("/profile", (req, res) => {
     }
   })
 
+app.post("/newpost",async(req,res)=>{
+    const {caption,image} = req.body;
+    try {
+        const newPost = await Post.create({
+            caption:caption,
+            image:image,
+        })
+        if(newPost){
+            res.status(200).json("Post Created")
+        }else{
+            res.status(200).json("Post not Created")
+        }
+    } catch (error) {
+        res.status(400).json("Error :"+error)
+    }
+})
 
 //logout
 app.post("/logout",(req,res)=>{

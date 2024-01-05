@@ -7,6 +7,7 @@ import Layout from './Layout';
 import HomePage from './pages/HomePage';
 import HomeLayout from './HomeLayout';
 import { UserContextProvider } from './UserContext';
+import NewPostPage from './pages/NewPostPage';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
             <Route path="/home" element={<HomePage />} />
           </Route>
           
+          <Route path='/newpost/:id' element={<NewPostPage/>} />
+
         </Route>
       </Routes>
 

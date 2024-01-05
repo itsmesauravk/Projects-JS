@@ -11,7 +11,7 @@ const defaultCustomImage = "https://static.vecteezy.com/system/resources/thumbna
 
 export default function HomeLayout(){
     const [redirect,setRedirect] = useState(false)
-    const { userInfo } = useContext(UserContext)
+    const { userInfo,ready } = useContext(UserContext)
 
     
 
@@ -38,8 +38,16 @@ export default function HomeLayout(){
     if(redirect){
         return <Navigate to="/login"/>
     }
+    if (!ready) {
+        // Data is still being fetched, show loading state or return null
+        return <p>Loading...</p>;
+      }
+    if (!userInfo) {
+        // You can render a loading state or return null
+        return null;
+      }
 
-    const {firstName,surname,email,gender,selectedImage} = userInfo;
+    const {id,firstName,surname,email,gender,selectedImage} = userInfo;
     return(
         <div>
             <div className="mt-5">
@@ -72,7 +80,7 @@ export default function HomeLayout(){
                         </li>
 
                     <li className="text-white font-bold hover:text-gray-300 cursor-pointer">
-                        <Link to="/addpost">
+                        <Link to={`/newpost/${id}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>

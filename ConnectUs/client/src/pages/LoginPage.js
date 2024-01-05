@@ -73,7 +73,7 @@ export default function LoginPage() {
                 value ={password}
                 onChange={(event) => setPassword(event.target.value)}
                 />
-                {loading && <div class="lds-circle"><div></div></div>}
+                {loading && <div className="lds-circle"><div></div></div>}
                 {!loading && <button className="mt-4 bg-blue-500 text-white p-1 rounded-md" type="submit">Login</button>}
             </form>
 
