@@ -24,7 +24,7 @@ function App() {
             <Route path="/home" element={<HomePage />} />
           </Route>
           
-          <Route path='/newpost/:id' element={<NewPostPage/>} />
+          <Route path='/newpost/:userId' element={<NewPostPage/>} />
 
         </Route>
       </Routes>

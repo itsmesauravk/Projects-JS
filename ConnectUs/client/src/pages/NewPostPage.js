@@ -1,26 +1,36 @@
 import { useState } from "react"
+import { Navigate, useParams } from "react-router-dom";
 
 
 export default function NewPostPage() {
     const [caption, setCaption] = useState("");
     const [image, setImage] = useState("");
+    const {userId} = useParams();
+    const [redirect,setRedirect] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("userId", userId);
+        formData.append("image", document.getElementById("image").files[0]);
+        formData.append("caption", caption);
+    
         try {
-            const res = await fetch("http://localhost:4000/newpost", {
+            const res = await fetch(`http://localhost:4000/newpost/${userId}`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ caption, image })
+                body: formData,
             });
+            setRedirect(true)
             console.log(res);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
+    };
+    
+    if(redirect){   
+        return <Navigate to="/home"/>
     }
-
 
 
     return(

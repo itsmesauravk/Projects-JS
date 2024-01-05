@@ -7,11 +7,12 @@ const PostSchema = new mongoose.Schema({
         ref: 'Registration'
     },
     caption: String,
-    image: [String],
-    
+    image: String,
 
+}, {
+    timestamps: true // This adds createdAt and updatedAt fields
+});
 
-})
 
 const Post = mongoose.model('Post', PostSchema)
 module.exports = Post

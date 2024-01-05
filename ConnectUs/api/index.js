@@ -8,6 +8,8 @@ const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 // const crypto = require("crypto");
 // console.log(crypto.randomBytes(16).toString("hex"));
+const path = require('path');
+
 
 require("dotenv").config();
 
@@ -19,6 +21,12 @@ const Registration = require("./schema/Registration");
 //post schema
 const Post = require("./schema/Post");
 
+//for image
+const multer = require("multer");
+
+
+const upload = multer({ dest: __dirname+"/uploads" }); 
+
 
 
 //middleware
@@ -28,6 +36,8 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser())
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 
@@ -123,22 +133,63 @@ app.get("/profile", (req, res) => {
     }
   })
 
-app.post("/newpost",async(req,res)=>{
-    const {caption,image} = req.body;
+// app.post("/newpost",upload.single("image"),async(req,res)=>{
+//     const { caption } = req.body;
+//     const image = req.file.path;
+
+//     try {
+//         const newPost = await Post.create({
+//             caption:caption,
+//             image:image,
+//         })
+//         if(newPost){
+//             res.status(200).json("Post Created")
+//         }else{
+//             res.status(200).json("Post not Created")
+//         }
+//     } catch (error) {
+//         res.status(400).json("Error :"+error)
+//     }
+// })
+
+app.post("/newpost/:userId", upload.single('image'), async (req, res) => {
+    // The 'image' parameter should match the name attribute of the file input in your form
+    const { caption } = req.body;
+    const userId = req.params.userId;
+    const image = req.file.path; 
+
     try {
+        // Your post creation logic here
+        // Make sure to handle the image data appropriately (e.g., save to disk or database)
         const newPost = await Post.create({
-            caption:caption,
-            image:image,
-        })
-        if(newPost){
-            res.status(200).json("Post Created")
-        }else{
-            res.status(200).json("Post not Created")
+            caption: caption,
+            image: image,
+            user: userId,
+        });
+
+        if (newPost) {
+            res.status(200).json("Post Created");
+        } else {
+            res.status(200).json("Post not Created");
         }
     } catch (error) {
-        res.status(400).json("Error :"+error)
+        res.status(400).json("Error: " + error);
     }
-})
+});
+
+app.get("/allpost", async (req, res) => {
+    try {
+        const allPost = await Post.find({}).sort({ createdAt: -1 }).populate('user');
+        res.json(allPost);
+    } catch (error) {
+        res.json("Error: " + error);
+    }
+});
+
+  
+  
+  
+  
 
 //logout
 app.post("/logout",(req,res)=>{
