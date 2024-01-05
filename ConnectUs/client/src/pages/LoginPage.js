@@ -11,7 +11,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [redirect,setRedirect] = useState(false)
     const [loading,setLoading] = useState(false)
-    const [userId,setUserId] = useState("")
+    // const [userId,setUserId] = useState("")
     const {setUserInfo} = useContext(UserContext)
 
     function loginUser(ev) {
@@ -39,13 +39,13 @@ export default function LoginPage() {
                 setLoading(false)
                 setRedirect(true)
                 setUserInfo(data)
-                setUserId(data.id)
+                console.log("ok",data)
             })
         });
     }
     
     if (redirect) {
-        return <Navigate to={`/home/${userId}`} />;
+        return <Navigate to={`/home`} />;
       }
       
     

@@ -71,29 +71,66 @@ app.post("/register", async(req, res) => {
 })
 
 //login
-app.post("/login", async(req, res) => {
-    const {email,password} = req.body;
+// login
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
     try {
-        const checkUser = await Registration.findOne({email});
-        if(checkUser){
-            const checkPassword = bcrypt.compareSync(password,checkUser.password);
-            if(checkPassword){
-                const token = jwt.sign({email:email},process.env.JWT_SECRET,{expiresIn:"1h"})
-                res.cookie("token",token).json({id:checkUser._id,email:checkUser.email})
-                res.status(200)
-            }else{
-                res.status(400).json("Password not match")
-                
+        const checkUser = await Registration.findOne({ email });
+        if (checkUser) {
+            const checkPassword = bcrypt.compareSync(password, checkUser.password);
+            if (checkPassword) {
+                // Include additional information in the token payload
+                const token = jwt.sign(
+                    { id: checkUser._id, email: checkUser.email, firstName: checkUser.firstName, surname: checkUser.surname, gender: checkUser.gender, profileImage: checkUser.profileImage },
+                    process.env.JWT_SECRET,
+                    { expiresIn: "1h" }
+                );
+
+                // Set the token in a cookie
+                res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === "production" });
+
+                // Respond with user information
+                res.status(200).json({
+                    id: checkUser._id,
+                    email: checkUser.email,
+                    firstName: checkUser.firstName,
+                    surname: checkUser.surname,
+                    gender:checkUser.gender,
+                    profileImage: checkUser.profileImage,
+                });
+            } else {
+                res.status(400).json("Password not match");
             }
         }
     } catch (error) {
-        res.status(400).json("Error :"+error)
+        res.status(400).json("Error :" + error);
     }
+});
 
-})
+//profile
+app.get("/profile", (req, res) => {
+    const { token } = req.cookies
+    if (token) {
+      jwt.verify(token, process.env.JWT_SECRET, {}, async (err, userData) => {
+        if (err) throw err
+        const { firstName,surname, email,gender, _id } = await User.findById(userData.id)
+        res.json("profile : ",{firstName,surname, email, gender,_id})
+      })
+    } else {
+      res.json(null)
+    }
+  })
+
+
 //logout
 app.post("/logout",(req,res)=>{
     res.clearCookie("token").json("Logout")
+})
+
+//for exceptions
+app.get("*", (req, res) => {
+
+    res.status(404).send("Page not found")
 })
 
 if(connectToDB){

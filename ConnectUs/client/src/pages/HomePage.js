@@ -3,8 +3,8 @@ import { UserContext } from "../UserContext";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  // const [posts, setPosts] = useState([]);
+  const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -20,12 +20,12 @@ export default function HomePage() {
 
         if (response.status === 200) {
           const data = await response.json();
-          setPosts(data);
+          // setPosts(data);
           setLoading(false);
           
           // Assuming you want to set user information to the first user in the array
           if (data.length > 0) {
-            setUserInfo(data[0]);
+            // setUserInfo(data[0]);
           }
         } else {
           alert("Posts not found");

@@ -1,11 +1,19 @@
 import { useContext, useState } from "react";
 import { Link, Navigate, Outlet } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
 
 
+
+const defaultMaleImage = "https://www.w3schools.com/howto/img_avatar.png";
+const defaultFemaleImage = "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/11_avatar-512.png";
+const defaultCustomImage = "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg";
+
 export default function HomeLayout(){
     const [redirect,setRedirect] = useState(false)
-    const {userInfo} = useContext(UserContext)
+    const { userInfo } = useContext(UserContext)
+
+    
 
     function logout(){
         fetch("http://localhost:4000/logout",{
@@ -24,29 +32,32 @@ export default function HomeLayout(){
             }
         })
     }
+    
+    
 
     if(redirect){
         return <Navigate to="/login"/>
     }
-    const {firstName,surname,email,selectedGender,selectedImage} = userInfo;
+
+    const {firstName,surname,email,gender,selectedImage} = userInfo;
     return(
         <div>
-            <div>
+            <div className="mt-5">
                 <div>
-                    {selectedImage && <img src={selectedImage} alt="profile" className="w-20 h-20 rounded-full"/>}
-                    {!selectedImage && selectedGender === 'male' &&
-                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="profile" className="w-20 h-20 rounded-full"/>
-                        }
-                    {!selectedImage && selectedGender === 'female' &&
-                        <img src="https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/11_avatar-512.png" alt="profile" className="w-20 h-20 rounded-full"/>
-                        }
-                    {!selectedImage && selectedGender === 'custom' &&
-                        <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="profile" className="w-20 h-20 rounded-full"/>
-                        }
+                    {selectedImage && <img src={selectedImage} alt="profile" className="w-20 h-20 rounded-full" />}
+                    {!selectedImage && gender === 'male' &&
+                        <img src={defaultMaleImage} alt="male-profile" className="w-20 h-20 rounded-full" />
+                    }
+                    {!selectedImage && gender === 'female' &&
+                        <img src={defaultFemaleImage} alt="female-profile" className="w-20 h-20 rounded-full" />
+                    }
+                    {!selectedImage && gender === 'custom' &&
+                        <img src={defaultCustomImage} alt="custom-profile" className="w-20 h-20 rounded-full" />
+                    }
                 </div>
                 <div>
-                    <h1>{firstName} {surname}</h1>
-                    <p>{email}</p>
+                    <h1 className="font-bold">{firstName} {surname}</h1>
+                    <p className="text-sm italic text-blue-800 underline">{email}</p>
                 </div>
             </div>
             <nav className="bg-blue-600 p-4 mt-6 rounded-md">
