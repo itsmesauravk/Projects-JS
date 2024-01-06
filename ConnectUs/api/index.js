@@ -133,24 +133,7 @@ app.get("/profile", (req, res) => {
     }
   })
 
-// app.post("/newpost",upload.single("image"),async(req,res)=>{
-//     const { caption } = req.body;
-//     const image = req.file.path;
 
-//     try {
-//         const newPost = await Post.create({
-//             caption:caption,
-//             image:image,
-//         })
-//         if(newPost){
-//             res.status(200).json("Post Created")
-//         }else{
-//             res.status(200).json("Post not Created")
-//         }
-//     } catch (error) {
-//         res.status(400).json("Error :"+error)
-//     }
-// })
 
 app.post("/newpost/:userId", upload.single('image'), async (req, res) => {
     // The 'image' parameter should match the name attribute of the file input in your form
@@ -176,7 +159,7 @@ app.post("/newpost/:userId", upload.single('image'), async (req, res) => {
         res.status(400).json("Error: " + error);
     }
 });
-
+//shows all post for home page 
 app.get("/allpost", async (req, res) => {
     try {
         const allPost = await Post.find({}).sort({ createdAt: -1 }).populate('user');
@@ -185,7 +168,16 @@ app.get("/allpost", async (req, res) => {
         res.json("Error: " + error);
     }
 });
-
+//shows post of specific user only
+app.get("/yourpost/:userId", async (req, res) => {
+    const userId = req.params.userId
+    try {
+        const yourPost = await Post.find({user:userId}).sort({ createdAt: -1 }).populate('user');
+        res.json(yourPost);
+    } catch (error) {
+        res.json("Error: " + error);
+    }
+});
   
   
   
