@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../UserContext";
+
 
 function formatDate(dateString) {
   const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
@@ -12,6 +14,9 @@ const defaultCustomImage = "https://static.vecteezy.com/system/resources/thumbna
 export default function HomePage() {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
+  const {userInfo} = useContext(UserContext)
+
+   console.log("UserInfo :", userInfo)
 
   useEffect(() => {
     async function fetchPosts() {
@@ -28,6 +33,7 @@ export default function HomePage() {
         if (response.status === 200) {
           const data = await response.json();
           setPosts(data); // Update state with fetched posts
+          console.log("Data :", data)
         } else {
           alert("Posts not found");
         }
@@ -44,15 +50,17 @@ export default function HomePage() {
   return (
     <div>
 
-      {loading && <div className="lds-circle"><div></div></div>}
+      
 
       {posts.length > 0 && (
         <div>
-          <h2 className="text-2xl font-bold mb-4">Posts:</h2>
-          <div className="flex flex-col gap-8">
+          {/* <h2 className="text-2xl font-bold mb-4">Posts:</h2> */}
+          <div className="flex flex-col gap-8 mt-5">
             {posts.map((post) => (
               <div key={post._id} className="bg-white border border-gray-300 shadow-md rounded-md p-4">
-                <div className="flex items-center mb-4">
+                <div className="flex items-center justify-between mb-4">
+
+                  <div className="flex items-center  mb-4" >
                   <img
                     src={post.user.profileImage || post.user.gender === 'male' ? defaultMaleImage : post.user.gender === 'female' ? defaultFemaleImage : defaultCustomImage}
                     alt={`${post.user.firstName} ${post.user.surname}`}
@@ -62,6 +70,14 @@ export default function HomePage() {
                     <p className="text-sm font-semibold">{`${post.user.firstName} ${post.user.surname}`}</p>
                     <p className="text-xs text-gray-500">{formatDate(post.createdAt)}</p>
                   </div>
+
+                  </div>
+                  {userInfo.id === post.user._id && (
+                    <div className="flex gap-4">
+                       <button className="ml-auto text-xs text-blue-500 font-bold hover:text-blue-800">edit</button>
+                        <button className="ml-auto text-xs text-red-500 font-bold hover:text-red-800">Delete</button>
+                    </div>
+                  )}
                 </div>
                 <p className="text-lg font-bold mb-2">{post.caption}</p>
                 <img src={post.image} alt={post.caption} className="w-full h-32 object-cover mb-2 rounded-md" />
@@ -77,6 +93,10 @@ export default function HomePage() {
       )}
 
       {posts.length === 0 && !loading && <p>No posts available.</p>}
+
+
+      {loading && <div className="lds-circle"><div></div></div>}  
     </div>
+
   );
 }
