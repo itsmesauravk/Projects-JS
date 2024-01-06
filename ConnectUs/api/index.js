@@ -170,15 +170,40 @@ app.get("/allpost", async (req, res) => {
 });
 //shows post of specific user only
 app.get("/yourpost/:userId", async (req, res) => {
-    const userId = req.params.userId
+    const userId = req.params.userId;
     try {
-        const yourPost = await Post.find({user:userId}).sort({ createdAt: -1 }).populate('user');
-        res.json(yourPost);
+        const yourPosts = await Post.find({ user: userId }).sort({ createdAt: -1 }).populate('user');
+
+        if (!yourPosts || yourPosts.length === 0) {
+            return res.status(404).json({ message: "No posts found for the specified user ID." });
+        }
+
+        res.json(yourPosts);
     } catch (error) {
-        res.json("Error: " + error);
+        console.error("Error fetching posts:", error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });
+
+
+//delete Post
+// Route to delete a post by ID
+app.delete('/deletepost/:postId', async (req, res) => {
+    const postId = req.params.postId;
   
+    try {
+      // Find the post by ID and remove it
+      const deletedPost = await Post.findByIdAndRemove(postId);
+  
+      if (deletedPost) {
+        res.status(200).json({ message: 'Post deleted successfully' });
+      } else {
+        res.status(404).json({ message: 'Post not found' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
   
   
   

@@ -3,7 +3,7 @@ import { UserContext } from "../UserContext";
 
 
 function formatDate(dateString) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+  const options = { year: 'numeric', month: 'long', day: 'numeric'};
   return new Date(dateString).toLocaleString('en-US', options);
 }
 const defaultMaleImage = "https://www.w3schools.com/howto/img_avatar.png";
@@ -16,7 +16,7 @@ export default function HomePage() {
   const [posts, setPosts] = useState([]);
   const {userInfo} = useContext(UserContext)
 
-   console.log("UserInfo :", userInfo)
+  //  console.log("UserInfo :", userInfo)
 
   useEffect(() => {
     async function fetchPosts() {
@@ -33,7 +33,7 @@ export default function HomePage() {
         if (response.status === 200) {
           const data = await response.json();
           setPosts(data); // Update state with fetched posts
-          console.log("Data :", data)
+          // console.log("Data :", data)
         } else {
           alert("Posts not found");
         }

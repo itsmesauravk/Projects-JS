@@ -34,20 +34,22 @@ export default function LoginPage() {
             
             } else {
                 alert("User not Login");
+                redirect(false)
             }
             res.json().then((data) => {
-                setLoading(false)
+                
                 setRedirect(true)
                 setUserInfo(data)
-                console.log("ok",data)
+                // console.log("ok",data)
             })
-        });
+        }).finally(()=>{
+            setLoading(false)
+        })
     }
     
     if (redirect) {
         return <Navigate to={`/home`} />;
       }
-      
     
 
 
