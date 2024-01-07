@@ -33,6 +33,7 @@ export default function YourPost() {
     showUserPosts();
   }, [userId]); 
 
+  // Delete post (not working currently)
   useEffect(() => {
     const deletePost = async () => {
       try {
