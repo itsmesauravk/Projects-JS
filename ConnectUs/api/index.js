@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken")
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
+//this crypto is just for creating random string for token
 // const crypto = require("crypto");
 // console.log(crypto.randomBytes(16).toString("hex"));
 const path = require('path');
