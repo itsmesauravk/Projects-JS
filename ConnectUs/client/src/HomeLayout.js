@@ -15,6 +15,15 @@ export default function HomeLayout(){
     const [redirect,setRedirect] = useState(false)
     const { userInfo,ready } = useContext(UserContext)
 
+    //for scrolling to top of page
+        const scrollToTop = () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // You can change this to 'auto' for instant scrolling
+          });
+        };
+    
+
     
 
     function logout(){
@@ -53,7 +62,7 @@ export default function HomeLayout(){
     // login info => userInfo 
     return(
         <div>
-            <div className="mt-5">
+            <div className="mt-5 ">  
                 <div>
                     {selectedImage && <img src={selectedImage} alt="profile" className="w-20 h-20 rounded-full" />}
                     {!selectedImage && gender === 'male' &&
@@ -71,16 +80,16 @@ export default function HomeLayout(){
                     <p className="text-sm italic text-blue-800 underline">{email}</p>
                 </div>
             </div>
-            <nav className="bg-blue-600 p-4 mt-6 rounded-md">
+            <nav className="bg-blue-600 p-4 mt-6 rounded-md sticky top-2 p-4 text-white">
                 <ul className="flex space-x-4 justify-around">
                     <li className="text-white font-bold hover:text-gray-300 cursor-pointer">
-                        <Link to={'/home'}>
+                        <Link to={'/home'} onClick={scrollToTop}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
                         </Link>
 
-                        </li>
+                    </li>
 
                     <li className="text-white font-bold hover:text-gray-300 cursor-pointer">
                         <Link to={`/newpost/${id}`}>
