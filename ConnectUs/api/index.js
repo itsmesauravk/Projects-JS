@@ -132,7 +132,31 @@ app.get("/profile", (req, res) => {
     } else {
       res.json(null)
     }
-  })
+})
+
+//profile setting (update profile except password)
+app.patch("/profilesetting/:userId", async (req, res) => {
+    const { firstName, surname, dateOfBirth, profileImage } = req.body;
+    const userId = req.params.userId;
+    try {
+      const userProfile = await Registration.findByIdAndUpdate(
+        userId, // Provide the document ID here
+        {
+          $set: {
+            firstName: firstName,
+            surname: surname,
+            dateOfBirth: dateOfBirth,
+            profileImage: profileImage
+          }
+        },
+        { new: true } // To return the updated document
+      );
+      res.json(userProfile);
+    } catch (error) {
+      res.json("Error: " + error);
+    }
+  });
+  
 
 
 
@@ -205,11 +229,7 @@ app.delete('/deletepost/:postId', async (req, res) => {
     } catch (error) {
       res.status(500).json({ error: 'Internal server error' });
     }
-  });
-  
-  
-  
-
+});
 
 
 //delete account

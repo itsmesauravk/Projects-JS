@@ -152,7 +152,7 @@ export default function RegistrationPage() {
     />
         </div>
         {loading &&
-          <div className="lds-circle"><div></div></div>
+          <div class="lds-circle"><div></div></div>
         }
         {!loading &&
           <button

@@ -84,13 +84,17 @@ export default function YourPost() {
         <p className="text-sm text-gray-600 font-bold">Gender: {userInfo.gender}</p>
       </div>
 
-      <h1 className="text-3xl font-bold mb-4 mt-4">Your Posts:</h1>
-
-      <div>
-        <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
+      <div className="mt-4">
+        <button className="text-sm bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-700 font-semibold focus:outline-none focus:shadow-outline-blue">
           <Link to={`/newpost/${userId}`}>Add New Post</Link>
         </button>
+        <button className="text-sm bg-purple-500 text-white py-2 px-4 ml-3 rounded-full font-semibold hover:bg-purple-700 focus:outline-none focus:shadow-outline-blue">
+          <Link to={`/profilesetting/${userId}`}>Edit Profile</Link>
+        </button>
       </div>
+
+      <h1 className="text-3xl font-bold mb-3 mt-3">Your Posts:</h1>
+
 
       {posts.length > 0 && (
         <div>
