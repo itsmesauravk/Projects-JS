@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
-import { Link} from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function formatDate(dateString) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -19,8 +19,7 @@ export default function YourPost() {
   const [postId, setPostId] = useState("");
   const [editPostId, setEditPostId] = useState("");
   const [caption,setCaption] = useState("")
-  const [image, setImage] = useState(null);
-
+  const [image,setImage] = useState(null)
 
   // const [editRedirect,setEditRedirect] = useState(false)
 
@@ -67,28 +66,29 @@ export default function YourPost() {
 
 
 
-    const updateEditPost = async (e) => {
-      e.preventDefault();
-      try {
-        const formData = new FormData();
-        formData.append("image", image);
-        formData.append("caption", caption);
-    
-        const response = await axios.patch(`http://localhost:4000/updatepost/${editPostId}`, formData);
-        // console.log(response);
-    
+  const updateEditPost = async (e) => {
+    e.preventDefault();
+    try {
+        const formData = new FormData()
+        formData.append("image",image)
+        const response = await axios.patch(`http://localhost:4000/updatepost/${editPostId}`, {
+            caption: caption,
+            formData
+        });
+        console.log(response);
+        
         if (response.status === 200) {
-          console.log("Post Updated");
-          setEditPostId("");
-          showUserPosts();
+            console.log("Post Updated");
+            setEditPostId("");
+          
+            showUserPosts();
         } else {
-          alert("Post not Updated");
+            alert("Post not Updated");
         }
-      } catch (error) {
+    } catch (error) {
         console.error("Error updating post:", error);
-      }
-    };
-  
+    }
+};
 
 // if(editRedirect){
 //   return <Navigate to={`/yourpost/${userId}`} />
@@ -153,10 +153,10 @@ export default function YourPost() {
                 <input
                   type="file"
                   id="image"
+                  value={image}
                   onChange={(e) => setImage(e.target.files[0])}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                 />
-
               </div>
 
               <button
@@ -221,3 +221,4 @@ export default function YourPost() {
     </div>
   );
 }
+
