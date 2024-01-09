@@ -79,12 +79,7 @@ export default function HomePage() {
                       )}
                     </div>
                   </div>
-                  {userInfo.id === post.user?._id && (
-                    <div className="flex gap-4">
-                      <button className="ml-auto text-xs text-blue-500 font-bold hover:text-blue-800">edit</button>
-                      <button className="ml-auto text-xs text-red-500 font-bold hover:text-red-800">Delete</button>
-                    </div>
-                  )}
+                  
                 </div>
                 <p className="text-lg font-bold mb-2">{post.caption}</p>
                 <img src={post.image} alt={post.caption} className="w-full h-32 object-cover mb-2 rounded-md" />
