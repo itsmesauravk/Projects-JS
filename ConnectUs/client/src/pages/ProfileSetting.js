@@ -9,7 +9,9 @@ export default function ProfileSetting(){
     const [redirect,setRedirect] = useState(false)
 
     const deleteAccount = () =>{
-        fetch(`http://localhost:4000/deleteaccount/${userId}`,{
+        const conformation = window.confirm("Are you sure you want to delete your account?");
+        if(conformation){
+            fetch(`http://localhost:4000/deleteaccount/${userId}`,{
             method:"DELETE",
             headers:{
                 "Content-Type":"application/json"
@@ -25,7 +27,13 @@ export default function ProfileSetting(){
                 alert("User not Delete");
             }
         })
+        
     }
+    else{
+        alert("User not Delete");
+    }
+
+}
 
     if(redirect){
        return <Navigate to="/"/>

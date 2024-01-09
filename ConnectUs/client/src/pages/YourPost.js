@@ -17,12 +17,13 @@ export default function YourPost() {
   const userId = userInfo.id;
   const [posts, setYourPosts] = useState([]);
   const [postId, setPostId] = useState("");
+ 
 
   const showUserPosts = async () => {
     try {
       const response = await axios.get(`http://localhost:4000/yourpost/${userId}`);
       const data = response.data;
-      console.log("Fetched data:", data);
+      // console.log("Fetched data:", data);
       setYourPosts(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -34,30 +35,26 @@ export default function YourPost() {
   }, [userId]); 
 
   // Delete post (not working currently)
-  
-  useEffect(() => {
-    const deletePost = async () => {
+  const deletePost = async () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+
+    if(confirmDelete){
       try {
         const response = await axios.delete(`http://localhost:4000/deletepost/${postId}`);
-        console.log("Delete response:", response.data);
-        // After successful deletion, you may want to refresh the posts
+        const data = response.data;
+        console.log("Post deleted:", data);
         showUserPosts();
       } catch (error) {
-        console.error("Delete error:", error);
-        // Additional logging for server response
-        if (error.response) {
-          console.error("Server response data:", error.response.data);
-        }
+        console.error("Error deleting post:", error);
       }
-    };
-
-    // Call deletePost function when postId is not an empty string
-    if (postId) {
+    }
+  };
+  useEffect(()=>{
+    if(postId){
       deletePost();
-      // Reset postId after deletion
       setPostId("");
     }
-  }, [postId, showUserPosts]);
+  }, [postId])
 
   return (
     <div>
@@ -116,6 +113,7 @@ export default function YourPost() {
                     <div className="flex gap-4">
                       <button
                         className="ml-auto text-xs text-blue-500 font-bold hover:text-blue-800"
+                        
                       >
                         Edit
                       </button>

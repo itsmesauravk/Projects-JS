@@ -195,7 +195,7 @@ app.delete('/deletepost/:postId', async (req, res) => {
   
     try {
       // Find the post by ID and remove it
-      const deletedPost = await Post.findByIdAndRemove(postId);
+      const deletedPost = await Post.findByIdAndDelete(postId);
   
       if (deletedPost) {
         res.status(200).json({ message: 'Post deleted successfully' });
