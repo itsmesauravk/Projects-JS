@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function formatDate(dateString) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -21,18 +21,24 @@ export default function YourPost() {
   const [caption,setCaption] = useState("")
   const [image,setImage] = useState(null)
 
+  const [loading, setLoading] = useState(false);
+
+
   // const [editRedirect,setEditRedirect] = useState(false)
 
  
 
   const showUserPosts = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`http://localhost:4000/yourpost/${userId}`);
       const data = response.data;
       // console.log("Fetched data:", data);
       setYourPosts(data);
     } catch (error) {
       console.error("Error fetching data:", error);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -218,6 +224,10 @@ export default function YourPost() {
           </div>
         </div>
       )}
+
+      {posts.length === 0 && !loading && <p>No posts available.</p>}
+
+      {loading && <div className="lds-circle"><div></div></div>}
     </div>
   );
 }

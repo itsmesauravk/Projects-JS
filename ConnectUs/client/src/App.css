@@ -41,3 +41,42 @@
     transform: rotateY(3600deg);
   }
 }
+
+
+.newpost,.homenav,.profile,.editProfile,.logout {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.navItems:hover::before {
+  content: '';
+  position: absolute;
+  top: -28px; /* Adjust the distance from the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  opacity: 0.9;
+  font-size: 12px;
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+.homenav:hover::before {
+  content: 'Home';
+  
+}
+.newpost:hover::before {
+  content: 'New Post';
+}
+.profile:hover::before {
+  content: 'Profile';
+}
+.editProfile:hover::before {
+  content: 'Edit Profile';
+}
+.logout:hover::before {
+  content: 'Logout';
+}
