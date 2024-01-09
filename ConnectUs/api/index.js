@@ -134,6 +134,31 @@ app.get("/profile", (req, res) => {
     }
 })
 
+// Update post
+app.patch("/updatepost/:postId", async (req, res) => {
+    const { caption, image } = req.body;
+    const postId = req.params.postId;
+
+    try {
+        const updatePost = await Post.findByIdAndUpdate(postId, {
+            $set: {
+                caption: caption,
+                image: image
+            }
+        }, { new: true });
+
+        if (!updatePost) {
+            return res.status(404).json({ error: "Post not found" });
+        }
+
+        res.json(updatePost);
+    } catch (error) {
+        console.error("Error updating post:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
 //profile setting (update profile except password)
 app.patch("/profilesetting/:userId", async (req, res) => {
     const { firstName, surname, dateOfBirth, profileImage } = req.body;

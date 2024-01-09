@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function formatDate(dateString) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -17,7 +17,13 @@ export default function YourPost() {
   const userId = userInfo.id;
   const [posts, setYourPosts] = useState([]);
   const [postId, setPostId] = useState("");
-  const [postEditId, setPostEditId] = useState("")
+  const [editPostId, setEditPostId] = useState("");
+  const [caption,setCaption] = useState("")
+  const [image, setImage] = useState(null);
+
+
+  // const [editRedirect,setEditRedirect] = useState(false)
+
  
 
   const showUserPosts = async () => {
@@ -50,12 +56,44 @@ export default function YourPost() {
       }
     }
   };
+
+
   useEffect(()=>{
     if(postId){
       deletePost();
       setPostId("");
     }
   }, [postId])
+
+
+
+    const updateEditPost = async (e) => {
+      e.preventDefault();
+      try {
+        const formData = new FormData();
+        formData.append("image", image);
+        formData.append("caption", caption);
+    
+        const response = await axios.patch(`http://localhost:4000/updatepost/${editPostId}`, formData);
+        // console.log(response);
+    
+        if (response.status === 200) {
+          console.log("Post Updated");
+          setEditPostId("");
+          showUserPosts();
+        } else {
+          alert("Post not Updated");
+        }
+      } catch (error) {
+        console.error("Error updating post:", error);
+      }
+    };
+  
+
+// if(editRedirect){
+//   return <Navigate to={`/yourpost/${userId}`} />
+// }
+
 
   return (
     <div>
@@ -93,6 +131,43 @@ export default function YourPost() {
       </div>
 
       <h1 className="text-3xl font-bold mb-3 mt-3">Your Posts:</h1>
+      {/* edit Div */}
+      {editPostId && (
+          <div className="border border-gray-300 shadow-md rounded-md p-4 mt-8">
+            <h2 className="text-2xl font-semibold mb-4">Edit post</h2>
+            <form>
+              <label htmlFor="caption">Caption</label>
+              <input
+                type="text"
+                name="caption"
+                id="caption"
+                value={caption}
+                onChange={(e) => setCaption(e.target.value)}
+                className="border border-gray-300 shadow-md rounded-md p-2 mb-4 w-full"
+              />
+
+              <div className="mb-4">
+                <label htmlFor="image" className="block text-gray-600 text-sm font-bold">
+                  Image
+                </label>
+                <input
+                  type="file"
+                  id="image"
+                  onChange={(e) => setImage(e.target.files[0])}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                />
+
+              </div>
+
+              <button
+                className="text-sm bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full"
+                onClick={updateEditPost}
+              >
+                Update Post
+              </button>
+            </form>
+          </div>
+        )}
 
 
       {posts.length > 0 && (
@@ -117,7 +192,7 @@ export default function YourPost() {
                     <div className="flex gap-4">
                       <button
                         className="ml-auto text-xs text-blue-500 font-bold hover:text-blue-800"
-                        onClick={() => setPostEditId(post._id)}
+                        onClick={() => setEditPostId(post._id)}
                       >
                         Edit
                       </button>
