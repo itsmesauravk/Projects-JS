@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 
 
 export default function NewPostPage() {
@@ -35,6 +35,11 @@ export default function NewPostPage() {
 
     return(
         <div className="max-w-xl mx-auto p-4 bg-white rounded-lg shadow-md">
+            <div className="mt-4 mb-4">
+                <button className="bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full flex items-center">
+                    <Link to={`/home`}>Home</Link>
+                </button>
+            </div>
     <h1 className="text-2xl font-bold mb-4">Add Your Post</h1>
     <form onSubmit={handleSubmit}>
         <div className="mb-4">

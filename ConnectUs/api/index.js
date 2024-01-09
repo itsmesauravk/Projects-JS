@@ -210,6 +210,25 @@ app.delete('/deletepost/:postId', async (req, res) => {
   
   
 
+
+
+//delete account
+app.delete("/deleteaccount/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    console.log(userId)
+    try {
+        const deletedUser = await Registration.findByIdAndDelete(userId);
+        const deleteUserPosts = await Post.deleteMany({ user: userId });
+
+        if (deletedUser && deleteUserPosts) {
+            res.status(200).json({ message: 'User deleted successfully' });
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 //logout
 app.post("/logout",(req,res)=>{
     res.clearCookie("token").json("Logout")
