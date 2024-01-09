@@ -34,6 +34,7 @@ export default function YourPost() {
   }, [userId]); 
 
   // Delete post (not working currently)
+  
   useEffect(() => {
     const deletePost = async () => {
       try {
@@ -60,6 +61,12 @@ export default function YourPost() {
 
   return (
     <div>
+     <div className="mt-4 mb-4">
+      <button className="bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full flex items-center">
+        <Link to={`/home`}>Home</Link>
+      </button>
+    </div>
+
       <div className="bg-white border border-gray-300 shadow-md rounded-md p-4">
         <div className="flex items-center mb-4">
           <img

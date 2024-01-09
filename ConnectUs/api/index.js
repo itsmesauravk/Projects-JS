@@ -138,11 +138,12 @@ app.get("/profile", (req, res) => {
 
 app.post("/newpost/:userId", upload.single('image'), async (req, res) => {
     // The 'image' parameter should match the name attribute of the file input in your form
-    const { caption } = req.body;
-    const userId = req.params.userId;
-    const image = req.file.path; 
+    
 
     try {
+        const { caption } = req.body;
+        const userId = req.params.userId;
+        const image = req.file.path; 
         // Your post creation logic here
         // Make sure to handle the image data appropriately (e.g., save to disk or database)
         const newPost = await Post.create({
