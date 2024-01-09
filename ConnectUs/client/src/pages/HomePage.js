@@ -10,9 +10,40 @@ const defaultMaleImage = "https://www.w3schools.com/howto/img_avatar.png";
 const defaultFemaleImage = "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/11_avatar-512.png";
 const defaultCustomImage = "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg";
 
+//formating time
+function formatDateDifference(postDate) {
+  const now = new Date();
+  const formattedPostDate = new Date(postDate);
+  
+  const timeDiff = now - formattedPostDate;
+  const seconds = Math.floor(timeDiff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const months = Math.floor(days / 30); // Assuming 30 days in a month
+  const years = Math.floor(days / 365); // Assuming 365 days in a year
+
+  if (days === 0) {
+    return "Today";
+  } else if (days === 1) {
+    return "Yesterday";
+  } else if (days < 30) {
+    return `${days} days ago`;
+  } else if (months === 1) {
+    return "1 month ago";
+  } else if (months < 12) {
+    return `${months} months ago`;
+  } else if (years === 1) {
+    return "1 year ago";
+  } else {
+    return `${years} years ago`;
+  }
+}
+
+
 
 export default function HomePage() {
-  const {userInfo} = useContext(UserContext)
+  // const {userInfo} = useContext(UserContext)
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
 
@@ -74,7 +105,8 @@ export default function HomePage() {
                       {post.user && (
                         <>
                           <p className="text-sm font-semibold">{`${post.user.firstName} ${post.user.surname}`}</p>
-                          <p className="text-xs text-gray-500">{formatDate(post.createdAt)}</p>
+                          <p className="text-xs text-gray-500">{formatDateDifference(formatDate(post.createdAt))} • 🌐</p>
+                          {/* {console.log(formatDate(post.createdAt))} */}
                         </>
                       )}
                     </div>

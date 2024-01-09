@@ -17,6 +17,7 @@ export default function YourPost() {
   const userId = userInfo.id;
   const [posts, setYourPosts] = useState([]);
   const [postId, setPostId] = useState("");
+  const [postEditId, setPostEditId] = useState("")
  
 
   const showUserPosts = async () => {
@@ -58,12 +59,7 @@ export default function YourPost() {
 
   return (
     <div>
-     <div className="mt-4 mb-4">
-      <button className="bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full flex items-center">
-        <Link to={`/home`}>Home</Link>
-      </button>
-    </div>
-
+   
       <div className="bg-white border border-gray-300 shadow-md rounded-md p-4">
         <div className="flex items-center mb-4">
           <img
@@ -84,11 +80,14 @@ export default function YourPost() {
         <p className="text-sm text-gray-600 font-bold">Gender: {userInfo.gender}</p>
       </div>
 
-      <div className="mt-4">
-        <button className="text-sm bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-700 font-semibold focus:outline-none focus:shadow-outline-blue">
+      <div className="mt-4 flex gap-2">
+        <button className=" text-sm bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full ">
+          <Link to={`/home`}>Home</Link>
+        </button>
+        <button className="text-sm bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full ">
           <Link to={`/newpost/${userId}`}>Add New Post</Link>
         </button>
-        <button className="text-sm bg-purple-500 text-white py-2 px-4 ml-3 rounded-full font-semibold hover:bg-purple-700 focus:outline-none focus:shadow-outline-blue">
+        <button className="text-sm bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full ">
           <Link to={`/profilesetting/${userId}`}>Edit Profile</Link>
         </button>
       </div>
@@ -111,13 +110,14 @@ export default function YourPost() {
                     <div>
                       <p className="text-sm font-semibold">{`${post.user.firstName} ${post.user.surname}`}</p>
                       <p className="text-xs text-gray-500">{formatDate(post.createdAt)}</p>
+                      
                     </div>
                   </div>
                   {userInfo.id === post.user._id && (
                     <div className="flex gap-4">
                       <button
                         className="ml-auto text-xs text-blue-500 font-bold hover:text-blue-800"
-                        
+                        onClick={() => setPostEditId(post._id)}
                       >
                         Edit
                       </button>
