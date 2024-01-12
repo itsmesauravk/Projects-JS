@@ -17,32 +17,41 @@ export default function RegistrationPage() {
     setSelectedGender(event.target.value);
   };
 
- function registerUser(ev) {
+  function registerUser(ev) {
     ev.preventDefault();
-    setLoading(true)
+    setLoading(true);
+  
+    const formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("surname", surname);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("dateOfBirth", dateOfBirth);
+    formData.append("selectedGender", selectedGender);
+    formData.append("selectedImage", selectedImage);
+  
     fetch("http://localhost:4000/register", {
       method: "POST",
-      body: JSON.stringify({
-        firstName: firstName,
-        surname: surname,
-        email: email,
-        password: password,
-        dateOfBirth: dateOfBirth,
-        selectedGender: selectedGender,
-        selectedImage: selectedImage,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      if (res.status === 200) {
-        console.log("User Created");
-        setLoading(false)
-        setRedirect(true)
-      } else {
-        alert("User not Created");
-      }
-    });
+      body: formData,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json(); // assuming the server sends a JSON response
+        } else {
+          throw new Error(`User not Created. Server responded with status ${res.status}`);
+        }
+      })
+      .then((data) => {
+        console.log("User Created", data);
+        setLoading(false);
+        setRedirect(true);
+      })
+      .catch((error) => {
+        console.error("Error:", error.message);
+        setLoading(false);
+        alert("Registration failed. Please try again.");
+      });
+
   }
   if(redirect){
     return <Navigate to="/login" />
@@ -51,7 +60,7 @@ export default function RegistrationPage() {
   return (
     <div className="login mt-10 ml-10">
       <h1 className="text-2xl">Create New Account</h1>
-      <form className="mt-10" onSubmit={registerUser}>
+      <form className="mt-10" onSubmit={registerUser} encType="multipart/form-data">
         <input
           className="border-2 border-blue-500 rounded-md p-1"
           type="text"
@@ -131,25 +140,27 @@ export default function RegistrationPage() {
           <h1>Upload Profile Image :</h1>
 
           {selectedImage && (
-      <div>
-        <img
-          alt="not found"
-          width={"250px"}
-          src={URL.createObjectURL(selectedImage)}
+            <div>
+              <img
+                alt="not found"
+                width={"250px"}
+                src={URL.createObjectURL(selectedImage)}
+              />
+              <br />
+              <button onClick={() => setSelectedImage(null)}>Remove</button>
+            </div>
+          )}
+
+        <input
+          type="file"
+          name="myImage"
+          onChange={(event) => {
+            const file = event.target.files[0];
+            console.log(file);
+            setSelectedImage(file);
+          }}
         />
-        <br />
-        <button onClick={() => setSelectedImage(null)}>Remove</button>
-      </div>
-    )}
-    <input
-      type="file"
-      name="myImage"
-      onChange={(event) => {
-        const file = event.target.files[0];
-        console.log(file);
-        setSelectedImage(file.name);
-      }}
-    />
+
         </div>
         {loading &&
           <div class="lds-circle"><div></div></div>

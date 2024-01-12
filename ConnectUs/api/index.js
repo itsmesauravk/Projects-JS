@@ -25,10 +25,19 @@ const Post = require("./schema/Post");
 //for image
 const multer = require("multer");
 
+//destination to save iimage in backend .
+// const upload = multer({ dest: __dirname+"/uploads" }); 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      return cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+      const uniqueFileName = Date.now() + '-' + file.originalname  //for savedfile naming
+      cb(null, file.fieldname + '-' + uniqueFileName)
+    }
+  })
 
-const upload = multer({ dest: __dirname+"/uploads" }); 
-
-
+const upload = multer({ storage})   
 
 //middleware
 app.use(cors({
@@ -36,6 +45,7 @@ app.use(cors({
     credentials:true
 }));
 app.use(express.json());
+app.use(express.urlencoded({extended:false}))
 app.use(cookieParser())
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -55,33 +65,36 @@ app.get("/home",async(req,res)=>{
 })
 
 //user registration
-app.post("/register", async(req, res) => {
-    const {firstName,surname,email,password,dateOfBirth,selectedGender,selectedImage} = req.body;
+// const bcrypt = require('bcrypt');
 
-    try {
-        //hashing password
-        const salt = bcrypt.genSaltSync(10);
-        const hashedPassword = bcrypt.hashSync(password, salt);
-        const newUser = await Registration.create({
-            firstName: firstName,
-            surname: surname,
-            email: email,
-            password: hashedPassword,
-            dateOfBirth: dateOfBirth,
-            gender: selectedGender,
-            profileImage: selectedImage,
-        })
-        if(newUser){
-            res.status(200).json("User Created")
-        }else{
-            res.status(200).json("User not Created")
-        }
-    } catch (error) {
-        res.status(400).json("Error :"+error)
+app.post("/register", async (req, res) => {
+  const { firstName, surname, email, password, dateOfBirth, selectedGender, selectedImage } = req.body;
+
+  try {
+    // Hashing password
+    const  salt = bcrypt.genSaltSync(10)
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
+    const newUser = await Registration.create({
+      firstName: firstName,
+      surname: surname,
+      email: email,
+      password: hashedPassword,
+      dateOfBirth: dateOfBirth,
+      gender: selectedGender,
+      profileImage: selectedImage,
+    });
+
+    if (newUser) {
+      res.status(200).json("User Created");
+    } else {
+      res.status(200).json("User not Created");
     }
+  } catch (error) {
+    res.status(400).json("Error: " + error);
+  }
+});
 
-
-})
 
 //login
 // login
