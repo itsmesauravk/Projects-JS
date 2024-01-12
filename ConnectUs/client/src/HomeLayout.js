@@ -10,6 +10,8 @@ import { UserContext } from "./UserContext";
 const defaultMaleImage = "https://www.w3schools.com/howto/img_avatar.png";
 const defaultFemaleImage = "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/11_avatar-512.png";
 const defaultCustomImage = "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg";
+const blueTick = "https://upload.wikimedia.org/wikipedia/commons/3/32/Verified-badge.png";
+const goldTick = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Twitter_Verified_Badge_Gold.svg/2048px-Twitter_Verified_Badge_Gold.svg.png";
 
 export default function HomeLayout(){
     const [redirect,setRedirect] = useState(false)
@@ -80,11 +82,15 @@ export default function HomeLayout(){
                     }
                 </div>
                 <div>
-                    <h1 className="font-bold">{firstName} {surname}</h1>
+                    <div className="flex gap-1 items-center ">
+                        <h1 className="font-bold">{firstName} {surname}</h1>
+                        <img src={blueTick} alt="verified" className="w-4 h-4 inline-block object-cover" />
+                    </div>
+                    
                     <p className="text-sm italic text-blue-800 underline">{email}</p>
                 </div>
             </div>
-            <nav className="bg-blue-600 p-4 mt-6 rounded-md sticky top-2 p-4 text-white">
+            <nav className="bg-blue-600 p-4 mt-6 rounded-md sticky top-1 p-4 text-white">
                 <ul className=" flex space-x-4 justify-around">
                     <li className="text-white font-bold hover:text-gray-300 cursor-pointer">
                         <Link className="navItems homenav" to={'/home'} onClick={scrollToTop}>
