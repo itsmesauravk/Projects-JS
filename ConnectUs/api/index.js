@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
       return cb(null, './uploads')
     },
     filename: function (req, file, cb) {
-      const uniqueFileName = Date.now() + '-' + file.originalname  //for savedfile naming
+      const uniqueFileName = Date.now() + '_' + file.originalname  //for savedfile naming
       cb(null, file.fieldname + '-' + uniqueFileName)
     }
   })
@@ -45,7 +45,7 @@ app.use(cors({
     credentials:true
 }));
 app.use(express.json());
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false})) 
 app.use(cookieParser())
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -65,13 +65,16 @@ app.get("/home",async(req,res)=>{
 })
 
 //user registration
-// const bcrypt = require('bcrypt');
 
-app.post("/register", async (req, res) => {
-  const { firstName, surname, email, password, dateOfBirth, selectedGender, selectedImage } = req.body;
 
-  try {
-    // Hashing password
+app.post("/register",upload.single('profileImage'), async (req, res) => {
+    
+    try {
+      const { firstName, surname, email, password, dateOfBirth, selectedGender} = req.body;
+      const selectedImage = req.file.path;
+    
+        console.log(req.body)
+        console.log(req.file.path)
     const  salt = bcrypt.genSaltSync(10)
     const hashedPassword = bcrypt.hashSync(password, salt);
 
@@ -91,7 +94,7 @@ app.post("/register", async (req, res) => {
       res.status(200).json("User not Created");
     }
   } catch (error) {
-    res.status(400).json("Error: " + error);
+    res.status(400).json("Error here: " + error);
   }
 });
 

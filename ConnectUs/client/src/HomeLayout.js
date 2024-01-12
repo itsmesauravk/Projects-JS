@@ -60,21 +60,22 @@ export default function HomeLayout(){
         // You can render a loading state or return null
         return null;
       }
-
-    const {id,firstName,surname,email,gender,selectedImage} = userInfo;
+    //   console.log("User Info :",userInfo)
+    const {id,firstName,surname,email,gender,profileImage} = userInfo;
+    const imageLink = "http://localhost:4000/"
     // login info => userInfo 
     return(
         <div>
             <div className="mt-5 ">  
                 <div>
-                    {selectedImage && <img src={selectedImage} alt="profile" className="w-20 h-20 rounded-full" />}
-                    {!selectedImage && gender === 'male' &&
+                    {profileImage && <img src={imageLink+profileImage} alt="profile" className="w-20 h-20 rounded-full object-cover" />}
+                    {!profileImage && gender === 'male' &&
                         <img src={defaultMaleImage} alt="male-profile" className="w-20 h-20 rounded-full" />
                     }
-                    {!selectedImage && gender === 'female' &&
+                    {!profileImage && gender === 'female' &&
                         <img src={defaultFemaleImage} alt="female-profile" className="w-20 h-20 rounded-full" />
                     }
-                    {!selectedImage && gender === 'custom' &&
+                    {!profileImage && gender === 'custom' &&
                         <img src={defaultCustomImage} alt="custom-profile" className="w-20 h-20 rounded-full" />
                     }
                 </div>

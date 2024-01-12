@@ -41,12 +41,12 @@ function formatDateDifference(postDate) {
 }
 
 
-
 export default function HomePage() {
   // const {userInfo} = useContext(UserContext)
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
-
+  
+  const imageLink = "http://localhost:4000/"
   //  console.log("UserInfo :", userInfo)
 
   useEffect(() => {
@@ -90,16 +90,18 @@ export default function HomePage() {
                     {post.user && (
                       <img
                         src={
-                          post.user.profileImage ||
-                          (post.user.gender === 'male'
+                          post.user.profileImage
+                            ? imageLink + post.user.profileImage
+                            : post.user.gender === 'male'
                             ? defaultMaleImage
                             : post.user.gender === 'female'
                             ? defaultFemaleImage
-                            : defaultCustomImage)
+                            : defaultCustomImage
                         }
                         alt={`${post.user.firstName} ${post.user.surname}`}
-                        className="w-8 h-8 rounded-full mr-2"
+                        className="w-12 h-12 rounded-full mr-2 object-cover"
                       />
+                    
                     )}
                     <div>
                       {post.user && (

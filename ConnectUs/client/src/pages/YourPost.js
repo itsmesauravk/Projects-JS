@@ -99,22 +99,33 @@ export default function YourPost() {
 // if(editRedirect){
 //   return <Navigate to={`/yourpost/${userId}`} />
 // }
-
+  const imageLink = "http://localhost:4000/"
 
   return (
     <div>
    
       <div className="bg-white border border-gray-300 shadow-md rounded-md p-4">
-        <div className="flex items-center mb-4">
-          <img
-            src={userInfo.profileImage || (userInfo.gender === 'male' ? defaultMaleImage : userInfo.gender === 'female' ? defaultFemaleImage : defaultCustomImage)}
-            alt={`${userInfo.firstName} ${userInfo.surname}`}
-            className="w-16 h-16 rounded-full mr-2"
-          />
-          <div>
-            <p className="text-xl font-semibold">{`${userInfo.firstName} ${userInfo.surname}`}</p>
+            <div className="flex items-center mb-4">
+              {userInfo && (
+                <img
+                  src={
+                    userInfo.profileImage
+                      ? imageLink + userInfo.profileImage
+                      : userInfo.gender === 'male'
+                      ? defaultMaleImage
+                      : userInfo.gender === 'female'
+                      ? defaultFemaleImage
+                      : defaultCustomImage
+                  }
+                  alt={`${userInfo.firstName} ${userInfo.surname}`}
+                  style={{ width: '7rem', height: '7rem' }} 
+                  className="rounded-md mr-2 object-cover"
+                />
+              )}
+            <div>
+            <p className="text-2xl font-semibold ml-3">{`${userInfo.firstName} ${userInfo.surname}`}</p>
             {posts.length > 0 && posts[0].user.dateOfBirth ? (
-              <p className="text-xs text-purple-800">{formatDate(posts[0].user.dateOfBirth)}</p>
+              <p className="text-xs text-purple-800 ml-3">{formatDate(posts[0].user.dateOfBirth)}</p>
             ) : (
               <p>No date of birth available.</p>
             )}
@@ -183,11 +194,20 @@ export default function YourPost() {
               <div key={post._id} className="bg-white border border-gray-300 shadow-md rounded-md p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center mb-4">
-                    <img
-                      src={post.user.profileImage || (post.user.gender === 'male' ? defaultMaleImage : post.user.gender === 'female' ? defaultFemaleImage : defaultCustomImage)}
-                      alt={`${post.user.firstName} ${post.user.surname}`}
-                      className="w-8 h-8 rounded-full mr-2"
-                    />
+                  <img
+                  src={
+                    userInfo.profileImage
+                      ? imageLink + userInfo.profileImage
+                      : userInfo.gender === 'male'
+                      ? defaultMaleImage
+                      : userInfo.gender === 'female'
+                      ? defaultFemaleImage
+                      : defaultCustomImage
+                  }
+                  alt={`${userInfo.firstName} ${userInfo.surname}`}
+                  style={{ width: '3rem', height: '3rem' }} 
+                  className="rounded-full mr-2 object-cover"
+                />
                     <div>
                       <p className="text-sm font-semibold">{`${post.user.firstName} ${post.user.surname}`}</p>
                       <p className="text-xs text-gray-500">{formatDate(post.createdAt)}</p>
