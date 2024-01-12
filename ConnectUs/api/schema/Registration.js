@@ -30,6 +30,9 @@ const registrationSchema = new mongoose.Schema({
   profileImage: {
     type: String, // Assuming you store the image URL in the database
   },
+  vipToken: {
+    type: String,
+  },
 });
 
 const Registration = mongoose.model('Registration', registrationSchema);

@@ -94,6 +94,9 @@ export default function ProfileSetting(){
     const defaultCustomImage = "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg";
 
     const imageLink = "http://localhost:4000/"
+    const blueTick = "https://upload.wikimedia.org/wikipedia/commons/3/32/Verified-badge.png";
+    const goldTick = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Twitter_Verified_Badge_Gold.svg/2048px-Twitter_Verified_Badge_Gold.svg.png";
+
     // console.log(userInfo)
     return(
         <div>
@@ -123,7 +126,11 @@ export default function ProfileSetting(){
                             className="rounded-full  object-cover"
                           />
                           )}
-                      <p className="text-xl  font-semibold">{`${userInfo.firstName} ${userInfo.surname}`}</p>
+                            <div className="flex gap-1 items-center ">
+                              <h1 className="font-bold">{userInfo.firstName} {userInfo.surname}</h1>
+                              {userInfo.vipToken === "iamgold" && <img src={goldTick} alt="gold" className="w-6 h-6" />}
+                              {userInfo.vipToken === "skyisblue" && <img src={blueTick} alt="blue" className="w-6 h-6" />}
+                          </div>
                       </div>
 
                     <h1 className="mt-5 font-bold text-2xl">Edit Profile :</h1>

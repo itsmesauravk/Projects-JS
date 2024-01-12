@@ -40,7 +40,7 @@ export default function LoginPage() {
                 
                 setRedirect(true)
                 setUserInfo(data)
-                // console.log("ok",data)
+                console.log("ok",data)
             })
         }).finally(()=>{
             setLoading(false)

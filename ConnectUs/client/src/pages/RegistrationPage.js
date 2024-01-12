@@ -9,6 +9,7 @@ export default function RegistrationPage() {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [vipToken, setVipToken] = useState("");
 
   const [redirect,setRedirect] = useState(false)
   const [loading,setLoading] = useState(false)
@@ -30,6 +31,7 @@ export default function RegistrationPage() {
       formData.append("dateOfBirth", dateOfBirth);
       formData.append("selectedGender", selectedGender);
       formData.append("profileImage", selectedImage); // Assuming selectedImage is a file object
+      formData.append("vipToken", vipToken);
     
       fetch("http://localhost:4000/register", {
         method: "POST",
@@ -162,13 +164,25 @@ export default function RegistrationPage() {
           }}
         />
 
+        <div className="mt-5">
+          <p className="text-gray-600 italic mb-2">Only if you have :</p>
+          <label>VIP TOKEN :</label>
+          <input
+            className="border-2 border-purple-800 rounded-md p-1 ml-2 capitalize"
+            type="password"
+            placeholder="VIP Token..."
+            value={vipToken}
+            onChange={(event) => setVipToken(event.target.value)}
+          />
+        </div>
+
         </div>
         {loading &&
           <div className="lds-circle"><div></div></div>
         }
         {!loading &&
           <button
-          className=" block border-2 rounded-md p-2 mt-3 hover:border-blue-400"
+          className=" block bg-blue-600 text-white rounded-md p-2 mt-3 hover:bg-blue-500"
           type="submit"
           value="Submit"
           onClick={registerUser}>

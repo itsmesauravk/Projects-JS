@@ -70,7 +70,7 @@ app.get("/home",async(req,res)=>{
 app.post("/register",upload.single('profileImage'), async (req, res) => {
     
     try {
-      const { firstName, surname, email, password, dateOfBirth, selectedGender} = req.body;
+      const { firstName, surname, email, password, dateOfBirth, selectedGender,vipToken} = req.body;
       const selectedImage = req.file.path;
     const  salt = bcrypt.genSaltSync(10)
     const hashedPassword = bcrypt.hashSync(password, salt);
@@ -83,6 +83,7 @@ app.post("/register",upload.single('profileImage'), async (req, res) => {
       dateOfBirth: dateOfBirth,
       gender: selectedGender,
       profileImage: selectedImage,
+      vipToken: vipToken,     // Gold Tick = IAMGOLD   , Blue Tick = SKYISBLUE
     });
 
     if (newUser) {
@@ -107,7 +108,7 @@ app.post("/login", async (req, res) => {
             if (checkPassword) {
                 // Include additional information in the token payload
                 const token = jwt.sign(
-                    { id: checkUser._id, email: checkUser.email, firstName: checkUser.firstName, surname: checkUser.surname, gender: checkUser.gender, profileImage: checkUser.profileImage },
+                    { id: checkUser._id, email: checkUser.email, firstName: checkUser.firstName, surname: checkUser.surname, gender: checkUser.gender, profileImage: checkUser.profileImage,vipToken:checkUser.vipToken },
                     process.env.JWT_SECRET,
                     { expiresIn: "1h" }
                 );
@@ -123,6 +124,7 @@ app.post("/login", async (req, res) => {
                     surname: checkUser.surname,
                     gender:checkUser.gender,
                     profileImage: checkUser.profileImage,
+                    vipToken:checkUser.vipToken
                 });
             } else {
                 res.status(400).json("Password not match");
@@ -146,6 +148,43 @@ app.get("/profile", (req, res) => {
       res.json(null)
     }
 })
+
+
+//users
+// app.get("/users", async (req, res) => {
+//     try {
+//         const allUser = await Registration.find({}).sort({ firstName: -1  });
+//         res.json(allUser);
+//     } catch (error) {
+//         res.json("Error : " + error);
+//     }
+// })
+app.get("/users", async (req, res) => {
+  try {
+      const allUser = await Registration.aggregate([
+          {
+              $addFields: {
+                  // Custom sort order based on the vipToken field
+                  sortField: {
+                      $switch: {
+                          branches: [
+                              { case: { $eq: ["$vipToken", "iamgold"] }, then: 1 },
+                              { case: { $eq: ["$vipToken", "skyisblue"] }, then: 2 },
+                              { case: { $eq: ["$vipToken", "default"] }, then: 4 },
+                          ],
+                          default: 5, // For any other cases
+                      },
+                  },
+              },
+          },
+          { $sort: { sortField: 1, firstName: -1 } }, // Sort by custom field and then firstName
+      ]).exec();
+
+      res.json(allUser);
+  } catch (error) {
+      res.json("Error : " + error);
+  }
+});
 
 // Update post
 app.patch("/updatepost/:postId", async (req, res) => {

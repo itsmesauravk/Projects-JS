@@ -61,7 +61,7 @@
   white-space: nowrap; /* Prevent line breaks */
 }
 
-.homenav, .newpost, .profile, .editProfile, .logout {
+.homenav,.users ,.newpost, .profile, .editProfile, .logout {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -71,6 +71,9 @@
   content: 'Home';
 }
 
+.users:hover::before {
+  content: 'Users';
+}
 .newpost:hover::before {
   content: 'New Post';
 }

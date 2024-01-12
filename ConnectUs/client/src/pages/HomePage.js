@@ -78,6 +78,9 @@ export default function HomePage() {
     fetchPosts();
   }, []); // Empty dependency array ensures the effect runs once on component mount
   // console.log(posts)
+  const blueTick = "https://upload.wikimedia.org/wikipedia/commons/3/32/Verified-badge.png";
+  const goldTick = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Twitter_Verified_Badge_Gold.svg/2048px-Twitter_Verified_Badge_Gold.svg.png";
+
   return (
     <div>
       {posts.length > 0 && (
@@ -106,7 +109,12 @@ export default function HomePage() {
                     <div>
                       {post.user && (
                         <>
-                          <p className="text-sm font-semibold">{`${post.user.firstName} ${post.user.surname}`}</p>
+                          {/* <p className="text-sm font-semibold">{`${post.user.firstName} ${post.user.surname}`}</p> */}
+                          <div className="flex gap-1 items-center ">
+                            <h1 className="font-bold">{post.user.firstName} {post.user.surname}</h1>
+                            {post.user.vipToken === "iamgold" && <img src={goldTick} alt="gold" className="w-6 h-6" />}
+                            {post.user.vipToken === "skyisblue" && <img src={blueTick} alt="blue" className="w-6 h-6" />}
+                          </div>
                           <p className="text-xs text-gray-500">{formatDateDifference(formatDate(post.createdAt))} • 🌐</p>
                           {/* {console.log(formatDate(post.createdAt))} */}
                         </>

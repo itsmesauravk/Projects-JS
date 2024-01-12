@@ -100,6 +100,9 @@ export default function YourPost() {
 //   return <Navigate to={`/yourpost/${userId}`} />
 // }
   const imageLink = "http://localhost:4000/"
+  const blueTick = "https://upload.wikimedia.org/wikipedia/commons/3/32/Verified-badge.png";
+  const goldTick = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Twitter_Verified_Badge_Gold.svg/2048px-Twitter_Verified_Badge_Gold.svg.png";
+
 
   return (
     <div>
@@ -123,7 +126,11 @@ export default function YourPost() {
                 />
               )}
             <div>
-            <p className="text-2xl font-semibold ml-3">{`${userInfo.firstName} ${userInfo.surname}`}</p>
+            <div className="flex gap-1 items-center ">
+              <h1 className="font-bold">{userInfo.firstName} {userInfo.surname}</h1>
+              {userInfo.vipToken === "iamgold" && <img src={goldTick} alt="gold" className="w-6 h-6" />}
+              {userInfo.vipToken === "skyisblue" && <img src={blueTick} alt="blue" className="w-6 h-6" />}
+            </div>
             {posts.length > 0 && posts[0].user.dateOfBirth ? (
               <p className="text-xs text-purple-800 ml-3">{formatDate(posts[0].user.dateOfBirth)}</p>
             ) : (
@@ -209,7 +216,11 @@ export default function YourPost() {
                   className="rounded-full mr-2 object-cover"
                 />
                     <div>
-                      <p className="text-sm font-semibold">{`${post.user.firstName} ${post.user.surname}`}</p>
+                      <div className="flex gap-1 items-center ">
+                          <h1 className="font-bold">{userInfo.firstName} {userInfo.surname}</h1>
+                          {userInfo.vipToken === "iamgold" && <img src={goldTick} alt="gold" className="w-6 h-6" />}
+                          {userInfo.vipToken === "skyisblue" && <img src={blueTick} alt="blue" className="w-6 h-6" />}
+                      </div>
                       <p className="text-xs text-gray-500">{formatDate(post.createdAt)}</p>
                       
                     </div>
