@@ -115,9 +115,18 @@ export default function HomePage() {
                   </div>
                   
                 </div>
-                <p className="text-lg font-bold mb-2">{post.caption}</p>
-                <img src={post.image} alt={post.caption} className="w-full h-32 object-cover mb-2 rounded-md" />
-                <div className="flex items-center space-x-4">
+                <p className="text-lg mb-2  text-gray-700 italic">
+                  {post.caption}
+                </p>
+
+                <img 
+                  src={imageLink + post.image}
+                  alt={post.caption} 
+                  style={{ width: '300px', height: '350px' }}
+                  className="object-cover mb-2 rounded-md"
+                />
+
+                <div className="flex items-center space-x-4 mt-5">
                   <button className="text-blue-500">Like</button>
                   <button className="text-gray-500">Comment</button>
                   <button className="text-gray-500">Share</button>

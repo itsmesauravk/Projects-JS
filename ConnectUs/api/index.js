@@ -72,9 +72,6 @@ app.post("/register",upload.single('profileImage'), async (req, res) => {
     try {
       const { firstName, surname, email, password, dateOfBirth, selectedGender} = req.body;
       const selectedImage = req.file.path;
-    
-        console.log(req.body)
-        console.log(req.file.path)
     const  salt = bcrypt.genSaltSync(10)
     const hashedPassword = bcrypt.hashSync(password, salt);
 
@@ -176,12 +173,13 @@ app.patch("/updatepost/:postId", async (req, res) => {
 
 
 //profile setting (update profile except password)
-app.patch("/profilesetting/:userId", async (req, res) => {
-    const { firstName, surname, dateOfBirth, profileImage } = req.body;
-    const userId = req.params.userId;
-    try {
+app.patch("/profilesetting/:userId",upload.single("updatedProfileImage"), async (req, res) => {
+  try {
+      const { firstName, surname, dateOfBirth } = req.body;
+      const profileImage = req.file.path;
+      const userId = req.params.userId;
       const userProfile = await Registration.findByIdAndUpdate(
-        userId, // Provide the document ID here
+        userId, 
         {
           $set: {
             firstName: firstName,

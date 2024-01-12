@@ -158,7 +158,6 @@ export default function RegistrationPage() {
           name="profileImage"
           onChange={(event) => {
             const file = event.target.files[0];
-            console.log(file);
             setSelectedImage(file);
           }}
         />

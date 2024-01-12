@@ -41,7 +41,7 @@ export default function NewPostPage() {
                 </button>
             </div>
     <h1 className="text-2xl font-bold mb-4">Add Your Post</h1>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="mb-4">
             <label htmlFor="caption" className="block text-gray-600 text-sm font-bold">Caption</label>
             <input
