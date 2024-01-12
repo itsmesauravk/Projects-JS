@@ -44,11 +44,7 @@
 
 /* this is for the navbar hover effect  */
 
-.newpost,.homenav,.profile,.editProfile,.logout {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
+
 
 .navItems:hover::before {
   content: '';
@@ -65,24 +61,29 @@
   white-space: nowrap; /* Prevent line breaks */
 }
 
-/* for home navbar  */
+.homenav, .newpost, .profile, .editProfile, .logout {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
 .homenav:hover::before {
   content: 'Home';
-  
 }
-/* for new post navbar */ */
+
 .newpost:hover::before {
   content: 'New Post';
 }
-/* for profile navbar */ */
+
 .profile:hover::before {
   content: 'Profile';
 }
-/* for edit profile navbar */ */
+
 .editProfile:hover::before {
   content: 'Edit Profile';
 }
-/* for logout navbar */ */
+
 .logout:hover::before {
   content: 'Logout';
 }
+

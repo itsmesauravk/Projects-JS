@@ -94,7 +94,7 @@ export default function ProfileSetting(){
     const defaultCustomImage = "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg";
 
     const imageLink = "http://localhost:4000/"
-    console.log(userInfo)
+    // console.log(userInfo)
     return(
         <div>
             <div className="mt-4 mb-4">
@@ -106,7 +106,7 @@ export default function ProfileSetting(){
                 <h1 className="text-2xl font-bold">Profile Setting</h1>
                 <div>
                     
-                    <div className="flex items-center mb-4">
+                    <div className="flex items-center mb-4 gap-3  p-2 rounded-md bg-purple-200">
                         {userInfo && (
                           <img
                             src={
@@ -120,11 +120,11 @@ export default function ProfileSetting(){
                             }
                             alt={`${userInfo.firstName} ${userInfo.surname}`}
                             style={{ width: '7rem', height: '7rem', borderRadius:"35%"}}
-                            className="rounded-full mr-2 object-cover"
+                            className="rounded-full  object-cover"
                           />
                           )}
+                      <p className="text-xl  font-semibold">{`${userInfo.firstName} ${userInfo.surname}`}</p>
                       </div>
-                      <p className="text-sm font-semibold">{`${userInfo.firstName} ${userInfo.surname}`}</p>
 
                     <h1 className="mt-5 font-bold text-2xl">Edit Profile :</h1>
                     <form className="mt-5" onSubmit={updateProfile} encType="multipart/form-data"> 

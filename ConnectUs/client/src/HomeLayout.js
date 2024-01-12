@@ -66,7 +66,7 @@ export default function HomeLayout(){
     // login info => userInfo 
     return(
         <div>
-            <div className="mt-5 ">  
+            <div className="flex gap-4 items-center mt-5 bg-purple-200 p-2 rounded-md">  
                 <div>
                     {profileImage && <img src={imageLink+profileImage} alt="profile" className="w-20 h-20 rounded-full object-cover" />}
                     {!profileImage && gender === 'male' &&

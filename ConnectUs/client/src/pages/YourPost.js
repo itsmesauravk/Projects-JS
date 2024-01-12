@@ -104,7 +104,7 @@ export default function YourPost() {
   return (
     <div>
    
-      <div className="bg-white border border-gray-300 shadow-md rounded-md p-4">
+      <div className="bg-white border border-gray-300 shadow-md rounded-md p-4 bg-purple-200">
             <div className="flex items-center mb-4">
               {userInfo && (
                 <img
