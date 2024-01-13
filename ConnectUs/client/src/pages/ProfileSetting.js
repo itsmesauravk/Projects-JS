@@ -16,6 +16,8 @@ export default function ProfileSetting(){
     const [redirect,setRedirect] = useState(false)
     const [loading,setLoading] = useState(false)
 
+    const [deleteAccount,setDeleteAccount] = useState(false)
+
     const updateProfile = (ev) => {
       ev.preventDefault();
       setLoading(true);
@@ -62,9 +64,8 @@ export default function ProfileSetting(){
     
 
     // deleting account 
-    const deleteAccount = () =>{
-        const conformation = window.confirm("Are you sure you want to delete your account?");
-        if(conformation){
+    const permDeleteAccount = () =>{
+        try{
             fetch(`http://localhost:4000/deleteaccount/${userId}`,{
             method:"DELETE",
             headers:{
@@ -74,7 +75,6 @@ export default function ProfileSetting(){
             }).then((res)=>{
                 if(res.status === 200){
                     console.log("User Delete");
-                    alert("User Deleted sucessfully")
                     setRedirect(true)
                 
                 }else{
@@ -82,8 +82,8 @@ export default function ProfileSetting(){
                 }
             })
         }
-        else{
-            alert("User not Delete");
+        catch(error){
+            alert("Error"+error);
         }
     }
     if(redirect){
@@ -213,12 +213,35 @@ export default function ProfileSetting(){
                 <div className="mt-10">
                     <button
                         className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 font-bold cursor-pointer"
-                        onClick={deleteAccount}
+                        onClick={()=>setDeleteAccount(true)}
                     >
                     Delete Account
                     </button>  
                 </div>
             </div>
+            {/* delete account  */}
+            {deleteAccount &&(
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="bg-white p-8 rounded-md shadow-md text-center">
+                <p className="text-lg font-semibold mb-4">Do you really want to <span className="text-red-600">Delete This Account</span> ?</p>
+                <div className="flex justify-center gap-4">
+                  <button
+                    className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-2 px-4 rounded-full"
+                    onClick={()=>setDeleteAccount(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full"
+                    onClick={permDeleteAccount}
+                  >
+                    Confirm Delete
+                  </button>
+                </div>
+              </div>
+            </div> 
+
+            )}
         </div>
     )
 }
