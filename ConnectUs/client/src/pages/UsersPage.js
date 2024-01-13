@@ -36,11 +36,8 @@ export default function UsersPage() {
     return (
         <div>
         
-            <div className="mt-4 mb-4">
-                <button 
-                className="bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full flex items-center">
-                    <Link to={`/home`}>Home</Link>
-                </button>
+            <div className="mt-3 mb-3">
+                <h1 className="text-3xl font-bold">Use<span className="text-blue-500">rs</span></h1>
             </div>
             {loading && <div className="lds-circle"><div></div></div>}
             {!users && <p>No users found</p>}

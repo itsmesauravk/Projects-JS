@@ -25,8 +25,9 @@ function App() {
 
           <Route path='/home' element={<HomeLayout/>}>
             <Route path="/home" element={<HomePage />} />
+            <Route path='/home/users' element={<UsersPage/>} />
           </Route>
-          <Route path='/users' element={<UsersPage/>} />
+          {/* <Route path='/users' element={<UsersPage/>} /> */}
           <Route path='/newpost/:userId' element={<NewPostPage/>} />
           <Route path='/yourpost/:userId' element={<YourPost/>} />
           <Route path='/profilesetting/:userId' element={<ProfileSetting/>} />

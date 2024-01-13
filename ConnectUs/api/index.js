@@ -192,6 +192,10 @@ app.patch("/updatepost/:postId", upload.single("image"), async (req, res) => {
     try {
         const { caption } = req.body;
         const image = req.file.path;
+        if(!image){
+            return res.status(400).json({ error: "Please upload an image" });
+        }
+        
         const postId = req.params.postId;
 
         const updatePost = await Post.findByIdAndUpdate(postId, {
