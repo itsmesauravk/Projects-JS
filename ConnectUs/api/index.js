@@ -83,7 +83,7 @@ app.post("/register",upload.single('profileImage'), async (req, res) => {
       dateOfBirth: dateOfBirth,
       gender: selectedGender,
       profileImage: selectedImage,
-      vipToken: vipToken,     // Gold Tick = IAMGOLD   , Blue Tick = SKYISBLUE
+      vipToken: vipToken,     // Gold Tick = iamgold   , Blue Tick = skyisblue
     });
 
     if (newUser) {
@@ -320,7 +320,7 @@ app.delete('/deletepost/:postId', async (req, res) => {
 //delete account
 app.delete("/deleteaccount/:userId", async (req, res) => {
     const userId = req.params.userId;
-    console.log(userId)
+    // console.log(userId)
     try {
         const deletedUser = await Registration.findByIdAndDelete(userId);
         const deleteUserPosts = await Post.deleteMany({ user: userId });
