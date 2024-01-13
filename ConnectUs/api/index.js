@@ -186,12 +186,14 @@ app.get("/users", async (req, res) => {
   }
 });
 
-// Update post
-app.patch("/updatepost/:postId", async (req, res) => {
-    const { caption, image } = req.body;
-    const postId = req.params.postId;
 
+//update userPost
+app.patch("/updatepost/:postId", upload.single("image"), async (req, res) => {
     try {
+        const { caption } = req.body;
+        const image = req.file.path;
+        const postId = req.params.postId;
+
         const updatePost = await Post.findByIdAndUpdate(postId, {
             $set: {
                 caption: caption,
@@ -209,6 +211,7 @@ app.patch("/updatepost/:postId", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
 
 
 //profile setting (update profile except password)

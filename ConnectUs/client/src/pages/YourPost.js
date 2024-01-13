@@ -76,12 +76,12 @@ export default function YourPost() {
     e.preventDefault();
     try {
         const formData = new FormData()
+        formData.append("caption",caption)
         formData.append("image",image)
-        const response = await axios.patch(`http://localhost:4000/updatepost/${editPostId}`, {
-            caption: caption,
+        const response = await axios.patch(`http://localhost:4000/updatepost/${editPostId}`, 
             formData
-        });
-        console.log(response);
+        );
+        // console.log(response);
         
         if (response.status === 200) {
             console.log("Post Updated");
@@ -110,7 +110,7 @@ export default function YourPost() {
       <div className="bg-white border border-gray-300 shadow-md rounded-md p-4 bg-purple-200">
             <div className="flex items-center mb-4">
               {userInfo && (
-                <img
+                <img 
                   src={
                     userInfo.profileImage
                       ? imageLink + userInfo.profileImage
@@ -156,9 +156,16 @@ export default function YourPost() {
 
       <h1 className="text-3xl font-bold mb-3 mt-3">Your Posts:</h1>
       {/* edit Div */}
-      {editPostId && (
-          <div className="border border-gray-300 shadow-md rounded-md p-4 mt-8">
-            <h2 className="text-2xl font-semibold mb-4">Edit post</h2>
+      {editPostId  && (
+          <div 
+          className="border border-gray-300 shadow-md bg-purple-200 rounded-md p-4 mt-8 fixed z-10"
+          style={{top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width:"500px", minHeight:"300px"}}
+          >
+            <div className="flex justify-between">
+              <h2 className="text-2xl font-semibold mb-4">Edit post</h2>
+              <button className="text-sm bg-red-600 hover:bg-red-800 text-white font-semibold h-7 py-1 px-2 rounded-md" 
+              onClick={()=>setEditPostId(null)}>close</button>
+            </div>
             <form>
               <label htmlFor="caption">Caption</label>
               <input
@@ -174,13 +181,27 @@ export default function YourPost() {
                 <label htmlFor="image" className="block text-gray-600 text-sm font-bold">
                   Image
                 </label>
-                <input
-                  type="file"
-                  id="image"
-                  value={image}
-                  onChange={(e) => setImage(e.target.files[0])}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                />
+                {image && (
+                    <div>
+                      <img
+                        alt="not found"
+                        width={"250px"}
+                        name="updatedImage"
+                        src={URL.createObjectURL(image)}
+                      />
+                      <br />
+                      <button onClick={() => setImage(null)}>Remove</button>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    name="updatedImage"
+                    onChange={(event) => {
+                      const file = event.target.files[0];
+                      // console.log(file);
+                      setImage(file);
+                    }}
+                  />
               </div>
 
               <button
@@ -196,7 +217,7 @@ export default function YourPost() {
 
       {posts.length > 0 && (
         <div>
-          <div className="flex flex-col gap-8 mt-5">
+          <div className="flex flex-col gap-8 mt-5 relative">
             {posts.map((post) => (
               <div key={post._id} className="bg-white border border-gray-300 shadow-md rounded-md p-4">
                 <div className="flex items-center justify-between mb-4">

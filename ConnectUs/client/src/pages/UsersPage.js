@@ -35,7 +35,7 @@ export default function UsersPage() {
     const goldTick = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Twitter_Verified_Badge_Gold.svg/2048px-Twitter_Verified_Badge_Gold.svg.png"
     return (
         <div>
-            <h1>Users Page</h1>
+        
             <div className="mt-4 mb-4">
                 <button 
                 className="bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full flex items-center">
@@ -43,6 +43,7 @@ export default function UsersPage() {
                 </button>
             </div>
             {loading && <div className="lds-circle"><div></div></div>}
+            {!users && <p>No users found</p>}
             <div>
                 {users.map((user) => (
                     <div 
