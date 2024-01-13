@@ -17,6 +17,7 @@ const goldTick = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Twit
 export default function HomeLayout(){
     const [redirect,setRedirect] = useState(false)
     const { userInfo,ready } = useContext(UserContext)
+    const [userLogout,setUserLogout] = useState(false)
 
     //for scrolling to top of page
         const scrollToTop = () => {
@@ -30,8 +31,8 @@ export default function HomeLayout(){
     
 
     function logout(){
-        const logoutConfirm = window.confirm("Are you sure you want to logout?");
-        if(logoutConfirm){
+        
+        try{
             fetch("http://localhost:4000/logout",{
             method:"POST",
             headers:{
@@ -47,6 +48,8 @@ export default function HomeLayout(){
                 alert("User not Logout");
             }
             })
+        }catch(err){
+            console.log(err);
         }
     }
     
@@ -69,6 +72,9 @@ export default function HomeLayout(){
     // login info => userInfo 
     return(
         <div>
+            {
+
+            }
             <div className="flex gap-4 items-center mt-5 bg-purple-100 p-2 rounded-md">  
                 <div>
                     {profileImage && <img src={imageLink+profileImage} alt="profile" className="w-20 h-20 rounded-full object-cover" />}
@@ -148,7 +154,7 @@ export default function HomeLayout(){
 
                     <li className="text-white font-bold hover:text-gray-300 cursor-pointer">
                         {/* logout  */}
-                    <Link className="navItems logout" onClick={logout}>
+                    <Link className="navItems logout" onClick={()=>setUserLogout(true)} >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
                     </svg>
@@ -158,6 +164,28 @@ export default function HomeLayout(){
                         </li>
                 </ul>
             </nav>
+            {userLogout && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                <div className="bg-white p-8 rounded-md shadow-md text-center">
+                  <p className="text-lg font-semibold mb-4">Do you really want to logout?</p>
+                  <div className="flex justify-center gap-4">
+                    <button
+                      className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-2 px-4 rounded-full"
+                      onClick={()=>setUserLogout(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full"
+                      onClick={logout}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </div>              
+            )}
+            
 
             <Outlet />
         </div>

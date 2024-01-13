@@ -21,6 +21,8 @@ export default function YourPost() {
   const [caption,setCaption] = useState("")
   const [image,setImage] = useState(null)
 
+  // const [delPost,setDelPost] = useState(false)
+
   const [loading, setLoading] = useState(false);
 
 
@@ -33,7 +35,6 @@ export default function YourPost() {
       setLoading(true);
       const response = await axios.get(`http://localhost:4000/yourpost/${userId}`);
       const data = response.data;
-      // console.log("Fetched data:", data);
       setYourPosts(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -48,27 +49,23 @@ export default function YourPost() {
 
   // Delete post (not working currently)
   const deletePost = async () => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this post?");
-
-    if(confirmDelete){
+    // const confirmDelete = window.confirm("Are you sure you want to delete this post?");
       try {
         const response = await axios.delete(`http://localhost:4000/deletepost/${postId}`);
         const data = response.data;
         console.log("Post deleted:", data);
         showUserPosts();
+        setPostId("");
       } catch (error) {
         console.error("Error deleting post:", error);
       }
-    }
+    
   };
 
 
-  useEffect(()=>{
-    if(postId){
-      deletePost();
-      setPostId("");
-    }
-  }, [postId])
+  // useEffect(()=>{
+  //     setPostId("");
+  // }, [postId])
 
 
 
@@ -157,17 +154,21 @@ export default function YourPost() {
       <h1 className="text-3xl font-bold mb-3 mt-3">Your Posts:</h1>
       {/* edit Div */}
       {editPostId  && (
-          <div 
-          className="border border-gray-300 shadow-md bg-purple-200 rounded-md p-4 mt-8 fixed z-10"
-          style={{top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width:"500px", minHeight:"300px"}}
-          >
-            <div className="flex justify-between">
-              <h2 className="text-2xl font-semibold mb-4">Edit post</h2>
-              <button className="text-sm bg-red-600 hover:bg-red-800 text-white font-semibold h-7 py-1 px-2 rounded-md" 
-              onClick={()=>setEditPostId(null)}>close</button>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-md shadow-md text-center w-96">
+            <div className="flex justify-between mb-4">
+              <h2 className="text-2xl font-semibold">Edit post</h2>
+              <button
+                className="text-sm bg-red-600 hover:bg-red-800 text-white font-semibold h-7 py-1 px-2 rounded-md"
+                onClick={() => setEditPostId(null)}
+              >
+                Close
+              </button>
             </div>
             <form>
-              <label htmlFor="caption">Caption</label>
+              <label htmlFor="caption" className="block text-gray-600 text-sm font-bold mb-2">
+                Caption
+              </label>
               <input
                 type="text"
                 name="caption"
@@ -176,34 +177,39 @@ export default function YourPost() {
                 onChange={(e) => setCaption(e.target.value)}
                 className="border border-gray-300 shadow-md rounded-md p-2 mb-4 w-full"
               />
-
+        
               <div className="mb-4">
-                <label htmlFor="image" className="block text-gray-600 text-sm font-bold">
+                <label htmlFor="image" className="block text-gray-600 text-sm font-bold mb-2">
                   Image
                 </label>
                 {image && (
-                    <div>
-                      <img
-                        alt="not found"
-                        width={"250px"}
-                        name="updatedImage"
-                        src={URL.createObjectURL(image)}
-                      />
-                      <br />
-                      <button onClick={() => setImage(null)}>Remove</button>
-                    </div>
-                  )}
-                  <input
-                    type="file"
-                    name="updatedImage"
-                    onChange={(event) => {
-                      const file = event.target.files[0];
-                      // console.log(file);
-                      setImage(file);
-                    }}
-                  />
+                  <div className="mb-2">
+                    <img
+                      alt="Preview"
+                      width={250}
+                      className="rounded-md mb-2"
+                      src={URL.createObjectURL(image)}
+                    />
+                    <br />
+                    <button
+                      className="text-sm bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-1 px-2 rounded-full"
+                      onClick={() => setImage(null)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
+                <input
+                  type="file"
+                  name="updatedImage"
+                  onChange={(event) => {
+                    const file = event.target.files[0];
+                    setImage(file);
+                  }}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                />
               </div>
-
+        
               <button
                 className="text-sm bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full"
                 onClick={updateEditPost}
@@ -212,8 +218,31 @@ export default function YourPost() {
               </button>
             </form>
           </div>
-        )}
-
+        </div>
+      )}
+      {/* delete Div */}
+      {postId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-md shadow-md text-center">
+              <p className="text-lg font-semibold mb-4">Do you really want to Delete?</p>
+              <div className="flex justify-center gap-4">
+                <button
+                  className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-2 px-4 rounded-full"
+                  onClick={()=>setPostId("")}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full"
+                  onClick={deletePost}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>        
+      
+      )}
 
       {posts.length > 0 && (
         <div>

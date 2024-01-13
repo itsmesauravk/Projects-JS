@@ -115,9 +115,9 @@ export default function ProfileSetting(){
                             src={
                               userInfo.profileImage
                                 ? imageLink + userInfo.profileImage
-                                : userInfo.user.gender === 'male'
+                                : userInfo.gender === 'male'
                                 ? defaultMaleImage
-                                : userInfo.user.gender === 'female'
+                                : userInfo.gender === 'female'
                                 ? defaultFemaleImage
                                 : defaultCustomImage
                             }
