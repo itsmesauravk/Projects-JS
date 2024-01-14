@@ -135,9 +135,9 @@ export default function HomePage() {
                 />
 
                 <div className="flex items-center space-x-4 mt-5">
-                  <button className="text-blue-500">Like</button>
-                  <button className="text-gray-500">Comment</button>
-                  <button className="text-gray-500">Share</button>
+                  <button className="text-red-500">Like</button>
+                  <button className="text-blue-500">Comment</button>
+                  <button className="text-purple-500">Share</button>
                 </div>
               </div>
             ))}
