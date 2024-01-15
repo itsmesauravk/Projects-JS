@@ -83,10 +83,10 @@ export default function HomePage({mode}) {
   const goldTick = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Twitter_Verified_Badge_Gold.svg/2048px-Twitter_Verified_Badge_Gold.svg.png";
 
   return (
-    <div>
+    <div className="overflow-hidden">
       {posts.length > 0 && (
         <div>
-          <div className={`flex flex-col gap-8 mt-5 `}>
+          <div className={`flex flex-col gap-8 mt-5 overflow-hidden`}>
             {posts.map((post) => (
               <div key={post._id} className={`bg-white border border-gray-300 shadow-md rounded-md p-4 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}>
                 <div className="flex items-center justify-between mb-4">
