@@ -99,7 +99,7 @@ export default function ProfileSetting({mode}){
 
     // console.log(userInfo)
     return(
-        <div>
+        <div className="h-screen">
             <div className="mt-4 mb-4">
                 <button className="bg-purple-600 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-full flex items-center">
                     <Link to={`/home`}>Home</Link>
@@ -152,7 +152,7 @@ export default function ProfileSetting({mode}){
                       />
                       <label className="block mt-2">Date of Birth:</label>
                       <input
-                        className={`border-2 border-blue-500 rounded-md p-1 ${mode==='light'?'light-theme':'dark-theme'}`}
+                        className={`border-2 border-blue-500 rounded-md p-1 ${mode==='light'?'light-text':'dark-text'}`}
                         type="date"
                         placeholder="Date of Birth"
                         value={dateOfBirth}

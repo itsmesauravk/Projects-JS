@@ -55,14 +55,14 @@ export default function LoginPage({mode}) {
 
 
     return (
-        <div className={`mt-10 ml-10 `}>
+        <div className={`mt-10 ml-10 h-screen`}>
             <h1 className="text-2xl">LoginPage</h1>
             <form className="mt-10" onSubmit={loginUser}>
                 <label className="block">
                     Email:
                 </label>
                 <input
-                    className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
+                    className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}
                     type="text"
                     name="email"
                     value={email}
@@ -73,7 +73,7 @@ export default function LoginPage({mode}) {
                 <label className="block mt-2">
                     Password:
                 </label>
-                <input className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
+                <input className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}
                 type="password" 
                 name="password"
                 value ={password}

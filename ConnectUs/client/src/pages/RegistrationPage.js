@@ -62,12 +62,12 @@ export default function RegistrationPage({mode}) {
   }
 
   return (
-    <div className="login mt-5 ml-10">
-      <h1 className="text-2xl">Create New Account</h1>
+    <div className=" mt-5 ml-10 h-screen">
+      <h1 className="text-2xl">Create New Account :</h1>
       {/* encType="multipart/form-data" */}
       <form className="mt-5" onSubmit={registerUser}  encType="multipart/form-data">   
         <input
-          className={` border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
+          className={` border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}
           type="text"
           placeholder="First name"
           value={firstName}
@@ -75,7 +75,7 @@ export default function RegistrationPage({mode}) {
         />
 
         <input
-          className={`border-2 border-blue-500 rounded-md p-1 ml-3 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
+          className={`border-2 border-blue-500 rounded-md p-1 ml-3 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}
           type="text"
           placeholder="Surname"
           value={surname}
@@ -84,7 +84,7 @@ export default function RegistrationPage({mode}) {
 
         <label className="block mt-2">Email:</label>
         <input
-          className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
+          className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}
           type="text"
           placeholder="Email or Phone Number "
           value={email}
@@ -93,7 +93,7 @@ export default function RegistrationPage({mode}) {
 
         <label className="block mt-2">Password:</label>
         <input
-          className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
+          className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}
           type="password"
           placeholder="New Password"
           value={password}
@@ -169,7 +169,7 @@ export default function RegistrationPage({mode}) {
           <p className="text-gray-600 italic mb-2">Only if you have :</p>
           <label>VIP TOKEN :</label>
           <input
-            className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
+            className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}
             type="password"
             placeholder="VIP Token..."
             value={vipToken}

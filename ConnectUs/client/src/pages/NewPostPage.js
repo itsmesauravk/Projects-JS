@@ -35,7 +35,7 @@ export default function NewPostPage({mode}) {
 
 
     return(
-        <div className={`max-w-xl mx-auto p-4 rounded-lg shadow-md 
+        <div className={`max-w-xl mx-auto p-4 rounded-lg shadow-md h-screen 
             ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}
             >
             <div className="mt-4 mb-4">
