@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
-export default function ProfileSetting(){
+export default function ProfileSetting({mode}){
     const { userInfo } = useContext(UserContext)
     const{setUserInfo} = useContext(UserContext)
     const userId = userInfo.id;
@@ -109,7 +109,7 @@ export default function ProfileSetting(){
                 <h1 className="text-2xl font-bold">Profile Setting</h1>
                 <div>
                     
-                    <div className="flex items-center mb-4 gap-3  p-2 rounded-md bg-purple-200">
+                    <div className={`flex items-center mb-4 gap-3  p-2 rounded-md bg-purple-200 ${mode==='light'?'light-color-theme':'dark-color-theme'}`}>
                         {userInfo && (
                           <img
                             src={
@@ -136,7 +136,7 @@ export default function ProfileSetting(){
                     <h1 className="mt-5 font-bold text-2xl">Edit Profile :</h1>
                     <form className="mt-5" onSubmit={updateProfile} encType="multipart/form-data"> 
                           <input
-                        className="border-2 border-blue-500 rounded-md p-1"
+                        className={`border-2 border-blue-500 rounded-md p-1 ${mode==='light'?'light-theme':'dark-theme'}`}
                         type="text"
                         placeholder="First name"
                         value={firstName}
@@ -144,7 +144,7 @@ export default function ProfileSetting(){
                       />
 
                       <input
-                        className="border-2 border-blue-500 rounded-md p-1 ml-2"
+                        className={`border-2 border-blue-500 rounded-md p-1 ml-2 ${mode==='light'?'light-theme':'dark-theme'}`}
                         type="text"
                         placeholder="Surname"
                         value={surname}
@@ -152,7 +152,7 @@ export default function ProfileSetting(){
                       />
                       <label className="block mt-2">Date of Birth:</label>
                       <input
-                        className="block border-2 border-blue-500 rounded-md p-1"
+                        className={`border-2 border-blue-500 rounded-md p-1 ${mode==='light'?'light-theme':'dark-theme'}`}
                         type="date"
                         placeholder="Date of Birth"
                         value={dateOfBirth}

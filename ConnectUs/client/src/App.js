@@ -35,8 +35,8 @@ function App() {
           </Route>
           {/* <Route path='/users' element={<UsersPage/>} /> */}
           <Route path='/newpost/:userId' element={<NewPostPage mode={theme}/>} />
-          <Route path='/yourpost/:userId' element={<YourPost/>} />
-          <Route path='/profilesetting/:userId' element={<ProfileSetting/>} />
+          <Route path='/yourpost/:userId' element={<YourPost mode={theme}/>} />
+          <Route path='/profilesetting/:userId' element={<ProfileSetting mode={theme}/>} />
 
         </Route>
       </Routes>

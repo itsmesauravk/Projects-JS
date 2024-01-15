@@ -12,7 +12,7 @@ const defaultMaleImage = "https://www.w3schools.com/howto/img_avatar.png";
 const defaultFemaleImage = "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/11_avatar-512.png";
 const defaultCustomImage = "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg";
 
-export default function YourPost() {
+export default function YourPost({mode}) {
   const { userInfo } = useContext(UserContext);
   const userId = userInfo.id;
   const [posts, setYourPosts] = useState([]);
@@ -104,7 +104,7 @@ export default function YourPost() {
   return (
     <div>
    
-      <div className="bg-white border border-gray-300 shadow-md rounded-md p-4 bg-purple-200">
+      <div className={`bg-white border border-gray-300 shadow-md rounded-md p-4 bg-purple-200 ${mode === 'light'?'light-color-theme':'dark-color-theme'}`}>
             <div className="flex items-center mb-4">
               {userInfo && (
                 <img 
@@ -124,7 +124,7 @@ export default function YourPost() {
               )}
             <div>
             <div className="flex gap-1 items-center ">
-              <h1 className="font-bold">{userInfo.firstName} {userInfo.surname}</h1>
+              <h1 className="font-bold text-3xl ml-3">{userInfo.firstName} {userInfo.surname}</h1>
               {userInfo.vipToken === "iamgold" && <img src={goldTick} alt="gold" className="w-6 h-6" />}
               {userInfo.vipToken === "skyisblue" && <img src={blueTick} alt="blue" className="w-6 h-6" />}
             </div>
@@ -154,8 +154,8 @@ export default function YourPost() {
       <h1 className="text-3xl font-bold mb-3 mt-3">Your Posts:</h1>
       {/* edit Div */}
       {editPostId  && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-md shadow-md text-center w-96">
+          <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 `}>
+          <div className={`bg-white p-8 rounded-md shadow-md text-center w-96 ${mode === 'light'?'light-theme':'dark-theme'}`}>
             <div className="flex justify-between mb-4">
               <h2 className="text-2xl font-semibold">Edit post</h2>
               <button
@@ -175,7 +175,7 @@ export default function YourPost() {
                 id="caption"
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
-                className="border border-gray-300 shadow-md rounded-md p-2 mb-4 w-full"
+                className={`border border-gray-300 shadow-md rounded-md p-2 mb-4 w-full ${mode === 'light'?'light-theme':'dark-theme'}`}
               />
         
               <div className="mb-4">
@@ -223,7 +223,7 @@ export default function YourPost() {
       {/* delete Div */}
       {postId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-md shadow-md text-center">
+          <div className={`bg-white p-8 rounded-md shadow-md text-center ${mode === 'light'?'light-theme':'dark-theme'}`}>
               <p className="text-lg font-semibold mb-4">Do you really want to Delete?</p>
               <div className="flex justify-center gap-4">
                 <button
@@ -248,7 +248,7 @@ export default function YourPost() {
         <div>
           <div className="flex flex-col gap-8 mt-5 relative">
             {posts.map((post) => (
-              <div key={post._id} className="bg-white border border-gray-300 shadow-md rounded-md p-4">
+              <div key={post._id} className={`bg-white border border-gray-300 shadow-md rounded-md p-4 relative ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}>
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center mb-4">
                   <img
