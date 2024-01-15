@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import MainPage from './pages/MainPage';
+// import MainPage from './pages/MainPage';
 import RegistrationPage from './pages/RegistrationPage';
 import LoginPage from './pages/LoginPage';
 import Layout from './Layout'; 
@@ -24,12 +24,9 @@ function App() {
   return (
     <UserContextProvider>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          {/* Default route for Layout */}
-          <Route index element={<MainPage mode={theme} toggleMode={toggleMode}/>} />
-          {/* Other routes within the Layout */}
-          <Route path="/login" element={<LoginPage mode={theme} toggleMode={toggleMode} />} />
-          <Route path="/registration" element={<RegistrationPage />} />
+        <Route path="/" element={<Layout mode={theme} toggleMode={toggleMode}/>}>
+          <Route path='/' element={<LoginPage/>} />
+          <Route path='/registration' element={<RegistrationPage/>} />
 
           <Route path='/home' element={<HomeLayout/>}>
             <Route path="/home" element={<HomePage />} />

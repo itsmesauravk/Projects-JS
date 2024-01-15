@@ -90,3 +90,15 @@
   content: 'Logout';
 }
 
+
+
+/* for dark theme  */
+
+.light-theme{
+  background-color: #fff;
+  color: #000;
+}
+.dark-theme{
+  background-color: #0F0F0F;
+  color: #fff
+}
