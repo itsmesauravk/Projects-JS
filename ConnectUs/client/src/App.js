@@ -11,6 +11,7 @@ import NewPostPage from './pages/NewPostPage';
 import YourPost from './pages/YourPost';
 import ProfileSetting from './pages/ProfileSetting';
 import UsersPage from './pages/UsersPage';
+import InspectUserPage from './pages/InspectUserPage';
 
 function App() {
   const [theme,setTheme] = useState("light");
@@ -26,17 +27,19 @@ function App() {
     <UserContextProvider>
       <Routes>
         <Route path="/" element={<Layout mode={theme} toggleMode={toggleMode}/>}>
-          <Route path='/' element={<LoginPage/>} />
-          <Route path='/registration' element={<RegistrationPage/>} />
+          <Route path='/' element={<LoginPage mode={theme}/>} />
+          <Route path='/registration' element={<RegistrationPage mode={theme}/>} />
 
           <Route path='/home' element={<HomeLayout mode={theme}/>}>
             <Route path="/home" element={<HomePage mode={theme}/>} />
             <Route path='/home/users' element={<UsersPage/>} />
+            
           </Route>
           {/* <Route path='/users' element={<UsersPage/>} /> */}
           <Route path='/newpost/:userId' element={<NewPostPage mode={theme}/>} />
           <Route path='/yourpost/:userId' element={<YourPost mode={theme}/>} />
           <Route path='/profilesetting/:userId' element={<ProfileSetting mode={theme}/>} />
+          <Route path='/inspectuser/:userId' element={<InspectUserPage mode={theme}/>} />
 
         </Route>
       </Routes>

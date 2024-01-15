@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 const url = "http://localhost:4000/";
@@ -7,6 +8,7 @@ const url = "http://localhost:4000/";
 export default function UsersPage({mode}) {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [userId, setUserId] = useState(null);
 
     const getUsers = async () => {  
         try {
@@ -33,16 +35,24 @@ export default function UsersPage({mode}) {
     const blueTick = "https://upload.wikimedia.org/wikipedia/commons/3/32/Verified-badge.png";
     // const goldTick = "https://seeklogo.com/images/T/twitter-verified-badge-gold-logo-48439DE18B-seeklogo.com.png";
     const goldTick = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Twitter_Verified_Badge_Gold.svg/2048px-Twitter_Verified_Badge_Gold.svg.png"
+    
+    if(userId){
+        return <Navigate to={`/inspectuser/${userId}`} />
+    }
+    
     return (
         <div>
+            
         
             <div className="mt-3 mb-3">
                 <h1 className="text-3xl font-bold">Use<span className="text-blue-500">rs</span></h1>
             </div>
             {loading && <div className="lds-circle"><div></div></div>}
             {!users && <p>No users found</p>}
+            
             <div>
                 {users.map((user) => (
+                    
                     <div 
                     className={`flex items-center gap-5 mt=3 mb-3 p-2.5 border-2 rounded-md ${mode === 'light' ? 'light-text' : 'dark-text'}
                     ${user.vipToken === 'iamgold' ? 'bg-purple-300' : user.vipToken === 'skyisblue' ? 'bg-blue-300' : 'bg-gray-300'}`}>
@@ -63,11 +73,11 @@ export default function UsersPage({mode}) {
                             />
                         </div>
                         <div>
-                            <div className="flex gap-1  p-1 rounded-md">
+                        <div onClick={()=>setUserId(user._id)}  className="flex gap-1  p-1 rounded-md hover:cursor-pointer">
                                 <h1 className="text-xl font-bold">{user.firstName} {user.surname}</h1>
                                 {user.vipToken === "iamgold" && <img src={goldTick} alt="gold" className="w-6 h-6" />}
                                 {user.vipToken === "skyisblue" && <img src={blueTick} alt="blue" className="w-6 h-6" />}
-                            </div>
+                        </div>
                             <p className="text-blue-700 italic underline">{user.email}</p>
                         </div>
                     </div>
