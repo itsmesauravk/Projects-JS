@@ -13,11 +13,12 @@ import ProfileSetting from './pages/ProfileSetting';
 import UsersPage from './pages/UsersPage';
 
 function App() {
-  const [theme,setTheme] = useState("purple");
+  const [theme,setTheme] = useState("light");
 
   const toggleMode = () => {
-    setTheme(prevTheme => (prevTheme === "gray" ? "light" : "gray"));
+    setTheme(prevTheme => (prevTheme === "light" ? "dark" : "light"));
   };
+  
   
 
 

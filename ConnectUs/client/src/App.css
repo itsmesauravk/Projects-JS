@@ -94,11 +94,21 @@
 
 /* for dark theme  */
 
-.light-theme{
+.light-theme {
   background-color: #fff;
   color: #000;
 }
-.dark-theme{
-  background-color: #0F0F0F;
-  color: #fff
+
+.light-text {
+  color: #fff;
 }
+
+.dark-theme {
+  background-color: #0f0f0f;
+  color: #fff;
+}
+
+.dark-text {
+  color: #000;
+}
+

@@ -56,7 +56,7 @@ export default function HomeLayout(){
     
 
     if(redirect){
-        return <Navigate to="/login"/>
+        return <Navigate to="/"/>  // /-> login page
     }
     if (!ready) {
         // Data is still being fetched, show loading state or return null

@@ -2,11 +2,12 @@
 import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import '../App.css'
 
 
 const localhost = "http://localhost:4000"
 
-export default function LoginPage() {  
+export default function LoginPage({mode}) {  
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [redirect,setRedirect] = useState(false)
@@ -60,16 +61,19 @@ export default function LoginPage() {
                 <label className="block">
                     Email:
                 </label>
-                <input className=" block border-2 border-blue-500 rounded-md p-1"
-                 type="text" 
-                 name="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                 />
+                <input
+                    className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
+                    type="text"
+                    name="email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                />
+
+
                 <label className="block mt-2">
                     Password:
                 </label>
-                <input className="block border-2 border-blue-500 rounded-md p-1 " 
+                <input className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
                 type="password" 
                 name="password"
                 value ={password}

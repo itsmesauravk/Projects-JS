@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import '../App.css'
 
-export default function RegistrationPage() {
+export default function RegistrationPage({mode}) {
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -57,16 +58,16 @@ export default function RegistrationPage() {
     }
   
   if(redirect){
-    return <Navigate to="/login" />
+    return <Navigate to="/" />
   }
 
   return (
-    <div className="login mt-10 ml-10">
+    <div className="login mt-5 ml-10">
       <h1 className="text-2xl">Create New Account</h1>
       {/* encType="multipart/form-data" */}
-      <form className="mt-10" onSubmit={registerUser}  encType="multipart/form-data">   
+      <form className="mt-5" onSubmit={registerUser}  encType="multipart/form-data">   
         <input
-          className="border-2 border-blue-500 rounded-md p-1"
+          className={` border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
           type="text"
           placeholder="First name"
           value={firstName}
@@ -74,7 +75,7 @@ export default function RegistrationPage() {
         />
 
         <input
-          className="border-2 border-blue-500 rounded-md p-1 ml-2"
+          className={`border-2 border-blue-500 rounded-md p-1 ml-3 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
           type="text"
           placeholder="Surname"
           value={surname}
@@ -83,7 +84,7 @@ export default function RegistrationPage() {
 
         <label className="block mt-2">Email:</label>
         <input
-          className="block border-2 border-blue-500 rounded-md p-1"
+          className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
           type="text"
           placeholder="Email or Phone Number "
           value={email}
@@ -92,7 +93,7 @@ export default function RegistrationPage() {
 
         <label className="block mt-2">Password:</label>
         <input
-          className="block border-2 border-blue-500 rounded-md p-1"
+          className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
           type="password"
           placeholder="New Password"
           value={password}
@@ -101,7 +102,7 @@ export default function RegistrationPage() {
 
         <label className="block mt-2">Date of Birth:</label>
         <input
-          className="block border-2 border-blue-500 rounded-md p-1"
+          className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
           type="date"
           placeholder="Date of Birth"
           value={dateOfBirth}
@@ -168,7 +169,7 @@ export default function RegistrationPage() {
           <p className="text-gray-600 italic mb-2">Only if you have :</p>
           <label>VIP TOKEN :</label>
           <input
-            className="border-2 border-purple-800 rounded-md p-1 ml-2 capitalize"
+            className={`block border-2 border-blue-500 rounded-md p-1 ${mode === 'light' ? 'light-text' : 'dark-text'}`}
             type="password"
             placeholder="VIP Token..."
             value={vipToken}
@@ -197,7 +198,7 @@ export default function RegistrationPage() {
       <div className="mt-4">
         <p>
           Already have an account?{" "}
-          <Link className="text-blue-600 underline" to="/login">
+          <Link className="text-blue-600 underline" to="/">
             Login
           </Link>
         </p>
