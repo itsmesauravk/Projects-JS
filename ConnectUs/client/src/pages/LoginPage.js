@@ -5,6 +5,7 @@ import { UserContext } from "../UserContext";
 import '../App.css'
 
 
+
 const localhost = "http://localhost:4000"
 
 export default function LoginPage({mode}) {  
@@ -15,9 +16,25 @@ export default function LoginPage({mode}) {
     // const [userId,setUserId] = useState("")
     const {setUserInfo} = useContext(UserContext)
 
+    const [emptyError,setEmptyError] = useState(false)
+    const [invalidCredentials,setInvalidCredentials] = useState(false)
+    const [otherError,setOtherError] = useState(false)
+
     function loginUser(ev) {
         ev.preventDefault();
-        setLoading(true)
+        setLoading(true);
+        setEmptyError(false);
+        setInvalidCredentials(false);
+        setOtherError(false);
+    
+        // Check for empty email or password
+        if (!email || !password) {
+            setLoading(false);
+            // alert("Please enter both email and password.");
+            setEmptyError(true);
+            return;
+        }
+    
         fetch(`${localhost}/login`, {
             method: "POST",
             body: JSON.stringify({
@@ -27,26 +44,28 @@ export default function LoginPage({mode}) {
             headers: {
                 "Content-Type": "application/json",
             },
-            credentials:'include'
+            credentials: 'include'
         }).then((res) => {
             if (res.status === 200) {
                 console.log("User Login");
-                
-            
+                res.json().then((data) => {
+                    setRedirect(true);
+                    setUserInfo(data);
+                });
             } else {
-                alert("User not Login");
-                redirect(false)
+                // alert("Invalid email or password");
+                setInvalidCredentials(true);
+                redirect(false);
             }
-            res.json().then((data) => {
-                
-                setRedirect(true)
-                setUserInfo(data)
-                // console.log("ok",data)
-            })
-        }).finally(()=>{
-            setLoading(false)
-        })
+        }).catch((error) => {
+            console.error("Error during login:", error);
+            // alert("An error occurred during login. Please try again.");
+            setOtherError(true);
+        }).finally(() => {
+            setLoading(false);
+        });
     }
+    
     
     if (redirect) {
         return <Navigate to={`/home`} />;
@@ -79,6 +98,11 @@ export default function LoginPage({mode}) {
                 value ={password}
                 onChange={(event) => setPassword(event.target.value)}
                 />
+
+                {emptyError && <p className="text-red-600">Please enter both email and password.</p>}
+                {invalidCredentials && <p className="text-red-600">Invalid email or password.</p>}
+                {otherError && <p className="text-red-600">An error occurred during login. Please try again.</p>}
+
                 {loading && <div className="lds-circle"><div></div></div>}
                 {!loading && <button className="mt-4 bg-blue-500 text-white p-1 rounded-md" type="submit">Login</button>}
             </form>
