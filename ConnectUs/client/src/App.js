@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import RegistrationPage from './pages/RegistrationPage';
@@ -13,14 +13,22 @@ import ProfileSetting from './pages/ProfileSetting';
 import UsersPage from './pages/UsersPage';
 
 function App() {
+  const [theme,setTheme] = useState("purple");
+
+  const toggleMode = () => {
+    setTheme(prevTheme => (prevTheme === "gray" ? "light" : "gray"));
+  };
+  
+
+
   return (
     <UserContextProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* Default route for Layout */}
-          <Route index element={<MainPage />} />
+          <Route index element={<MainPage mode={theme} toggleMode={toggleMode}/>} />
           {/* Other routes within the Layout */}
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage mode={theme} toggleMode={toggleMode} />} />
           <Route path="/registration" element={<RegistrationPage />} />
 
           <Route path='/home' element={<HomeLayout/>}>

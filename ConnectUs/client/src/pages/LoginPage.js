@@ -6,7 +6,7 @@ import { UserContext } from "../UserContext";
 
 const localhost = "http://localhost:4000"
 
-export default function LoginPage() {  
+export default function LoginPage(props) {  
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [redirect,setRedirect] = useState(false)
@@ -54,7 +54,8 @@ export default function LoginPage() {
 
 
     return (
-        <div className="login mt-10 ml-10">
+        <div className={`login mt-10 ml-10 bg-${props.theme}-300`}>
+            <h1>Theme : ${props.theme}</h1>
             <h1 className="text-2xl">LoginPage</h1>
             <form className="mt-10" onSubmit={loginUser}>
                 <label className="block">
