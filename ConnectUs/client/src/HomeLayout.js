@@ -14,7 +14,7 @@ const blueTick = "https://upload.wikimedia.org/wikipedia/commons/3/32/Verified-b
 const goldTick = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Twitter_Verified_Badge_Gold.svg/2048px-Twitter_Verified_Badge_Gold.svg.png";
 // const goldTick2 = "https://seeklogo.com/images/T/twitter-verified-badge-gold-logo-48439DE18B-seeklogo.com.png";
 
-export default function HomeLayout(){
+export default function HomeLayout({mode}){
     const [redirect,setRedirect] = useState(false)
     const { userInfo,ready } = useContext(UserContext)
     const [userLogout,setUserLogout] = useState(false)
@@ -75,7 +75,7 @@ export default function HomeLayout(){
             {
 
             }
-            <div className="flex gap-4 items-center mt-5 bg-purple-100 p-2 rounded-md">  
+            <div className={`flex gap-4 items-center mt-5 bg-purple-100 p-2 rounded-md ${mode === 'light'? 'light-color-theme':'dark-color-theme'}`}>  
                 <div>
                     {profileImage && <img src={imageLink+profileImage} alt="profile" className="w-20 h-20 rounded-full object-cover" />}
                     {!profileImage && gender === 'male' &&

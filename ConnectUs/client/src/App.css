@@ -112,3 +112,12 @@
   color: #000;
 }
 
+.light-color-theme {
+  background-color:#CBF1F5 ;
+  color: #000;
+}
+.dark-color-theme {
+  background-color: #71C9CE;
+  color: #fff;
+}
+

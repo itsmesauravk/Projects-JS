@@ -33,6 +33,8 @@ const YourComponent = ({ mode, toggleMode }) => {
 export default function Layout({mode,toggleMode}) {
     return (
         <div className={`flex justify-between items-start h-screen p-8 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}>
+            
+
             <div className="w-1/5">
                 {/* Left Sidebar */}
                 {/* Include your left sidebar content here */}

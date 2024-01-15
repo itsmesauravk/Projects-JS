@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 // import { UserContext } from "../UserContext";
+import '../App.css'
 
 
 function formatDate(dateString) {
@@ -41,7 +42,7 @@ function formatDateDifference(postDate) {
 }
 
 
-export default function HomePage() {
+export default function HomePage({mode}) {
   // const {userInfo} = useContext(UserContext)
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -85,9 +86,9 @@ export default function HomePage() {
     <div>
       {posts.length > 0 && (
         <div>
-          <div className="flex flex-col gap-8 mt-5">
+          <div className={`flex flex-col gap-8 mt-5 `}>
             {posts.map((post) => (
-              <div key={post._id} className="bg-white border border-gray-300 shadow-md rounded-md p-4">
+              <div key={post._id} className={`bg-white border border-gray-300 shadow-md rounded-md p-4 ${mode === 'light' ? 'light-theme' : 'dark-theme'}`}>
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center mb-4">
                     {post.user && (

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const url = "http://localhost:4000/";
 
-export default function UsersPage() {
+export default function UsersPage({mode}) {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -44,7 +44,7 @@ export default function UsersPage() {
             <div>
                 {users.map((user) => (
                     <div 
-                    className={`flex items-center gap-5 mt=3 mb-3 p-2.5 border-2 rounded-md
+                    className={`flex items-center gap-5 mt=3 mb-3 p-2.5 border-2 rounded-md ${mode === 'light' ? 'light-text' : 'dark-text'}
                     ${user.vipToken === 'iamgold' ? 'bg-purple-300' : user.vipToken === 'skyisblue' ? 'bg-blue-300' : 'bg-gray-300'}`}>
                         <div>
                             <img
