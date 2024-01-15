@@ -168,7 +168,7 @@ export default function HomeLayout({mode}){
             </nav>
             {userLogout && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                <div className="bg-white p-8 rounded-md shadow-md text-center">
+                <div className={`bg-white p-8 rounded-md shadow-md text-center ${mode === 'light' ? 'light-theme':'dark-theme'}`}>
                   <p className="text-lg font-semibold mb-4">Do you really want to logout?</p>
                   <div className="flex justify-center gap-4">
                     <button
