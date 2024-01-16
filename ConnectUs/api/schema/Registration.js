@@ -33,6 +33,10 @@ const registrationSchema = new mongoose.Schema({
   vipToken: {
     type: String,
   },
+  notifications: [{  // This is an array of NotificationSchema objects
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Notification',
+  }],
 });
 
 const Registration = mongoose.model('Registration', registrationSchema);

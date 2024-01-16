@@ -13,6 +13,11 @@ export default function InspectUserPage({ mode }) {
     const [redirect, setRedirect] = useState(false);
     const ownerId = userInfo.id;
 
+    // Use localStorage to store friend request status
+    const [addFriendStatus, setAddFriendStatus] = useState(
+        localStorage.getItem(`friendStatus_${userId}`) || ""
+    );
+
     const url = "http://localhost:4000";
 
     // Function to handle adding a friend
@@ -21,9 +26,13 @@ export default function InspectUserPage({ mode }) {
             setLoading(true);
             const response = await axios.post(`${url}/addFriend`, {
                 senderId: ownerId,
-                receiverId: userId,
+                reciverId: userId,
             });
-            console.log("response: ", response);
+            const newFriendStatus = response.data.newFriend.status;
+            setAddFriendStatus(newFriendStatus);
+
+            // Update localStorage to persist the friend request status
+            localStorage.setItem(`friendStatus_${userId}`, newFriendStatus);
         } catch (error) {
             console.log("Error adding friend: ", error.response || error.message || error);
         } finally {
@@ -77,7 +86,10 @@ export default function InspectUserPage({ mode }) {
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                             onClick={addFriend} 
                         >
-                            Add Friend
+                            {addFriendStatus === "requested" && "Requested"}
+                            {addFriendStatus === "accepted" && "Accepted"}
+                            {addFriendStatus === "rejected" && "Rejected"}
+                            {addFriendStatus === "" && "Add Friend"}
                         </button>
                     </div>
 

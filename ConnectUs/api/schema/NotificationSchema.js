@@ -1,8 +1,7 @@
 
 const mongoose = require("mongoose")
 
-
-const FriendshipSchema = new mongoose.Schema({
+const NotificationSchema = new mongoose.Schema({
     senderId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Registration"
@@ -11,11 +10,14 @@ const FriendshipSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Registration"
     },
+    content:{
+        type: String,  
+    },
     status:{
-        type: String,
-        enum: ["requested", "accepted", "rejected"],
-        default: "requested"
+        type: Boolean,
+        default: false
     }
 }, {timestamps: true})
 
-module.exports = mongoose.model("Friendship", FriendshipSchema)
+
+module.exports = mongoose.model("Notification", NotificationSchema)

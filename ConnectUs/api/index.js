@@ -23,6 +23,8 @@ const Registration = require("./schema/Registration");
 const Post = require("./schema/Post");
 //friendship schema
 const Friendship = require("./schema/FriendshipSchema");
+//notification schema
+const Notification = require("./schema/NotificationSchema");
 
 //for image
 const multer = require("multer");
@@ -351,23 +353,52 @@ app.post("/logout",(req,res)=>{
 
 // to send the friends request to another user
 //this is just creating the collection of sender and reciver id but the status is still requested   
-app.post("/addFriend",async(req, res) => {
-    console.log("add friend")
+app.post("/addFriend", async (req, res) => {
     try {
-        const { reciverId , senderId} = req.body
-        console.log(req.body)
+        const { receiverId, senderId } = req.body;
 
-        const friend = await Friendship.findOne({ userId: senderId, friendId: reciverId })
-        if (friend) {
-            return res.status(401).json({ message: "Friend request already sent" })
+        // Check for existing friendship in both directions
+        const existingFriendship1 = await Friendship.findOne({ senderId, receiverId });
+        const existingFriendship2 = await Friendship.findOne({ senderId: receiverId, receiverId: senderId });
+
+        if (existingFriendship1 || existingFriendship2) {
+            return res.status(401).json({ message: "Friend request already sent" });
         }
-        const newFriend = await Friendship.create({ userId: senderId, friendId: reciverId })
-        res.status(200).json({ message: "Friend request sent", newFriend })
-    } catch (error) {
-        res.status(500).json({ message: error.message })
-    }
 
-})
+        // Create a new friendship
+        const newFriend = await Friendship.create({ senderId, receiverId });
+
+        // Create a notification for the friend request
+        const notification = await Notification.create({
+            senderId,
+            receiverId,
+            content: "sent you a Friend Request",
+        });
+
+        // Update sender and receiver notifications arrays
+        await Registration.findByIdAndUpdate(senderId, { $addToSet: { notifications: notification._id } });
+        await Registration.findByIdAndUpdate(receiverId, { $addToSet: { notifications: notification._id } });
+
+        res.status(200).json({ message: "Friend request sent", newFriend });
+    } catch (error) {
+        console.error("Error adding friend:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
+//notification counter
+app.get("/notificationCount/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const notificationCounter = await Registration.findById(userId).populate("notifications");
+        res.json(notificationCounter.notifications);
+    } catch (error) {
+        res.json("Error: " + error);
+    }
+});
+
 
 //for exceptions
 app.get("*", (req, res) => {
