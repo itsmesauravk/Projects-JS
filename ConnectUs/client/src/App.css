@@ -61,7 +61,7 @@
   white-space: nowrap; /* Prevent line breaks */
 }
 
-.homenav,.users ,.newpost, .profile, .editProfile, .logout {
+.homenav,.users ,.newpost, .profile, .editProfile, .logout,.friends {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -69,6 +69,10 @@
 
 .homenav:hover::before {
   content: 'Home';
+}
+
+.friends:hover::before {
+  content: 'Friends';
 }
 
 .users:hover::before {

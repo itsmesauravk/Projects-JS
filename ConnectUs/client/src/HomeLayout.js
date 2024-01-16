@@ -75,27 +75,35 @@ export default function HomeLayout({mode}){
             {
 
             }
-            <div className={`flex gap-4 items-center mt-5 bg-purple-100 p-2 rounded-md ${mode === 'light'? 'light-color-theme':'dark-color-theme'}`}>  
-                <div>
-                    {profileImage && <img src={imageLink+profileImage} alt="profile" className="w-20 h-20 rounded-full object-cover" />}
-                    {!profileImage && gender === 'male' &&
-                        <img src={defaultMaleImage} alt="male-profile" className="w-20 h-20 rounded-full" />
-                    }
-                    {!profileImage && gender === 'female' &&
-                        <img src={defaultFemaleImage} alt="female-profile" className="w-20 h-20 rounded-full" />
-                    }
-                    {!profileImage && gender === 'custom' &&
-                        <img src={defaultCustomImage} alt="custom-profile" className="w-20 h-20 rounded-full" />
-                    }
-                </div>
-                <div>
-                    <div className="flex gap-1 items-center ">
-                        <h1 className="font-bold">{firstName} {surname}</h1>
-                        {userInfo.vipToken === "iamgold" && <img src={goldTick} alt="gold" className="w-6 h-6" />}
-                        {userInfo.vipToken === "skyisblue" && <img src={blueTick} alt="blue" className="w-6 h-6" />}
+            <div className={`flex justify-between pl-5 pr-10 items-center mt-5 bg-purple-100 p-2 rounded-md ${mode === 'light'? 'light-color-theme':'dark-color-theme'}`}>  
+                <div className="flex  items-center gap-3">
+                    <div >
+                        {profileImage && <img src={imageLink+profileImage} alt="profile" className="w-20 h-20 rounded-full object-cover" />}
+                        {!profileImage && gender === 'male' &&
+                            <img src={defaultMaleImage} alt="male-profile" className="w-20 h-20 rounded-full" />
+                        }
+                        {!profileImage && gender === 'female' &&
+                            <img src={defaultFemaleImage} alt="female-profile" className="w-20 h-20 rounded-full" />
+                        }
+                        {!profileImage && gender === 'custom' &&
+                            <img src={defaultCustomImage} alt="custom-profile" className="w-20 h-20 rounded-full" />
+                        }
                     </div>
-                    
-                    <p className="text-sm italic text-blue-800 underline">{email}</p>
+                    <div>
+                        <div className="flex gap-1 items-center ">
+                            <h1 className="font-bold">{firstName} {surname}</h1>
+                            {userInfo.vipToken === "iamgold" && <img src={goldTick} alt="gold" className="w-6 h-6" />}
+                            {userInfo.vipToken === "skyisblue" && <img src={blueTick} alt="blue" className="w-6 h-6" />}
+                        </div>
+                        
+                        <p className="text-sm italic text-blue-800 underline">{email}</p>
+                    </div>
+                </div>
+
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                    </svg>
                 </div>
             </div>
             <nav className="bg-blue-600 p-4 mt-6 rounded-md sticky top-1 p-4 text-white">
@@ -104,6 +112,15 @@ export default function HomeLayout({mode}){
                         <Link className="navItems homenav" to={'/home'} onClick={scrollToTop}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+                        </Link>
+
+                    </li>
+                    <li className="text-white font-bold hover:text-gray-300 cursor-pointer">
+                        {/* Friends  */}
+                        <Link className="navItems friends" to={`/ `}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                         </svg>
                         </Link>
 

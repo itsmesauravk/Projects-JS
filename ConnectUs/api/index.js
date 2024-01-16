@@ -21,9 +21,15 @@ connectToDB();
 const Registration = require("./schema/Registration");
 //post schema
 const Post = require("./schema/Post");
+//friendship schema
+const Friendship = require("./schema/FriendshipSchema");
 
 //for image
 const multer = require("multer");
+
+
+
+
 
 //destination to save iimage in backend .
 // const upload = multer({ dest: __dirname+"/uploads" }); 
@@ -296,7 +302,6 @@ app.get("/yourpost/:userId", async (req, res) => {
     }
 });
 
-
 //delete Post
 // Route to delete a post by ID
 app.delete('/deletepost/:postId', async (req, res) => {
@@ -315,7 +320,6 @@ app.delete('/deletepost/:postId', async (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
     }
 });
-
 
 //delete account
 app.delete("/deleteaccount/:userId", async (req, res) => {
@@ -337,6 +341,32 @@ app.delete("/deleteaccount/:userId", async (req, res) => {
 //logout
 app.post("/logout",(req,res)=>{
     res.clearCookie("token").json("Logout")
+})
+
+
+
+
+
+//for adding friends
+
+// to send the friends request to another user
+//this is just creating the collection of sender and reciver id but the status is still requested   
+app.post("/addFriend",async(req, res) => {
+    console.log("add friend")
+    try {
+        const { reciverId , senderId} = req.body
+        console.log(req.body)
+
+        const friend = await Friendship.findOne({ userId: senderId, friendId: reciverId })
+        if (friend) {
+            return res.status(401).json({ message: "Friend request already sent" })
+        }
+        const newFriend = await Friendship.create({ userId: senderId, friendId: reciverId })
+        res.status(200).json({ message: "Friend request sent", newFriend })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+
 })
 
 //for exceptions
