@@ -351,6 +351,7 @@ app.post("/logout",(req,res)=>{
 
 //for adding friends
 
+
 // to send the friends request to another user
 //this is just creating the collection of sender and reciver id but the status is still requested   
 app.post("/addFriend", async (req, res) => {
@@ -417,18 +418,31 @@ app.post("/acceptFriend", async (req, res) => {
 
 
 
-//notification counter
-app.get("/notificationCount/:userId", async (req, res) => {
+//notification display
+app.get("/notification/:userId", async (req, res) => {
     const userId = req.params.userId;
     try {
-        const notificationCounter = await Registration.findById(userId).populate("notifications");
-        res.json(notificationCounter.notifications);
+        const notification = await Registration.findById(userId).populate("notifications");
+        res.json(notification.notifications);
+    } catch (error) {
+        res.json("Error: " + error);
+    }
+});
+
+// get sender data
+app.get("/senderinfo/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    console.log(userId);
+    try {
+        const senderData = await Registration.findById(userId);
+        res.json(senderData);
     } catch (error) {
         res.json("Error: " + error);
     }
 });
 
 
+//reject the friend request
 
 
 //for exceptions

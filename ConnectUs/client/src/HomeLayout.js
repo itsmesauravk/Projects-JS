@@ -3,7 +3,7 @@ import { Link, Navigate, Outlet } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
 import axios from "axios";
-import { get } from "mongoose";
+
 
 
 //inside homelayout userBOx and navbar layout
@@ -64,15 +64,9 @@ export default function HomeLayout({mode}){
   useEffect(() => {
     const getNotification = async () => {
       try {
-        const response = await axios.get(`${url}/notificationCount/${userId}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        });
+        const response = await axios.get(`${url}/notification/${userId}`);
         // Assuming the response.data contains the notification count
         setNotificationCount(response.data.length);
-        console.log(userId)
         console.log(response)
         console.log("Notification Count: ", response.data.length)
       } catch (err) {

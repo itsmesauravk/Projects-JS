@@ -12,6 +12,7 @@ import YourPost from './pages/YourPost';
 import ProfileSetting from './pages/ProfileSetting';
 import UsersPage from './pages/UsersPage';
 import InspectUserPage from './pages/InspectUserPage';
+import FriendsPage from './pages/FriendsPage';
 
 function App() {
   const [theme,setTheme] = useState("light");
@@ -40,6 +41,7 @@ function App() {
           <Route path='/yourpost/:userId' element={<YourPost mode={theme}/>} />
           <Route path='/profilesetting/:userId' element={<ProfileSetting mode={theme}/>} />
           <Route path='/inspectuser/:userId' element={<InspectUserPage mode={theme}/>} />
+          <Route path='/friends' element={<FriendsPage mode={theme}/>} />
 
         </Route>
       </Routes>
