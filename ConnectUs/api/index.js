@@ -387,6 +387,35 @@ app.post("/addFriend", async (req, res) => {
 });
 
 
+//accept the friend request
+app.post("/acceptFriend", async (req, res) => {
+    try {
+        const { senderId, receiverId } = req.body;
+
+        // Find the friendship based on either senderId and receiverId or vice versa
+        const acceptRequest = await Friendship.findOneAndUpdate(
+            {
+                $or: [
+                    { senderId, receiverId },
+                    { senderId: receiverId, receiverId: senderId },
+                ],
+            },
+            { status: "accepted" },
+            { new: true }
+        );
+
+        if (!acceptRequest) {
+            return res.status(404).json({ message: "Friendship not found" });
+        }
+
+        res.status(200).json({ message: "Friend request accepted", acceptRequest });
+    } catch (error) {
+        console.error("Error accepting friend request:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
 
 //notification counter
 app.get("/notificationCount/:userId", async (req, res) => {
@@ -398,6 +427,8 @@ app.get("/notificationCount/:userId", async (req, res) => {
         res.json("Error: " + error);
     }
 });
+
+
 
 
 //for exceptions
