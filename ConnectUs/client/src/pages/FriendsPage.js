@@ -9,14 +9,17 @@ export default function FriendsPage() {
   const { userInfo } = useContext(UserContext);
   const [redirect, setRedirect] = useState(false);
   const [notificationData, setNotificationData] = useState([]);
-  const [senderId, setSenderId] = useState(null);
-  const [senderData, setSenderData] = useState(null);
+  const [senderIds, setSenderIds] = useState([]);
+  const [senderData, setSenderData] = useState([]);
 
   useEffect(() => {
     const getFriends = async () => {
       try {
         const response = await axios.get(`${url}/notification/${userInfo.id}`);
         setNotificationData(response.data);
+        // Extract senderIds from notificationData
+        const ids = response.data.map((notification) => notification.senderId);
+        setSenderIds(ids);
       } catch (error) {
         console.log("Error getting friends: ", error);
       }
@@ -25,29 +28,29 @@ export default function FriendsPage() {
   }, [userInfo.id]);
 
   useEffect(() => {
-    // Check if there are new notifications and set senderId accordingly
-    if (notificationData.length > 0) {
-      setSenderId(notificationData[0].senderId);
-    }
-  }, [notificationData]);
-
-  useEffect(() => {
     const getSenderData = async () => {
       try {
-        if (senderId !== null) {
-          const response = await axios.get(`${url}/senderinfo/${senderId}`);
+        if (senderIds.length > 0) {
+          const response = await axios.post(`${url}/senderinfo`, {
+            senderIds: senderIds,
+          });
           setSenderData(response.data);
         }
       } catch (error) {
-        console.log("Error getting sender info: ", error);
+        console.log("Error getting sender data: ", error);
       }
     };
+
+    // Call getSenderData whenever senderIds change
     getSenderData();
-  }, [senderId]);
+  }, [senderIds]);
 
   if (redirect) {
     return <Navigate to="/home" />;
   }
+
+  console.log("noti", notificationData);
+  console.log("sender", senderData);
 
   return (
     <div>
@@ -62,25 +65,16 @@ export default function FriendsPage() {
 
       <h1>Friends Page</h1>
       <div>
-        {notificationData.map((notification) => (
-          <div key={notification._id}>
-            <div>
-              <h1>{notification.senderId}</h1>
-              {/* No need for the button here */}
-              <h1>{notification.content}</h1>
+        {notificationData.map((notification) => {
+          return (
+            <div key={notification._id}>
+              <div>
+                <h1>{notification.senderId}</h1>
+                <h1>{notification.content}</h1>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      <div>
-        <h2>Sender Information:</h2>
-        {senderData && (
-          <div>
-            <p>Sender Name: {senderData.name}</p>
-            {/* Add more fields as needed */}
-          </div>
-        )}
+          );
+        })}
       </div>
     </div>
   );

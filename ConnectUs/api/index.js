@@ -430,6 +430,8 @@ app.get("/notification/:userId", async (req, res) => {
 });
 
 // get sender data
+
+// update code so that user get sender info at once with notification
 app.get("/senderinfo/:userId", async (req, res) => {
     const userId = req.params.userId;
     console.log(userId);
@@ -443,6 +445,8 @@ app.get("/senderinfo/:userId", async (req, res) => {
 
 
 //reject the friend request
+
+
 
 
 //for exceptions
