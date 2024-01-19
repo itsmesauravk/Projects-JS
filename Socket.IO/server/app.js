@@ -1,3 +1,6 @@
+
+// Started Learning Socket.io on Jan 19, 2024
+
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -22,6 +25,14 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
+
+const user = true;
+io.use((socket, next) => {
+    if (user) {
+        next();     //below code will run only if user is true or condition is true
+    }
+    // next(new Error("Not authorized"));
+})
 
 io.on('connection', (socket) => {
     console.log("User connected " + socket.id);
