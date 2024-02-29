@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+    <h2>User Registration</h2>
+    
+    <form id="registrationForm">
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="firstname" required><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <input type="submit" value="Register">
+
+        <h4>Already have registred ? <a href="login.html">Login</a></h4>
+    </form>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const formData = new FormData(event.target);
+
+            // Convert form data to JSON
+            const jsonData = {};
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            // Send registration data to the server
+            fetch('http://localhost:4000/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("User Registred")
+                console.log('Registration successful:', data);
+                // You can perform additional actions after successful registration
+            })
+            .catch(error => {
+                alert("User Not Registred")
+                console.error('Error during registration:', error);
+                // Handle registration error
+            });
+        });
+    </script>
+
+</body>
+</html>
